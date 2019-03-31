@@ -1,0 +1,32 @@
+.dataTables_wrapper {
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+}
+
+.swal2-container {
+  z-index: 2300!important;
+}
+
+.tooltip{
+  z-index: 3000 !important;
+}
+
+.label{
+  font-size: 10px;
+}
+
+.notEditableHide{
+  display:none!important;
+}
+
+@media (min-width: 1200px){
+  .modal-xl {
+    width: 90%;
+    max-width: 1100px;
+  }
+}
+
+.text-success{
+  color: #28a745!important;
+}
