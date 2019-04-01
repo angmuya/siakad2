@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_input extends CI_Model {
+class M_update extends CI_Model {
+	
+	public function updateDataFakultas ($table,$form){
 
-	public function InputDataFakultas ($tb,$form){
-		$wh = array (
-			'kd_fakultas'=>NULL,
+        $masuk = array (
 			'nm_fakultas'=>$form['nama_fakultas'],
 			'dekan'=>$form['nama_dekan'],
 			'pd1'=>$form['pd1'],
@@ -17,9 +17,13 @@ class M_input extends CI_Model {
 		
 		);
 		
-		$data = $this->db->insert($tb,$wh);
-		echo $this->session->set_flashdata('message',"Data berhasil di tambahkan");
-		return $data;
-	}
+        $wh['kd_fakultas'] = $form['id_fakultas'];
+        $this->db->where($wh);
+        $data = $this->db->update($table,$masuk);
 
+        echo $this->session->set_flashdata('message',"Data berhasil di ubah...");
+		return $data;
+		
+	}
+	
 }

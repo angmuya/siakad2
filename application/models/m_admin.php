@@ -18,4 +18,11 @@ class M_admin extends CI_Model {
 		
 	}
 
+	public function getDataprodi($table){
+		
+		$data = $this->db->get($table);
+		return $data->result();
+		
+	}
+
 }

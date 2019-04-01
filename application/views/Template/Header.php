@@ -22,6 +22,8 @@
     <script src="<?=base_url('assets/')?>js/plugins/typeahead/bootstrap3-typeahead.min.js"></script>
     <script src="<?=base_url('assets/')?>js/plugins/popper/popper.min.js"></script>
     <script src="<?=base_url('assets/')?>js/custom.js"></script>
+
+    
     
     <!-- jQuery UI -->
     <script src="<?php echo base_url('assets');?>/js/plugins/jquery-ui/jquery-ui.min.js"></script>

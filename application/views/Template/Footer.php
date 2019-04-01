@@ -97,6 +97,11 @@
         });
 </script>
 
+<!--tambahan dari Bootstrap-->
+<script type="text/javascript" src="<?php echo base_url().'assets/js/bootstrap.js'?>"></script>
+<script type="text/javascript" src="<?php echo base_url().'assets/js/jquery.dataTables.js'?>"></script>
+<script type="text/javascript" src="<?php echo base_url().'assets/js/dataTables.bootstrap4.js'?>"></script>
+
 
 <!-- Mainly scripts -->
 <script src="<?=base_url('assets/')?>js/popper.min.js"></script>

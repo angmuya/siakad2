@@ -10,7 +10,7 @@
                         </div>
 												
 								<!-- MODAL ADD -->
-								<form action="<?=site_url().'adminController/proses_input_data_fakultas'?>" method='POST' >
+								<form action="<?=site_url().'adminController/proses_input_data_prodi'?>" method='POST' >
 												<div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog modal-lg" role="document">
 														<div class="modal-content">
@@ -21,7 +21,7 @@
 																</button>
 															</div>
 															<div class="modal-body">
-																<?php $this->load->view('v_tambah_data_fakultas');?>
+																<?php $this->load->view('v_tambah_data_prodi');?>
 															</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-secondary btn-outline " data-dismiss="modal">Close</button>
@@ -45,16 +45,16 @@
 														</button>
 													</div>
 													<div class="modal-body">
-													<form action='<?=site_url().'adminController/edit_data_fakultas'?>' method='post' >
-													<input name='id_fakultas' hidden >
-													<?php $this->load->view('v_tambah_data_fakultas');?>
+													<form action='<?=site_url().'adminController/edit_data_prodi'?>' methode='get' >
+													<input name='id_fakultas' type='hidden' >
+													<?php $this->load->view('v_tambah_data_prodi');?>
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-secondary  btn-outline " data-dismiss="modal">Close</button>
 														<button class="btn  btn-primary  btn-outline ">Update</button>
 														</form>
 
-														<form action='<?=site_url().'adminController/delete_fakultas'?>' method="post" >
+														<form action='<?=site_url().'adminController/delete_prodi'?>' method="post" >
 																<input name='id_fakultas' hidden >
 																<button class="btn btn-danger btn-outline">Hapus</button>
 														</form>
@@ -74,14 +74,9 @@
 							<thead>
 								<tr>
 									<th>No</th>
-									<th>Nama Fakultas</th>
-									<th>Dekan</th>
-									<th>PD1</th>
-									<th>PD2</th>
-									<th>PD3</th>
-									<th>PD4</th>
-									<th>Kasubag Perkuliahan</th>
-									<th>Kasubag Akademik</th>
+									<th>Nama Prodi</th>
+									<th>Ketua Prodi</th>
+									<th>Sekeretaris Prodi</th>
 									
 								</tr>
 							</thead>
@@ -89,29 +84,18 @@
 						
 							<?php
 							$no=1;
-							foreach ($datafakultas as $row ){
+							foreach ($dataprodi as $row ){
 							?>
 								<tr style="cursor:pointer;cursor:hand;" class='edit-record' 
-									data-id='<?=$row->kd_fakultas?>' 
-									data-fak='<?=$row->nm_fakultas?>' 
-									data-dekan='<?=$row->dekan?>' 
-									data-pd1='<?=$row->pd1?>' 
-									data-pd2='<?=$row->pd2?>' 
-									data-pd3='<?=$row->pd3?>' 
-									data-pd4='<?=$row->pd4?>' 
-									data-bag_perkuliahan='<?=$row->kasubag_perkuliahan?>' 
-									data-bag_akademik='<?=$row->kasubag_akademik?>' 
+									data-id='<?=$row->kd_prodi;?>' 
+									data-fak='<?=$row->nm_prodi?>' 
+									data-dekan='<?=$row->ketua_prodi?>' 
 
 								data-toggle="modal" data-target="#ModalEdit" >
 									<td><?=$no++?></td>
-									<td><?=$row->nm_fakultas;?></td>
-									<td><?=$row->dekan;?></td>
-									<td><?=$row->pd1;?></td>
-									<td><?=$row->pd2;?></td>
-									<td><?=$row->pd3;?></td>
-									<td><?=$row->pd4;?></td>
-									<td><?=$row->kasubag_perkuliahan;?></td>
-									<td><?=$row->kasubag_akademik?></td>
+									<td><?=$row->nm_prodi;?></td>
+									<td><?=$row->ketua_prodi;?></td>
+                                    <td><?=$row->sekretaris_prodi;?></td>
 						
 								
 								</tr>
@@ -155,5 +139,10 @@
 								$('[name="kasubag_akademik"]').val(bag_ak);
             });
         });
+
+        $(".select2_demo_3").select2({
+                placeholder: "Select a state",
+                allowClear: true
+            });
 
 </script>

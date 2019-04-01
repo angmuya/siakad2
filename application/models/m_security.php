@@ -32,7 +32,7 @@ class M_security extends CI_Model {
   }
 
   public function cekDataKosong($data){
-	  if(empty($data['nama_dekan'])){
+	  if(empty($data)){
 		redirect(strtolower($this->session->userdata('nama_role')));
 	  }
   }

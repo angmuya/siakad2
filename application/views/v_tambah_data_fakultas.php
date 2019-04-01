@@ -10,7 +10,7 @@
         <div class="input-group-prepend">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
         </div>
-			<input name='nama_dekan' type="text" placeholder="Nama Dekan" class="form-control" required='required' >
+			<input name='nama_dekan' type="text" placeholder="Nama Dekan" class="form-control " required='required' >
     </div>
 	
 	<div class="input-group m-b">
