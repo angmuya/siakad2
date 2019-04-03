@@ -20,6 +20,15 @@ class M_admin extends CI_Model {
 
 	public function getDataprodi($table){
 		
+		$this->db->from($table);
+		$this->db->join('tb_fakultas','tb_fakultas.kd_fakultas=tb_prodi.kd_fakultas','left');
+		$data = $this->db->get();
+		return $data->result();
+		
+	}
+
+	public function getDataMatkul($table){
+		
 		$data = $this->db->get($table);
 		return $data->result();
 		

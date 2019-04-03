@@ -34,16 +34,18 @@ class LoginUser extends CI_Controller {
 				
 				$se_data = array (
 					"kd_user" => $b->id_user,
-					"nama_user" => $b->nama_user,
+					"nama_user" => $b->Nama.''.$b->NamaMhs,
 					"username" => $b->user_name,
 					"nama_role" => $b->nama_role,
 					"lvl" => $b->level_id,
+					"no_id" => $b->NPM.''.$b->NIP,
 				);
 				$sesi = $this->session->set_userdata($se_data);
 			}
 			redirect('home');
 		}else{
-			redirect('login?error=Username&dan&password&salah');
+			echo $this->session->set_flashdata('message',"Username & Password Salah , Silahkan Coba Lagi");
+			redirect('login');
 		}
 	}catch (Exception $e){
 			ExceptionHandler::handle($e);

@@ -16,6 +16,109 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_siakad` /*!40100 DEFAULT CHARACTER S
 
 USE `db_siakad`;
 
+/*Table structure for table `tb_dosen` */
+
+DROP TABLE IF EXISTS `tb_dosen`;
+
+CREATE TABLE `tb_dosen` (
+  `NIP` varchar(15) NOT NULL,
+  `Nama` varchar(40) DEFAULT NULL,
+  `NIDN` varchar(15) DEFAULT NULL,
+  `TpLahir` varchar(20) DEFAULT NULL,
+  `TgLahir` date DEFAULT NULL,
+  `Sex` varchar(15) DEFAULT NULL,
+  `GolDarah` varchar(2) DEFAULT NULL,
+  `Agama` varchar(20) DEFAULT NULL,
+  `Alamat` varchar(100) DEFAULT NULL,
+  `NoTlp` varchar(20) DEFAULT NULL,
+  `Email` varchar(30) DEFAULT NULL,
+  `NoKTP` varchar(30) DEFAULT NULL,
+  `SD` varchar(30) DEFAULT NULL,
+  `ThSD` year(4) DEFAULT NULL,
+  `SMP` varchar(30) DEFAULT NULL,
+  `ThSMP` year(4) DEFAULT NULL,
+  `SMA` varchar(30) DEFAULT NULL,
+  `JrSMA` varchar(20) DEFAULT NULL,
+  `ThSMA` year(4) DEFAULT NULL,
+  `DIII` varchar(30) DEFAULT NULL,
+  `JrDIII` varchar(30) DEFAULT NULL,
+  `ThDIII` year(4) DEFAULT NULL,
+  `S1` varchar(30) DEFAULT NULL,
+  `JrS1` varchar(30) DEFAULT NULL,
+  `ThS1` year(4) DEFAULT NULL,
+  `S2` varchar(30) DEFAULT NULL,
+  `JrS2` varchar(30) DEFAULT NULL,
+  `ThS2` year(4) DEFAULT NULL,
+  `S3` varchar(30) DEFAULT NULL,
+  `JrS3` varchar(30) DEFAULT NULL,
+  `ThS3` year(4) DEFAULT NULL,
+  `Penelitian` varchar(30) DEFAULT NULL,
+  `TarafPenelitian` varchar(10) DEFAULT NULL,
+  `ThPenelitian` year(4) DEFAULT NULL,
+  `ThMasuk` year(4) DEFAULT NULL,
+  `KdGol` varchar(15) DEFAULT NULL,
+  `NoSK` varchar(20) DEFAULT NULL,
+  `TgSK` date DEFAULT NULL,
+  `KdJab` varchar(30) DEFAULT NULL,
+  `KdFung` varchar(15) DEFAULT NULL,
+  `StaPeg` varchar(10) DEFAULT NULL,
+  `StatusPA` varchar(1) DEFAULT NULL,
+  `StaKerja` varchar(20) DEFAULT NULL,
+  `KdStatus` varchar(20) DEFAULT NULL,
+  `NamaPsg` varchar(30) DEFAULT NULL,
+  `Pass` varchar(50) DEFAULT NULL,
+  `Poto` varchar(100) DEFAULT NULL,
+  `Kd_Fakultas` varchar(5) NOT NULL,
+  `kd_user` int(10) DEFAULT NULL,
+  PRIMARY KEY (`NIP`,`Kd_Fakultas`),
+  KEY `SMS_Dosen_Kd_Fakultas` (`Kd_Fakultas`),
+  KEY `SMS_Dosen_Nama` (`Nama`),
+  KEY `SMS_Dosen_NIPPNS` (`NIDN`),
+  KEY `SMS_Dosen_TpLahir` (`TpLahir`),
+  KEY `SMS_Dosen_TgLahir` (`TgLahir`),
+  KEY `SMS_Dosen_Sex` (`Sex`),
+  KEY `SMS_Dosen_GolDarah` (`GolDarah`),
+  KEY `SMS_Dosen_Agama` (`Agama`),
+  KEY `SMS_Dosen_Alamat` (`Alamat`),
+  KEY `SMS_Dosen_NoTlp` (`NoTlp`),
+  KEY `SMS_Dosen_Email` (`Email`),
+  KEY `SMS_Dosen_NoKTP` (`NoKTP`),
+  KEY `SMS_Dosen_SD` (`SD`),
+  KEY `SMS_Dosen_ThSD` (`ThSD`),
+  KEY `SMS_Dosen_SMP` (`SMP`),
+  KEY `SMS_Dosen_ThSMP` (`ThSMP`),
+  KEY `SMS_Dosen_SMA` (`SMA`),
+  KEY `SMS_Dosen_JrSMA` (`JrSMA`),
+  KEY `SMS_Dosen_ThSMA` (`ThSMA`),
+  KEY `SMS_Dosen_DIII` (`DIII`),
+  KEY `SMS_Dosen_JrDIII` (`JrDIII`),
+  KEY `SMS_Dosen_ThDIII` (`ThDIII`),
+  KEY `SMS_Dosen_S1` (`S1`),
+  KEY `SMS_Dosen_JrS1` (`JrS1`),
+  KEY `SMS_Dosen_ThS1` (`ThS1`),
+  KEY `SMS_Dosen_S2` (`S2`),
+  KEY `SMS_Dosen_JrS2` (`JrS2`),
+  KEY `SMS_Dosen_ThS2` (`ThS2`),
+  KEY `SMS_Dosen_S3` (`S3`),
+  KEY `SMS_Dosen_JrS3` (`JrS3`),
+  KEY `SMS_Dosen_ThS3` (`ThS3`),
+  KEY `SMS_Dosen_Penelitian` (`Penelitian`),
+  KEY `SMS_Dosen_TarafPenelitian` (`TarafPenelitian`),
+  KEY `SMS_Dosen_ThPenelitian` (`ThPenelitian`),
+  KEY `SMS_Dosen_ThMasuk` (`ThMasuk`),
+  KEY `SMS_Dosen_KdGol` (`KdGol`),
+  KEY `SMS_Dosen_NoSK` (`NoSK`),
+  KEY `SMS_Dosen_TgSK` (`TgSK`),
+  KEY `SMS_Dosen_KdJab` (`KdJab`),
+  KEY `SMS_Dosen_KdFung` (`KdFung`),
+  KEY `SMS_Dosen_StaPeg` (`StaPeg`),
+  KEY `SMS_Dosen_StatusPA` (`StatusPA`),
+  KEY `SMS_Dosen_StaKerja` (`StaKerja`),
+  KEY `SMS_Dosen_KdStatus` (`KdStatus`),
+  KEY `SMS_Dosen_NamaPsg` (`NamaPsg`),
+  KEY `SMS_Dosen_Pass` (`Pass`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 /*Table structure for table `tb_fakultas` */
 
 DROP TABLE IF EXISTS `tb_fakultas`;
@@ -39,13 +142,89 @@ CREATE TABLE `tb_fakultas` (
   KEY `SMS_Fakultas_PD4` (`pd4`),
   KEY `SMS_Fakultas_Kasubag_Perkuliahan` (`kasubag_perkuliahan`),
   KEY `SMS_Fakultas_Kasubag_Akademik` (`kasubag_akademik`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
-/*Data for the table `tb_fakultas` */
+/*Table structure for table `tb_mahasiswa` */
 
-insert  into `tb_fakultas`(`kd_fakultas`,`nm_fakultas`,`dekan`,`pd1`,`pd2`,`pd3`,`pd4`,`kasubag_perkuliahan`,`kasubag_akademik`) values 
-(11,'Administrasi Negara','-','-','-','-','-','-','-'),
-(22,'Administrasi Negaranknkn','-','-','-','-','-','-','-');
+DROP TABLE IF EXISTS `tb_mahasiswa`;
+
+CREATE TABLE `tb_mahasiswa` (
+  `NPM` varchar(255) DEFAULT NULL,
+  `NamaMhs` varchar(255) DEFAULT NULL,
+  `TpLahir` varchar(255) DEFAULT NULL,
+  `TgLahir` varchar(255) DEFAULT NULL,
+  `Sex` varchar(255) DEFAULT NULL,
+  `Suku` varchar(25) NOT NULL,
+  `Agama` varchar(255) DEFAULT NULL,
+  `AsalSekolah` varchar(255) DEFAULT NULL,
+  `ThnLulus` varchar(255) DEFAULT NULL,
+  `NEM` varchar(255) DEFAULT NULL,
+  `ThnMasuk` varchar(255) DEFAULT NULL,
+  `Alamat` varchar(255) DEFAULT NULL,
+  `KabS` varchar(255) DEFAULT NULL,
+  `PropS` varchar(255) DEFAULT NULL,
+  `Kota` varchar(255) DEFAULT NULL,
+  `Prop` varchar(255) DEFAULT NULL,
+  `NoTlp` varchar(255) DEFAULT NULL,
+  `Hobi` varchar(255) DEFAULT NULL,
+  `NmAyah` varchar(255) DEFAULT NULL,
+  `UmurAyah` varchar(255) DEFAULT NULL,
+  `PkjAyah` varchar(255) DEFAULT NULL,
+  `NmIbu` varchar(255) DEFAULT NULL,
+  `UmurIbu` varchar(255) DEFAULT NULL,
+  `PkjIbu` varchar(255) DEFAULT NULL,
+  `AlamatOrta` varchar(255) DEFAULT NULL,
+  `KotaO` varchar(255) DEFAULT NULL,
+  `NoTlpOrta` varchar(255) DEFAULT NULL,
+  `NoUSM` varchar(255) DEFAULT NULL,
+  `Pekerjaan` varchar(255) DEFAULT NULL,
+  `Jabatan` varchar(255) DEFAULT NULL,
+  `A_Pekerjaan` varchar(255) DEFAULT NULL,
+  `Tlp_Pekerjaan` varchar(15) NOT NULL,
+  `NIRP1` varchar(255) DEFAULT NULL,
+  `Nama1` varchar(255) DEFAULT NULL,
+  `NIRP2` varchar(255) DEFAULT NULL,
+  `Nama2` varchar(255) DEFAULT NULL,
+  `Kd_Jrs` varchar(255) DEFAULT NULL,
+  `PKls` varchar(255) DEFAULT NULL,
+  `Kls` varchar(255) DEFAULT NULL,
+  `PStudi` varchar(255) DEFAULT NULL,
+  `StaKuliah` varchar(255) DEFAULT NULL,
+  `Pass` varchar(255) DEFAULT NULL,
+  `Poto` varchar(255) DEFAULT NULL,
+  `ThnK` varchar(255) DEFAULT NULL,
+  `Skripsi` varchar(255) DEFAULT NULL,
+  `Kd_Fakultas` varchar(255) DEFAULT NULL,
+  `kd_user` int(10) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+/*Table structure for table `tb_matakuliah` */
+
+DROP TABLE IF EXISTS `tb_matakuliah`;
+
+CREATE TABLE `tb_matakuliah` (
+  `id_mk` int(11) NOT NULL AUTO_INCREMENT,
+  `kd_mk` varchar(10) DEFAULT NULL,
+  `nm_mk` varchar(10) DEFAULT NULL,
+  `semester` varchar(10) DEFAULT NULL,
+  `smt` smallint(6) DEFAULT NULL,
+  `kredit` int(11) DEFAULT NULL,
+  `kd_kk` varchar(10) DEFAULT NULL,
+  `kd_prodi` varchar(10) DEFAULT NULL,
+  `tahun_k` year(4) DEFAULT NULL,
+  `NIP` varchar(15) DEFAULT NULL,
+  `kd_fakultas` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`id_mk`),
+  KEY `SMS_Matakuliah_Kd_Fakultas` (`kd_fakultas`),
+  KEY `SMS_Matakuliah_Kd_Jrs` (`kd_prodi`),
+  KEY `SMS_Matakuliah_Tahun_K` (`tahun_k`),
+  KEY `SMS_Matakuliah_Nm_MK` (`nm_mk`),
+  KEY `SMS_Matakuliah_NIRP` (`NIP`),
+  KEY `SMS_Matakuliah_Kredit` (`kredit`),
+  KEY `SMS_Matakuliah_Semester` (`semester`),
+  KEY `SMS_Matakuliah_Kd_KK` (`kd_kk`),
+  KEY `SMS_Matakuliah_Smt` (`smt`)
+) ENGINE=MyISAM AUTO_INCREMENT=3793 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_prodi` */
 
@@ -62,12 +241,7 @@ CREATE TABLE `tb_prodi` (
   KEY `SMS_Jurusan_Ketua_Jrs` (`ketua_prodi`),
   KEY `SMS_Jurusan_Sekretaris_Jrs` (`sekretaris_prodi`),
   KEY `Kd_Jrs` (`kd_prodi`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-/*Data for the table `tb_prodi` */
-
-insert  into `tb_prodi`(`kd_prodi`,`nm_prodi`,`ketua_prodi`,`sekretaris_prodi`,`kd_fakultas`) values 
-(1,'Akuntansi','Bambang','udin','');
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_role` */
 
@@ -79,13 +253,6 @@ CREATE TABLE `tb_role` (
   KEY `id_role` (`id_role`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
-/*Data for the table `tb_role` */
-
-insert  into `tb_role`(`id_role`,`nama_role`) values 
-(1,'DOSEN'),
-(2,'MAHASISWA'),
-(3,'ADMIN');
-
 /*Table structure for table `tb_user` */
 
 DROP TABLE IF EXISTS `tb_user`;
@@ -95,16 +262,8 @@ CREATE TABLE `tb_user` (
   `user_name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `level_id` int(3) DEFAULT NULL,
-  `nama_user` varchar(255) DEFAULT NULL,
   KEY `id_user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
-/*Data for the table `tb_user` */
-
-insert  into `tb_user`(`id_user`,`user_name`,`password`,`level_id`,`nama_user`) values 
-(1,'admin','c4ca4238a0b923820dcc509a6f75849b',3,'Muhammad Yasin'),
-(2,'mhs','c4ca4238a0b923820dcc509a6f75849b',2,'M Yasin'),
-(3,'dosen','c4ca4238a0b923820dcc509a6f75849b',1,'Muh Yasin');
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -14,6 +14,9 @@
     <link href="<?=base_url('assets/')?>css/animate.css" rel="stylesheet">
     <link href="<?=base_url('assets/')?>css/style.css" rel="stylesheet">
     <link href="<?=base_url('assets/')?>css/custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="<?=base_url('assets/')?>select2/dist/css/select2.min.css">
+
     <script src="<?=base_url('assets/')?>js/jquery-3.1.1.min.js"></script>
     <script src="<?=base_url('assets/')?>js/plugins/dataTables/datatables.min.js"></script>
     <script src="<?=base_url('assets/')?>js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
@@ -22,6 +25,8 @@
     <script src="<?=base_url('assets/')?>js/plugins/typeahead/bootstrap3-typeahead.min.js"></script>
     <script src="<?=base_url('assets/')?>js/plugins/popper/popper.min.js"></script>
     <script src="<?=base_url('assets/')?>js/custom.js"></script>
+    <script src="<?=base_url('assets/')?>select2/dist/js/select2.full.min.js"></script>
+    
 
     
     

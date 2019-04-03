@@ -10,7 +10,7 @@
                     <ul class="nav nav-second-level collapse">
                         <li><a href='<?=site_url().'admin/fakultas'?>'>Fakultas</a></li>
                         <li><a href='<?=site_url().'admin/program_studi'?>'>Program Studi</a></li>
-                        <li><a href='#'>Mata kuliah</a></li>
+                        <li><a href='<?=site_url().'admin/mata_kuliah'?>'>Mata kuliah</a></li>
                         <li><a href='#'>Nilai</a></li>
                     </ul>
                 </li>

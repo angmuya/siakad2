@@ -52,6 +52,17 @@ class AdminController extends CI_Controller {
 		$this->load->view('tema',$pageData);
 	}
 
+	public function mata_kuliah(){
+		$this->m_security->cekRoleAkses('admin');
+		$pageData = array (
+			'title'=> 'Mata Kuliah',
+			'konten'=> 'v_matkul',
+			'datamatkul'=>$this->m_admin->getDataMatkul('tb_matakuliah'),
+		);
+		
+		$this->load->view('tema',$pageData);
+	}
+
 
 
 	//zone proses
@@ -62,6 +73,15 @@ class AdminController extends CI_Controller {
 		$this->m_input->InputDataFakultas('tb_fakultas',$dataForm);
 		
 		redirect('admin/fakultas');
+	}
+
+	public function proses_input_data_prodi(){
+		$this->m_security->cekRoleAkses('admin');
+		$dataForm = $this->input->post();	
+		$this->m_security->cekDataKosong($dataForm['nm_prodi']);
+		$this->m_input->InputDataProdi('tb_prodi',$dataForm);
+
+		redirect('admin/program_studi');
 	}
 
 	// akhir zone proses
@@ -88,7 +108,8 @@ class AdminController extends CI_Controller {
 	}
 	//Akhir Zona Hapus
 	public function latihan(){
-		$this->load->view('latihan');
+		echo $this->input->post('id');
+		
 	}
 
 	public function latihan2(){

@@ -3,6 +3,7 @@
                         <img alt="image" class="rounded-circle" src="<?=site_url()?>assets/img/profile_small.jpg"/>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="block m-t-xs font-bold"><?=$this->session->userdata('nama_user')?></span>
+                            <span class="block m-t-xs font-bold"><?=$this->session->userdata('no_id')?></span>
                             <span class="text-muted text-xs block"><?php echo strtoupper($this->session->userdata('nama_role'))?><b class="caret"></b></span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">

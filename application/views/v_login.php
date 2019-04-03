@@ -14,18 +14,27 @@
     <div class="col-md-6">
       <div class="ibox-content">
         <form id="" action='<?=site_url('login-proses')?>' method='post'  class="m-t" role="form">
-          <h3>Masuk Sebagai User</h3>
-          <h5 class="text-warning">Untuk :</h5>
-          <div class="form-group">
-            <input type="text" class="form-control" name="id_user" placeholder="Username" required="required">
+          <h3>Sign in to Start Session</h3>
+          <br>
+          <h5 class="text">Username :</h5>
+          <div class="input-group m-b">
+            <div class="input-group-prepend">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            </div>
+             <input type="text" class="form-control" name="id_user" placeholder="Enter Your ID User" required="required" >
           </div>
-          <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+          <h5 class="text">Password :</h5>
+          <div class="input-group m-b">
+            <div class="input-group-prepend">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            </div>
+             <input type="password" class="form-control" name="password" placeholder="Enter Your Password" required="required" >
           </div>
           <button type="submit" id="loginBtn" class="btn btn-primary block full-width m-b" data-loading-text="Loging In...">Login</button>
         </form>
+        <h5 class="text-danger"><?=$this->session->flashdata('message');?></h5>
         <p class="m-t">
-          <small>LPPM Unsri</small>
+          <small>Sistem Informasi Akademik</small>
         </p>
       </div>
     </div>
@@ -33,7 +42,7 @@
   <hr>
   <div class="row">
       <div class="col-md-6">
-          Universitas Sriwijaya
+          STIA SATYA Negara Palembang
       </div>
       <div class="col-md-6 text-right">
           <small>© 2019</small>

@@ -46,7 +46,7 @@
 													</div>
 													<div class="modal-body">
 													<form action='<?=site_url().'adminController/edit_data_prodi'?>' methode='get' >
-													<input name='id_fakultas' type='hidden' >
+													<input name='kd_prodi' type='hidden' >
 													<?php $this->load->view('v_tambah_data_prodi');?>
 													</div>
 													<div class="modal-footer">
@@ -55,7 +55,7 @@
 														</form>
 
 														<form action='<?=site_url().'adminController/delete_prodi'?>' method="post" >
-																<input name='id_fakultas' hidden >
+																<input name="kd_prodi" hidden >
 																<button class="btn btn-danger btn-outline">Hapus</button>
 														</form>
 													</div>
@@ -76,8 +76,9 @@
 									<th>No</th>
 									<th>Nama Prodi</th>
 									<th>Ketua Prodi</th>
-									<th>Sekeretaris Prodi</th>
-									
+									<th>Sekeretaris Prodi</th>	
+									<th>FAKULTAS</th>	
+
 								</tr>
 							</thead>
 							<tbody>
@@ -87,15 +88,18 @@
 							foreach ($dataprodi as $row ){
 							?>
 								<tr style="cursor:pointer;cursor:hand;" class='edit-record' 
-									data-id='<?=$row->kd_prodi;?>' 
-									data-fak='<?=$row->nm_prodi?>' 
-									data-dekan='<?=$row->ketua_prodi?>' 
+									data-kd_prodi='<?=$row->kd_prodi?>' 
+									data-nm_prodi='<?=$row->nm_prodi?>' 
+									data-ketua_prodi='<?=$row->ketua_prodi?>'
+									data-sekretaris_prodi='<?=$row->sekretaris_prodi?>' 
+									data-kd_fakultas='<?=$row->kd_fakultas?>'  
 
 								data-toggle="modal" data-target="#ModalEdit" >
 									<td><?=$no++?></td>
 									<td><?=$row->nm_prodi;?></td>
 									<td><?=$row->ketua_prodi;?></td>
-                                    <td><?=$row->sekretaris_prodi;?></td>
+									<td><?=$row->sekretaris_prodi;?></td>
+									<td><?=$row->nm_fakultas;?></td>
 						
 								
 								</tr>
@@ -113,36 +117,33 @@
             </div>
             </div>
         </div>
-<script>	
 
-        $(function(){
+<script>
+
+$(function(){
             $(document).on('click','.edit-record',function(){
-							var id_fakultas = $(this).attr('data-id');
-							var nm_fakultas = $(this).attr('data-fak');
-							var dekan = $(this).attr('data-dekan');
-							var pd1 = $(this).attr('data-pd1');
-							var pd2 = $(this).attr('data-pd2');
-							var pd3 = $(this).attr('data-pd3');
-							var pd4 = $(this).attr('data-pd4');
-							var bag_kul = $(this).attr('data-bag_perkuliahan');
-							var bag_ak = $(this).attr('data-bag_akademik');
+							var kdprodi = $(this).attr('data-kd_prodi');
+							var nmprodi = $(this).attr('data-nm_prodi');
+							var ketuaprodi = $(this).attr('data-ketua_prodi');
+							var sekretarisprodi = $(this).attr('data-sekretaris_prodi');
+							
+
 
                 $("#ModalEdit").modal('show');
-								$('[name="id_fakultas"]').val(id_fakultas);
-								$('[name="nama_fakultas"]').val(nm_fakultas);
-								$('[name="nama_dekan"]').val(dekan);
-								$('[name="pd1"]').val(pd1);
-								$('[name="pd2"]').val(pd2);
-								$('[name="pd3"]').val(pd3);
-								$('[name="pd4"]').val(pd4);
-								$('[name="kasubag_perkuliahan"]').val(bag_kul);
-								$('[name="kasubag_akademik"]').val(bag_ak);
+								$('[name="kd_prodi"]').val(kdprodi);
+								$('[name="nm_prodi"]').val(nmprodi);
+								$('[name="ketua_prodi"]').val(ketuaprodi);
+								$('[name="sekretaris_prodi"]').val(sekretarisprodi);
+								 
+								$.post('<?=base_url('admin/latihan')?>',
+                    			{id:$(this).attr('data-kd_fakultas')},
+                   				 function(html){
+                       			 $(".kd_fakultas").html(html);
+                   				 }   
+                );   
             });
-        });
-
-        $(".select2_demo_3").select2({
-                placeholder: "Select a state",
-                allowClear: true
-            });
-
+		});
+		
+			
 </script>
+
