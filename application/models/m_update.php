@@ -25,5 +25,24 @@ class M_update extends CI_Model {
 		return $data;
 		
 	}
+
+	public function updateDataProdi ($table,$form){
+
+        $upd = array (
+			'nm_prodi'=>$form['nm_prodi'],
+			'ketua_prodi'=>$form['ketua_prodi'],
+			'sekretaris_prodi'=>$form['sekretaris_prodi'],
+			'kd_fakultas'=>$form['kd_fakultas'],
+		
+		);
+		
+        $wh['kd_prodi'] = $form['kd_prodi'];
+        $this->db->where($wh);
+        $data = $this->db->update($table,$upd);
+
+        echo $this->session->set_flashdata('message',"Data berhasil di ubah...");
+		return $data;
+		
+	}
 	
 }

@@ -37,4 +37,5 @@ class M_security extends CI_Model {
 	  }
   }
 
+
 }

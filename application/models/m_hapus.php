@@ -7,7 +7,15 @@ class M_hapus extends CI_Model {
         $wh ['kd_fakultas'] = $form['id_fakultas'];
         $this->db->where($wh);
 		$data = $this->db->delete($tb);
-		echo $this->session->set_flashdata('message',"Data berhasil di tambahkan");
+		echo $this->session->set_flashdata('message',"Data berhasil di Hapus");
+		return $data;
+	}
+
+	public function hapusDataProdi($tb,$form){
+        $wh ['kd_prodi'] = $form['kd_prodi'];
+        $this->db->where($wh);
+		$data = $this->db->delete($tb);
+		echo $this->session->set_flashdata('message',"Data berhasil di Hapus");
 		return $data;
 	}
 

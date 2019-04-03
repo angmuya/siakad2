@@ -58,6 +58,10 @@ $route['logout'] = 'loginUser/logout/';
 
 $route['home'] = 'adminController/home/';
 $route['admin'] = 'adminController/home/';
+
+$route['admin/mahasiswa'] = 'adminController/data_mhs';
+$route['admin/dosen'] = 'adminController/data_ds';
+
 $route['admin/(:any)'] = 'adminController/$1/';
 
 $route['mahasiswa'] = 'adminController/home/';

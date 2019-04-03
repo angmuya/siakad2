@@ -18,8 +18,8 @@
 				<li>
                     <a href="#"><i class="fa fa-laptop"></i> <span class="nav-label">Account</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href='#'>User Account</a></li>
-                        <li><a href='#'>Role Account</a></li>
+                        <li><a href='<?=site_url().'admin/dosen'?>'>Dosen</a></li>
+                        <li><a href='<?=site_url().'admin/mahasiswa'?>'>Mahasiswa</a></li>
                     </ul>
                 </li>
              </ul>

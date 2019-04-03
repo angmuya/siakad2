@@ -4,7 +4,7 @@
                 <div class="col-lg-12">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <h5>Data Fakultas</h5>
+                        <h5><?=$title?></h5>
                         <div class="ibox-tools">
 							<button class="btn btn-primary btn-outline " data-toggle="modal" data-target="#modal-default" >+ Add New Data</button>
                         </div>
