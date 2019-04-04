@@ -21,7 +21,7 @@
 																</button>
 															</div>
 															<div class="modal-body">
-																<?php $this->load->view('v_tambah_data_prodi');?>
+																<?php $this->load->view('v_tambah_data_mahasiswa');?>
 															</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-secondary btn-outline " data-dismiss="modal">Close</button>

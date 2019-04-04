@@ -1,75 +1,78 @@
-<div class="col-sm-12">
-    <div class="input-group m-b ">
-        <div class="input-group-prepend">
-            <span class="input-group-addon"><i class="fa fa-university"></i></span>
+<h2>Profile Information</h2>
+<div class="row">
+    <div class="col-lg-6">
+      <label>Nama Matkul *</label>
+        <div class="input-group m-b">
+           <div class="input-group-prepend">
+                <span class="input-group-addon"><i class="fa fa-book"></i></span>
+           </div>
+                <input name='pd3' type="text" placeholder="Nama Mata Kuliah" class="form-control" required='required' >
         </div>
-			<input name='nama_fakultas' type="text" placeholder="Nama Fakultas" class="form-control" required='required'>
+        <label>Semester *</label>
+        <div class="input-group m-b">
+           <div class="input-group-prepend">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+           </div>
+                <input name='pd3' type="text" placeholder="Semester" class="form-control" required='required' >
+        </div>
+        <label>Nama Fakultas *</label>
+        <div class="input-group m-b">
+           <div class="input-group-prepend">
+                <span class="input-group-addon"><i class="fa fa-industry"></i></span>
+           </div>
+                <input name='pd3' type="text" placeholder="Fakultas" class="form-control" required='required' >
+        </div>
+        <label>Nama Program Studi *</label>
+        <div class="input-group m-b">
+           <div class="input-group-prepend">
+                <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+           </div>
+                <input name='pd3' type="text" placeholder="Program Studi" class="form-control" required='required' >
+        </div>
+        <label>Nama Matkul</label>
+        <div class="input-group m-b">
+           <div class="input-group-prepend">
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+           </div>
+                <input name='pd3' type="text" placeholder="Nama PD 3" class="form-control" required='required' >
+        </div>
     </div>
-	
-	<div class="input-group m-b">
-        <div class="input-group-prepend">
-            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+    <div class="col-lg-6">
+      <label>Nama Matkul</label>
+        <div class="input-group m-b">
+           <div class="input-group-prepend">
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+           </div>
+                <input name='pd3' type="text" placeholder="Nama PD 3" class="form-control" required='required' >
         </div>
-			<input name='nama_dekan' type="text" placeholder="Nama Dekan" class="form-control " required='required' >
-    </div>
-	
-	<div class="input-group m-b">
-        <div class="input-group-prepend">
-            <span class="input-group-addon"><i class="fa fa-users"></i></span>
+        <label>Nama Matkul</label>
+        <div class="input-group m-b">
+           <div class="input-group-prepend">
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+           </div>
+                <input name='pd3' type="text" placeholder="Nama PD 3" class="form-control" required='required' >
         </div>
-			<input name='pd1' type="text" placeholder="Nama PD 1" class="form-control" required='required' >
-    </div>
-	
-	<div class="input-group m-b">
-        <div class="input-group-prepend">
-            <span class="input-group-addon"><i class="fa fa-users"></i></span>
+        <label>Nama Matkul</label>
+        <div class="input-group m-b">
+           <div class="input-group-prepend">
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+           </div>
+                <input name='pd3' type="text" placeholder="Nama PD 3" class="form-control" required='required' >
         </div>
-			<input name='pd2' type="text" placeholder="Nama PD 2" class="form-control" required='required' >
-    </div>
-	
-	<div class="input-group m-b">
-        <div class="input-group-prepend">
-            <span class="input-group-addon"><i class="fa fa-users"></i></span>
+        <label>Nama Matkul</label>
+        <div class="input-group m-b">
+           <div class="input-group-prepend">
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+           </div>
+                <input name='pd3' type="text" placeholder="Nama PD 3" class="form-control" required='required' >
         </div>
-			<input name='pd3' type="text" placeholder="Nama PD 3" class="form-control" required='required' >
-    </div>
-	
-	<div class="input-group m-b">
-        <div class="input-group-prepend">
-            <span class="input-group-addon"><i class="fa fa-users"></i></span>
+        <label>Nama Matkul</label>
+        <div class="input-group m-b">
+           <div class="input-group-prepend">
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+           </div>
+                <input name='pd3' type="text" placeholder="Nama PD 3" class="form-control" required='required' >
         </div>
-			<input name='pd4' type="text" placeholder="Nama PD 4" class="form-control" required='required' >
-    </div>
-	
-	<div class="input-group m-b">
-        <div class="input-group-prepend">
-            <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
-        </div>
-			<input name='kasubag_perkuliahan' type="text" placeholder="Kasubag Perkuliahan" class="form-control" required='required' >
-    </div>
-	
-	<div class="input-group m-b">
-        <div class="input-group-prepend">
-            <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
-        </div>
-			<input name='kasubag_akademik' type="text" placeholder="Kasubag Akademik" class="form-control" required='required' >
-    </div>
-    <div class="input-group m-b">
-        <div class="input-group-prepend">
-            <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
-        </div>
-			<input name='kasubag_akademik' type="text" placeholder="Kasubag Akademik" class="form-control" required='required' >
-    </div>
-    <div class="input-group m-b">
-        <div class="input-group-prepend">
-            <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
-        </div>
-			<input name='kasubag_akademik' type="text" placeholder="Kasubag Akademik" class="form-control" required='required' >
-    </div>
-    <div class="input-group m-b">
-        <div class="input-group-prepend">
-            <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
-        </div>
-			<input name='kasubag_akademik' type="text" placeholder="Kasubag Akademik" class="form-control" required='required' >
     </div>
 </div>

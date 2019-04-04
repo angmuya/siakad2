@@ -1,7 +1,7 @@
 <div class="col-sm-12">
     <div class="input-group m-b ">
         <div class="input-group-prepend">
-            <span class="input-group-addon"><i class="fa fa-university"></i></span>
+            <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
         </div>
 			<input name='nm_prodi' type="text" placeholder="Nama Prodi" class="form-control" required='required'>
     </div>
@@ -21,7 +21,7 @@
     </div>
     <div class="input-group m-b">
         <div class="input-group-prepend">
-            <span class="input-group-addon"><i class="fa fa-users"></i></span>
+            <span class="input-group-addon"><i class="fa fa-university"></i></span>
         </div>
 	<select name='kd_fakultas' class="select2 form-control" required='required'>
         <option value=''>---Silahkan Pilih Fakultas---</option>
