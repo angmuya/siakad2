@@ -74,6 +74,7 @@
 							<thead>
 								<tr>
 									<th>No</th>
+									<th>Kode MK</th>
 									<th>Nama MK</th>
 									<th>Semester</th>
 									<th>Tahun</th>
@@ -100,8 +101,9 @@
 
 								data-toggle="modal" data-target="#ModalEdit" >
 									<td><?=$no++?></td>
+									<td><?=$row->kd_mk;?></td>
 									<td><?=$row->nm_mk;?></td>
-									<td><?=$row->semester;?></td>
+									<td><?=$row->semester.' ( '.$row->smt.' )'?></td>
                                     <td><?=$row->tahun_k;?></td>
 						
 								

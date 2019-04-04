@@ -32,6 +32,7 @@ class M_update extends CI_Model {
 			'nm_prodi'=>$form['nm_prodi'],
 			'ketua_prodi'=>$form['ketua_prodi'],
 			'sekretaris_prodi'=>$form['sekretaris_prodi'],
+			'p_studi'=>$form['p_studi'],
 			'kd_fakultas'=>$form['kd_fakultas'],
 		
 		);

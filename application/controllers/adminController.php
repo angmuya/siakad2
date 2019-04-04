@@ -32,7 +32,7 @@ class AdminController extends CI_Controller {
 		$pageData = array (
 			'title'=> 'Fakultas',
 			'konten'=> 'v_fakultas',
-			'datafakultas'=>$this->m_admin->getDataFakultas('tb_fakultas'),
+			'datafakultas'=>$this->m_admin->getDataTable('tb_fakultas'),
 		);
 		
 		$this->load->view('tema',$pageData);
@@ -55,7 +55,7 @@ class AdminController extends CI_Controller {
 		$pageData = array (
 			'title'=> 'Mata Kuliah',
 			'konten'=> 'v_matkul',
-			'datamatkul'=>$this->m_admin->getDataMatkul('tb_matakuliah'),
+			'datamatkul'=>$this->m_admin->getDataTable('tb_matakuliah'),
 		);
 		
 		$this->load->view('tema',$pageData);

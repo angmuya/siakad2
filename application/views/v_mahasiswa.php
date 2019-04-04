@@ -10,7 +10,7 @@
                         </div>
 												
 								<!-- MODAL ADD -->
-								<form action="<?=site_url().'adminController/proses_input_data_prodi'?>" method='POST' >
+								<form action="<?=site_url().'adminController/proses_input_data_mhs'?>" method='get' >
 												<div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog modal-lg" role="document">
 														<div class="modal-content">
@@ -74,8 +74,9 @@
 							<thead>
 								<tr>
 									<th>No</th>
-									<th>Nama Prodi</th>
-									<th>Ketua Prodi</th>
+
+									<th>Nama Mahasiswa</th>
+									<th>Jenis Kelamin</th>
 									<th>Sekeretaris Prodi</th>	
 									<th>FAKULTAS</th>	
 

@@ -96,7 +96,7 @@
 
 								data-toggle="modal" data-target="#ModalEdit" >
 									<td><?=$no++?></td>
-									<td><?=$row->nm_prodi;?></td>
+									<td><?=$row->nm_prodi.' ( '.$row->p_studi.' )';?></td>
 									<td><?=$row->ketua_prodi;?></td>
 									<td><?=$row->sekretaris_prodi;?></td>
 									<td><?=$row->nm_fakultas;?></td>
@@ -146,4 +146,3 @@ $(function(){
 		
 			
 </script>
-

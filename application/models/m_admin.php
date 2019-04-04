@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_admin extends CI_Model {
 
 	
-	public function getDataFakultas ($table){
+	public function getDataTable($table){
 		
 		$data = $this->db->get($table);
 		return $data->result();
@@ -23,13 +23,6 @@ class M_admin extends CI_Model {
 		$this->db->from($table);
 		$this->db->join('tb_fakultas','tb_fakultas.kd_fakultas=tb_prodi.kd_fakultas','left');
 		$data = $this->db->get();
-		return $data->result();
-		
-	}
-
-	public function getDataMatkul($table){
-		
-		$data = $this->db->get($table);
 		return $data->result();
 		
 	}
