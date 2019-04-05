@@ -66,7 +66,7 @@ class AdminController extends CI_Controller {
 		$pageData = array (
 			'title'=> 'Mahasiswa',
 			'konten'=> 'v_mahasiswa',
-			'dataprodi'=>$this->m_admin->getDataProdi('tb_prodi'),
+			'datamhs'=>$this->m_admin->getDataMhs('tb_mahasiswa'),
 		);
 		
 		$this->load->view('tema',$pageData);
@@ -156,5 +156,21 @@ class AdminController extends CI_Controller {
 			
 	}
 }
-	
+
+	public function latihan3(){
+
+	$dol = $this->m_admin->getDataTable('tb_mahasiswa');
+
+	echo json_encode($dol);
+	}
+
+	public function latihan4(){
+
+		$this->db->select_max("kd_mk");
+		$kode = $this->db->get('tb_matakuliah')->result();
+
+		echo $kode;
+
+		}
+
 }	

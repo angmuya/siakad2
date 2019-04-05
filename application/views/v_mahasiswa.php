@@ -47,7 +47,7 @@
 													<div class="modal-body">
 													<form action='<?=site_url().'adminController/edit_data_prodi'?>' method='post' >
 													<input name='kd_prodi' type='hidden' >
-													<?php $this->load->view('v_tambah_data_prodi');?>
+													<?php $this->load->view('v_tambah_data_mahasiswa');?>
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-secondary  btn-outline " data-dismiss="modal">Close</button>
@@ -73,20 +73,19 @@
 						<table class="table table-striped table-bordered table-hover dataTables-example" >
 							<thead>
 								<tr>
-									<th>No</th>
-
+									<th>NPM</th>
 									<th>Nama Mahasiswa</th>
-									<th>Jenis Kelamin</th>
-									<th>Sekeretaris Prodi</th>	
-									<th>FAKULTAS</th>	
+									<th>TTL</th>
+									<th>Jenis Kelamin</th>	
+									<th>Region</th>	
 
 								</tr>
 							</thead>
 							<tbody>
 						
 							<?php
-							$no=1;
-							foreach ($dataprodi as $row ){
+							
+							foreach ($datamhs as $row ){
 							?>
 								<tr style="cursor:pointer;cursor:hand;" class='edit-record' 
 									data-kd_prodi='<?=$row->kd_prodi?>' 
@@ -96,11 +95,11 @@
 									data-kd_fakultas='<?=$row->kd_fakultas?>'  
 
 								data-toggle="modal" data-target="#ModalEdit" >
-									<td><?=$no++?></td>
-									<td><?=$row->nm_prodi;?></td>
-									<td><?=$row->ketua_prodi;?></td>
-									<td><?=$row->sekretaris_prodi;?></td>
-									<td><?=$row->nm_fakultas;?></td>
+									<td><?=$row->NPM;?></td>
+									<td><?=$row->nama_mhs;?></td>
+									<td><?=$row->tp_lahir.' , '.substr($row->tgl_lahir,8).substr($row->tgl_lahir,4,-2).substr($row->tgl_lahir,0,-6);?></td>
+									<td><?=$row->jenis_kelamin;?></td>
+									<td><?=$row->agama;?></td>
 						
 								
 								</tr>

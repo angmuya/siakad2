@@ -18,6 +18,12 @@ class M_admin extends CI_Model {
 		
 	}
 
+	public function getDataMhs($table){
+		$wh['NPM'] = '1811001';
+		$data = $this->db->get_where($table,$wh);
+		return $data->result();
+	}
+
 	public function getDataprodi($table){
 		
 		$this->db->from($table);

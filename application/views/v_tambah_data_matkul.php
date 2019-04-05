@@ -71,10 +71,10 @@
            <select name='kd_fakultas' data-placeholder="Select" class="chosen-select form-control" multiple style="width:350px;" tabindex="13" required='required'>
            
             <?php
-                $getdata = $this->m_admin->getDataTable('tb_dosen');
+                $getdata = $this->m_admin->getDataTable('tb_mahasiswa');
                 foreach ($getdata as $row){
             ?>
-             <option value='<?=$row->NIP?>' ><?=$row->NIP.'::'.$row->Nama?></option>
+             <option value='<?=$row->NPM?>' ><?=$row->NPM.':: '.$row->nama_mhs?></option>
             <?php
                 };
             ?>
