@@ -38,4 +38,24 @@ class M_input extends CI_Model {
 
 	}
 
+	public function InputDataMatkul($tbl,$kode,$form){
+		$in = array (
+			'id_mk' => null,
+			'kd_mk' => $kode,
+			'nm_mk' => $form['nm_matkul'],
+			'semester' => $form['semester'],
+			'smt' => $form['smt'],
+			'kredit' => null,
+			'kd_kk'=> null,
+			'kd_prodi' => $form['kd_prodi'],
+			'tahun_k' => date('Y'),
+			'NIP' => $form['nip'],
+			'kd_fakultas'=>$form['kd_fakultas']
+		);
+
+		$data = $this->db->insert($tbl,$in);
+		echo $this->session->set_flashdata('message',"Data berhasil di tambahkan");
+		return $data;
+	}
+
 }

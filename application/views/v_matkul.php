@@ -55,7 +55,7 @@
 														</form>
 
 														<form action='<?=site_url().'adminController/delete_matkul'?>' method="post" >
-																<input name='id_fakultas' hidden >
+																<input name='kd_mk'  >
 																<button class="btn btn-danger btn-outline">Hapus</button>
 														</form>
 													</div>
@@ -89,15 +89,7 @@
 							?>
 								<tr style="cursor:pointer;cursor:hand;" class='edit-record' 
 									data-kd_mk='<?=$row->kd_mk;?>' 
-									data-nm_mk='<?=$row->nm_mk?>' 
-									data-semester='<?=$row->Semester?>'
-                                    data-smt='<?=$row->smt?>' 
-                                    data-kredit='<?=$row->kredit?>'
-                                    data-kd_kk='<?=$row->kd_kk?>'
-                                    data-kd_prodi='<?=$row->kd_prodi?>'
-                                    data-tahun_k='<?=$row->tahun_k?>'
-                                    data-NIP='<?=$row->NIP?>'
-                                    data-kd_fakultas='<?=$row->kd_fakultas?>'
+									data-semester='<?=$row->semester?>'
 
 								data-toggle="modal" data-target="#ModalEdit" >
 									<td><?=$no++?></td>
@@ -126,32 +118,14 @@
 
         $(function(){
             $(document).on('click','.edit-record',function(){
-							var id_fakultas = $(this).attr('data-id');
-							var nm_fakultas = $(this).attr('data-fak');
-							var dekan = $(this).attr('data-dekan');
-							var pd1 = $(this).attr('data-pd1');
-							var pd2 = $(this).attr('data-pd2');
-							var pd3 = $(this).attr('data-pd3');
-							var pd4 = $(this).attr('data-pd4');
-							var bag_kul = $(this).attr('data-bag_perkuliahan');
-							var bag_ak = $(this).attr('data-bag_akademik');
+							var kd_mk = $(this).attr('data-kd_mk');
+							var semester = $(this).attr('data-semester');
+
 
                 $("#ModalEdit").modal('show');
-								$('[name="id_fakultas"]').val(id_fakultas);
-								$('[name="nama_fakultas"]').val(nm_fakultas);
-								$('[name="nama_dekan"]').val(dekan);
-								$('[name="pd1"]').val(pd1);
-								$('[name="pd2"]').val(pd2);
-								$('[name="pd3"]').val(pd3);
-								$('[name="pd4"]').val(pd4);
-								$('[name="kasubag_perkuliahan"]').val(bag_kul);
-								$('[name="kasubag_akademik"]').val(bag_ak);
+								$('[name="kd_mk"]').val(kd_mk);
+
             });
         });
-
-        $(".select2_demo_3").select2({
-                placeholder: "Select a state",
-                allowClear: true
-            });
 
 </script>

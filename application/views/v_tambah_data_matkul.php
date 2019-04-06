@@ -5,21 +5,21 @@
            <div class="input-group-prepend">
                 <span class="input-group-addon"><i class="fa fa-book"></i></span>
            </div>
-                <input name='pd3' type="text" placeholder="Nama Mata Kuliah" class="form-control" required='required' >
+                <input name='nm_matkul' type="text" placeholder="Nama Mata Kuliah" value='' class="form-control" required='required' >
         </div>
         <label>Semester *</label>
         <div class="input-group m-b">
            <div class="input-group-prepend">
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
            </div>
-               <select name='kd_fakultas' class="select2 form-control" required='required'>
-                    <option disabled selected  value='' >--Select--</option>
+               <select name='semester' id='semester' class="select2 form-control" required='required'>
+                    <option disabled selected  value='' >Select Semester...</option>
                     <option value='Ganjil' >Ganjil</option>
                     <option value='Genap' >Genap</option>
                </select>
 
-               <select name='kd_fakultas' class="select2 form-control" required='required'>
-                     <option disabled selected value='' >--Select--</option>
+               <select name='smt' class="select2 form-control col-lg-3" required='required'>
+                     <option disabled selected value='' >Ke...</option>
                    <?php
                     for ($i=1;$i<=8;$i++){
                    ?>
@@ -53,7 +53,7 @@
            <div class="input-group-prepend">
                 <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
            </div>
-           <select name='kd_fakultas' class="select2 form-control" required='required'>
+           <select name='kd_prodi' class="select2 form-control" required='required'>
             <option selected disabled  value=''>---Select Prodi---</option>
             <?php
                 $getdata = $this->m_admin->getDataTable('tb_prodi');
@@ -68,13 +68,13 @@
         <label>Nama Dosen *</label>
         <div class="input-group m-b">
            
-           <select name='kd_fakultas' data-placeholder="Select" class="chosen-select form-control" multiple style="width:350px;" tabindex="13" required='required'>
+           <select name='nip' data-placeholder="Select" class="chosen-select form-control" multiple style="width:350px;" tabindex="13" required='required'>
            
             <?php
                 $getdata = $this->m_admin->getDataTable('tb_mahasiswa');
                 foreach ($getdata as $row){
             ?>
-             <option value='<?=$row->NPM?>' ><?=$row->NPM.':: '.$row->nama_mhs?></option>
+             <option  value='<?=$row->NPM?>' ><?=$row->NPM.':: '.$row->nama_mhs?></option>
             <?php
                 };
             ?>

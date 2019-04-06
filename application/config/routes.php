@@ -67,6 +67,8 @@ $route['admin/(:any)'] = 'adminController/$1/';
 $route['mahasiswa'] = 'adminController/home/';
 $route['mahasiswa/(:any)'] = 'mahasiswaController/$1/';
 
+$route['superadmin'] = 'adminController/home/';
+
 
 $route['404_override'] = 'error404';
 $route['translate_uri_dashes'] = FALSE;

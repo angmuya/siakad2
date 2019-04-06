@@ -33,4 +33,24 @@ class M_admin extends CI_Model {
 		
 	}
 
+	public function getKodeMK($field,$tbl){
+		
+		$this->db->select_max($field);   
+		$query = $this->db->get($tbl);  //cek dulu apakah ada sudah ada kode di tabel.    
+
+		if($query->num_rows() <> 0){      
+			 //cek kode jika telah tersedia    
+			 $data = $query->row();      
+			$kode = substr($data->kd_mk,2)+1;
+		}
+		else{      
+			 $kode = "MK001";  //cek jika kode belum terdapat pada table
+		}
+
+		$res_kode = 'MK'.sprintf("%03d",$kode); 
+		return $res_kode;
+	}
+
+	
+
 }

@@ -19,4 +19,20 @@ class M_hapus extends CI_Model {
 		return $data;
 	}
 
+	public function hapusDataMhs($tb,$form){
+        $wh ['NPM'] = $form['id_npm'];
+        $this->db->where($wh);
+		$data = $this->db->delete($tb);
+		echo $this->session->set_flashdata('message',"Data berhasil di Hapus");
+		return $data;
+	}
+
+	public function hapusDataMatkul($tb,$form){
+        $wh ['kd_mk'] = $form['kd_mk'];
+        $this->db->where($wh);
+		$data = $this->db->delete($tb);
+		echo $this->session->set_flashdata('message',"Data berhasil di Hapus");
+		return $data;
+	}
+
 }

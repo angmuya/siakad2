@@ -10,7 +10,7 @@
                         </div>
 												
 								<!-- MODAL ADD -->
-								<form action="<?=site_url().'adminController/proses_input_data_mhs'?>" method='get' >
+								<form action="<?=site_url().'adminController/proses_input_data_matkul'?>" method='POST' >
 												<div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog modal-lg" role="document">
 														<div class="modal-content">
@@ -21,7 +21,7 @@
 																</button>
 															</div>
 															<div class="modal-body">
-																<?php $this->load->view('v_tambah_data_mahasiswa');?>
+																<?php $this->load->view('v_tambah_data_matkul');?>
 															</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-secondary btn-outline " data-dismiss="modal">Close</button>
@@ -45,17 +45,17 @@
 														</button>
 													</div>
 													<div class="modal-body">
-													<form action='<?=site_url().'adminController/edit_data_prodi'?>' method='post' >
-													<input name='kd_prodi' type='hidden' >
-													<?php $this->load->view('v_tambah_data_mahasiswa');?>
+													<form action='<?=site_url().'adminController/edit_data_matkul'?>' methode='get' >
+													<input name='id_fakultas' type='hidden' >
+													<?php $this->load->view('v_tambah_data_matkul');?>
 													</div>
 													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary  btn-outline " data-dismiss="modal">Close</button>
+														<button type="button" class="btn btn-secondary  btn-outline" data-dismiss="modal">Close</button>
 														<button class="btn  btn-primary  btn-outline ">Update</button>
 														</form>
 
-														<form action='<?=site_url().'adminController/delete_mhs'?>' method="post" >
-																<input name="id_npm" hidden >
+														<form action='<?=site_url().'adminController/delete_matkul'?>' method="post" >
+																<input name='kd_mk'  >
 																<button class="btn btn-danger btn-outline">Hapus</button>
 														</form>
 													</div>
@@ -73,31 +73,21 @@
 						<table class="table table-striped table-bordered table-hover dataTables-example" >
 							<thead>
 								<tr>
-									<th>NPM</th>
-									<th>Nama Mahasiswa</th>
-									<th>TTL</th>
-									<th>Jenis Kelamin</th>	
-									<th>Region</th>	
-
+									<th>Kode Role</th>
+									<th>Nama Role</th>
+                                    <th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
 						
 							<?php
-							
-							foreach ($datamhs as $row ){
+							foreach ($datares as $row ){
 							?>
-								<tr style="cursor:pointer;cursor:hand;" class='edit-record' 
-									data-id_mhs='<?=$row->NPM?>'  
+								<tr>
 
-								data-toggle="modal" data-target="#ModalEdit" >
-									<td><?=$row->NPM;?></td>
-									<td><?=$row->nama_mhs;?></td>
-									<td><?=$row->tp_lahir.' , '.substr($row->tgl_lahir,8).substr($row->tgl_lahir,4,-2).substr($row->tgl_lahir,0,-6);?></td>
-									<td><?=$row->jenis_kelamin;?></td>
-									<td><?=$row->agama;?></td>
-						
-								
+									<td><?=$row->id_role;?></td>
+									<td><?=$row->nama_role;?></td>
+                                    <td> <a href='<?=site_url().'masterMenu/setting_role/'.strtolower($row->id_role);?>' class='btn btn-primary btn-outline' >Setting Role Menu</a> </td>
 								</tr>
 							<?php
 							}
@@ -113,33 +103,18 @@
             </div>
             </div>
         </div>
+<script>	
 
-<script>
-
-$(function(){
+        $(function(){
             $(document).on('click','.edit-record',function(){
-							var id_mhs = $(this).attr('data-id_mhs');
-							var nmprodi = $(this).attr('data-nm_prodi');
-							var ketuaprodi = $(this).attr('data-ketua_prodi');
-							var sekretarisprodi = $(this).attr('data-sekretaris_prodi');
-							
+							var kd_mk = $(this).attr('data-kd_mk');
+							var semester = $(this).attr('data-semester');
 
 
                 $("#ModalEdit").modal('show');
-								$('[name="id_npm"]').val(id_mhs);
-								$('[name="nm_prodi"]').val(nmprodi);
-								$('[name="ketua_prodi"]').val(ketuaprodi);
-								$('[name="sekretaris_prodi"]').val(sekretarisprodi);
-								 
-								$.post('<?=base_url('admin/latihan')?>',
-                    			{id:$(this).attr('data-kd_fakultas')},
-                   				 function(html){
-                       			 $(".kd_fakultas").html(html);
-                   				 }   
-                );   
-            });
-		});
-		
-			
-</script>
+								$('[name="kd_mk"]').val(kd_mk);
 
+            });
+        });
+
+</script>

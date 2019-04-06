@@ -56,9 +56,10 @@
 
 														<form action='<?=site_url().'adminController/delete_fakultas'?>' method="post" >
 																<input name='id_fakultas' hidden >
+																<input name='nama_fakultas' hidden>
 																<button class="btn btn-danger btn-outline">Hapus</button>
 														</form>
-													</div>
+													</div> 
 												</div>
 											</div>
 										</div>
