@@ -147,15 +147,40 @@ CREATE TABLE `tb_fakultas` (
   KEY `SMS_Fakultas_PD4` (`pd4`),
   KEY `SMS_Fakultas_Kasubag_Perkuliahan` (`kasubag_perkuliahan`),
   KEY `SMS_Fakultas_Kasubag_Akademik` (`kasubag_akademik`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_fakultas` */
 
 insert  into `tb_fakultas`(`kd_fakultas`,`nm_fakultas`,`dekan`,`pd1`,`pd2`,`pd3`,`pd4`,`kasubag_perkuliahan`,`kasubag_akademik`) values 
 (11,'Administrasi Negara','-','-','-','-','-','-','-'),
-(22,'Ilmu komputer','-','-','-','-','-','-','-'),
-(23,'PEMERINTAH','Rohim','-','-','-','-','-','-'),
-(24,'Konoha','Naruto','Sasuke','Sakura','Shikamaru','Cho ji','Hokage 5','Hokage 6');
+(23,'PEMERINTAH','Rohim','-','-','-','-','-','-');
+
+/*Table structure for table `tb_history` */
+
+DROP TABLE IF EXISTS `tb_history`;
+
+CREATE TABLE `tb_history` (
+  `id_history` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` varchar(50) DEFAULT NULL,
+  `nama_user` varchar(50) DEFAULT NULL,
+  `tgl` varchar(50) DEFAULT NULL,
+  `time` time DEFAULT NULL,
+  `kegiatan` longtext,
+  PRIMARY KEY (`id_history`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tb_history` */
+
+insert  into `tb_history`(`id_history`,`id_user`,`nama_user`,`tgl`,`time`,`kegiatan`) values 
+(1,'superadmin','0','06-04-2019','12:39:00','Update Data Fakultas Dengan ID 11'),
+(4,'admin','0','06-04-2019','12:04:59','Input Data Fakultas'),
+(5,'admin','0','06-04-2019','12:04:16','Input Data Fakultas : PEMERINTAH 3'),
+(6,'superadmin','superadmin','06-04-2019','12:04:55','Input Data Fakultas : Administrasi Perkantoran'),
+(7,'superadmin','superadmin','06-04-2019','12:04:15','Hapus Data Fakultas by ID  : '),
+(8,'superadmin','superadmin','06-04-2019','13:04:12','Hapus Data Fakultas by ID  : 27'),
+(9,'superadmin','superadmin','06-04-2019','13:04:02','Hapus Data Fakultas by name  : PEMERINTAH 3'),
+(10,'admin','admin','06-04-2019','13:04:16','Hapus Data Fakultas by name  : Administrasi Negara2'),
+(11,'mahasiswa','mahasiswa','06-04-2019','13:04:49','Hapus Data Fakultas by name  : Ilmu komputer');
 
 /*Table structure for table `tb_mahasiswa` */
 
@@ -2733,6 +2758,51 @@ insert  into `tb_mahasiswa`(`NPM`,`nama_mhs`,`tp_lahir`,`tgl_lahir`,`jenis_kelam
 ('1811037','Dani Trijaya','','2018-01-05','Pria','','Islam','','0','','2018','','','','','','','','','','','','','','','','','','','','','','','','','','11','1','A','S1','','1811037.','2018','','11'),
 ('1811038','Antoni Rizaldi','','2018-01-05','Pria','','Islam','','0','','2018','','','','','','','','','','','','','','','','','','','','','','','','','','11','1','A','S1','','1811038.','2018','','11');
 
+/*Table structure for table `tb_master_menu` */
+
+DROP TABLE IF EXISTS `tb_master_menu`;
+
+CREATE TABLE `tb_master_menu` (
+  `id_menu` int(11) NOT NULL AUTO_INCREMENT,
+  `grup_name` varchar(50) DEFAULT NULL,
+  `css_class` varchar(50) DEFAULT NULL,
+  `id_role` int(10) DEFAULT NULL,
+  KEY `id_menu` (`id_menu`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tb_master_menu` */
+
+insert  into `tb_master_menu`(`id_menu`,`grup_name`,`css_class`,`id_role`) values 
+(1,'Master','fa-database',7),
+(2,'Account','fa-laptop',7),
+(3,'Transaksi','fa-users',7),
+(4,'Setting','fa-key',7);
+
+/*Table structure for table `tb_master_submenu` */
+
+DROP TABLE IF EXISTS `tb_master_submenu`;
+
+CREATE TABLE `tb_master_submenu` (
+  `id_sub` int(11) NOT NULL AUTO_INCREMENT,
+  `sub_menu` varchar(50) DEFAULT NULL,
+  `link` varchar(50) DEFAULT NULL,
+  `grup_id` int(3) DEFAULT NULL,
+  KEY `id_sub` (`id_sub`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tb_master_submenu` */
+
+insert  into `tb_master_submenu`(`id_sub`,`sub_menu`,`link`,`grup_id`) values 
+(1,'Fakultas','admin/fakultas',1),
+(2,'Mata Kuliah','admin/mata_kuliah',1),
+(3,'Program Studi','admin/program_studi',1),
+(4,'Nilai','admin/nilai',1),
+(5,'Dosen','admin/dosen',2),
+(6,'Mahasiswa','admin/mahasiswa',2),
+(7,'Krs','admin/krs',3),
+(9,'Change Password','admin/change_password',4),
+(10,'Master Menu','masterMenu',4);
+
 /*Table structure for table `tb_matakuliah` */
 
 DROP TABLE IF EXISTS `tb_matakuliah`;
@@ -2809,7 +2879,7 @@ CREATE TABLE `tb_role` (
 /*Data for the table `tb_role` */
 
 insert  into `tb_role`(`id_role`,`nama_role`) values 
-(1,'DOSEN'),
+(7,'SUPERADMIN'),
 (2,'MAHASISWA'),
 (3,'ADMIN');
 
@@ -2830,9 +2900,7 @@ CREATE TABLE `tb_user` (
 insert  into `tb_user`(`id_user`,`user_name`,`password`,`level_id`) values 
 (1,'admin','c4ca4238a0b923820dcc509a6f75849b',3),
 (2,'mahasiswa','c4ca4238a0b923820dcc509a6f75849b',2),
-(3,'dosen','c4ca4238a0b923820dcc509a6f75849b',1),
-(4,'1311167','c4ca4238a0b923820dcc509a6f75849b',2),
-(5,'88999','c4ca4238a0b923820dcc509a6f75849b',3);
+(3,'superadmin','c4ca4238a0b923820dcc509a6f75849b',7);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
