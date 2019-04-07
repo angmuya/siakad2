@@ -24,6 +24,18 @@ class M_admin extends CI_Model {
 		return $data->result();
 	}
 
+	public function getDataGrup($tbl,$id){
+		$wh['id_role'] = $id;	
+		$data = $this->db->get_where($tbl,$wh);
+		return $data->result();
+	}
+
+	public function getDataSubmenu($tbl,$id){
+		$wh['grup_id'] = $id;	
+		$data = $this->db->get_where($tbl,$wh);
+		return $data->result();
+	}
+
 	public function getDataprodi($table){
 		
 		$this->db->from($table);

@@ -31,7 +31,7 @@
 </div>
 
 <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="col-lg-2">
+                <div class="col-lg-12">
                     <h2><?=$title?></h2>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">

@@ -73,21 +73,24 @@
 						<table class="table table-striped table-bordered table-hover dataTables-example" >
 							<thead>
 								<tr>
-									<th>Kode Role</th>
-									<th>Nama Role</th>
+									<th>No</th>
+									<th>Sub Menu</th>
+                                    <th>Page</th>
                                     <th>Action</th>
+                                    
 								</tr>
 							</thead>
 							<tbody>
 						
 							<?php
-							foreach ($datares as $row ){
+                            $no=1;
+							foreach ($datasubmenu as $row ){
 							?>
 								<tr>
-
-									<td><?=$row->id_role;?></td>
-									<td><?=$row->nama_role;?></td>
-                                    <td> <a href='<?=site_url().'masterMenu/setting_role/'.strtolower($row->id_role);?>' class='btn btn-primary btn-outline' >Setting Role Menu</a> </td>
+                                    <td><?=$no++?></td>
+									<td><?=$row->sub_menu;?></td>
+									<td><?=$row->link;?></td>
+                                    <td> <a href='<?=site_url().'masterMenu/sub_menu/'.strtolower($row->id_sub);?>' class='btn btn-primary btn-outline' >Hapus</a> </td>
 								</tr>
 							<?php
 							}

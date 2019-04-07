@@ -58,4 +58,15 @@ class M_input extends CI_Model {
 		return $data;
 	}
 
+	public function insertGrupMenu($table,$formdata){
+		$in = array (
+			'id_menu'=>null,
+			'grup_name'=> $formdata['grup_menu'],
+			'css_class'=> $formdata['css_class'],
+			'id_role' => $formdata['id_role'],
+
+		);
+		$data = $this->db->insert($table,$in);
+	}
+
 }

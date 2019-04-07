@@ -2768,7 +2768,7 @@ CREATE TABLE `tb_master_menu` (
   `css_class` varchar(50) DEFAULT NULL,
   `id_role` int(10) DEFAULT NULL,
   KEY `id_menu` (`id_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_master_menu` */
 
@@ -2776,7 +2776,10 @@ insert  into `tb_master_menu`(`id_menu`,`grup_name`,`css_class`,`id_role`) value
 (1,'Master','fa-database',7),
 (2,'Account','fa-laptop',7),
 (3,'Transaksi','fa-users',7),
-(4,'Setting','fa-key',7);
+(4,'Master Manu','fa-bars',7),
+(5,'Setting','fa-cogs',7),
+(9,'Master','fa-database',3),
+(10,'Master','fa-database',2);
 
 /*Table structure for table `tb_master_submenu` */
 
@@ -2788,7 +2791,7 @@ CREATE TABLE `tb_master_submenu` (
   `link` varchar(50) DEFAULT NULL,
   `grup_id` int(3) DEFAULT NULL,
   KEY `id_sub` (`id_sub`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_master_submenu` */
 
@@ -2800,8 +2803,9 @@ insert  into `tb_master_submenu`(`id_sub`,`sub_menu`,`link`,`grup_id`) values
 (5,'Dosen','admin/dosen',2),
 (6,'Mahasiswa','admin/mahasiswa',2),
 (7,'Krs','admin/krs',3),
-(9,'Change Password','admin/change_password',4),
-(10,'Master Menu','masterMenu',4);
+(9,'Change Password','admin/change_password',5),
+(10,'Menu Level','masterMenu',4),
+(11,'User','admin/user',2);
 
 /*Table structure for table `tb_matakuliah` */
 
@@ -2874,7 +2878,7 @@ CREATE TABLE `tb_role` (
   `id_role` int(11) NOT NULL AUTO_INCREMENT,
   `nama_role` varchar(225) DEFAULT NULL,
   KEY `id_role` (`id_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_role` */
 
@@ -2893,7 +2897,7 @@ CREATE TABLE `tb_user` (
   `password` varchar(255) DEFAULT NULL,
   `level_id` int(3) DEFAULT NULL,
   KEY `id_user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_user` */
 
