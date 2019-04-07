@@ -62,15 +62,18 @@ class AdminController extends CI_Controller {
 		$this->load->view('tema',$pageData);
 	}
 
-	public function data_mhs(){ //get data Mhs
+	public function data_mhs($a=null){ //get data Mhs
 		$this->m_security->cekRoleAkses('admin/mahasiswa');
+
+		$keyword = $this->input->get();
 		$pageData = array (
 			'title'=> 'Mahasiswa',
 			'konten'=> 'v_mahasiswa',
-			'datamhs'=>$this->m_admin->getDataTable('tb_mahasiswa'),
+			'datamhs'=>$this->m_admin->searchDataMhs('tb_mahasiswa',$keyword),
 		);
 		
 		$this->load->view('tema',$pageData);
+		
 	}
 
 
@@ -124,6 +127,14 @@ class AdminController extends CI_Controller {
 		redirect('admin/program_studi');
 	}
 
+	public function edit_data_matkul(){
+		$this->m_security->cekRoleAkses('admin/mata_kuliah');
+		$dataform = $this->input->post();
+		$this->m_security->cekDataKosong($dataform['id_mk']);
+		$this->m_update->updateDataMatkul('tb_matakuliah',$dataform);
+		redirect('admin/mata_kuliah');
+	}
+
 	//Akhir Zone Edit
 
 
@@ -140,7 +151,7 @@ class AdminController extends CI_Controller {
 	public function delete_prodi (){
 		$this->m_security->cekRoleAkses('admin/program_studi');
 		$dataform = $this->input->post();
-		$this->m_security->cekDataKosong($dataform['nm_matkul']);
+		$this->m_security->cekDataKosong($dataform['kd_prodi']);
 		$this->m_hapus->hapusDataProdi('tb_prodi',$dataform);
 		redirect('admin/program_studi');
 	}

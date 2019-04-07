@@ -18,8 +18,8 @@ class M_admin extends CI_Model {
 		
 	}
 
-	public function getDataMhs($table){
-		$wh['NPM'] = '1811001';
+	public function getDataMhs($table,$key){
+		$wh['nim'] = $key;
 		$data = $this->db->get_where($table,$wh);
 		return $data->result();
 	}
@@ -61,6 +61,14 @@ class M_admin extends CI_Model {
 
 		$res_kode = 'MK'.sprintf("%03d",$kode); 
 		return $res_kode;
+	}
+
+	public function searchDataMhs($table,$keyword){
+		$this->db->like('nim',$keyword['search']);
+		$this->db->or_like('nama_mhs',$keyword['search']);
+		$this->db->or_like('thn_masuk',$keyword['ta']);
+		$data = $this->db->get_($table);
+		return $data->result();
 	}
 
 	

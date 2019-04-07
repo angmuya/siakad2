@@ -26,8 +26,8 @@
 
 <div class="input-group m-b">
          <label>Nama Fakultas *</label>
-            <select name='kd_fakultas' data-placeholder="Fakultas a ..." class="chosen-select form-control" multiple  required='required'>
-                
+            <select name='kd_fakultas' data-placeholder="Fakultas a ..." class="chosen-select form-control"  required='required'>
+                <option selected disabled value='' > Select Fakultas </option>
                 <?php
                     $getdata = $this->m_admin->getDataTable('tb_fakultas');
                     foreach ($getdata as $row){

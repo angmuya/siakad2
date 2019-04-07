@@ -68,8 +68,8 @@
         <label>Nama Dosen *</label>
         <div class="input-group m-b">
            
-           <select name='nip' data-placeholder="Select" class="chosen-select form-control" multiple style="width:350px;" tabindex="13" required='required'>
-           
+           <select name='nip' data-placeholder="Select Dosen" class="chosen-select form-control" style="width:350px;" tabindex="13" required='required'>
+                    <option selected disabled value=''>   </option>
             <?php
                 $getdata = $this->m_admin->getDataTable('tb_mahasiswa');
                 foreach ($getdata as $row){

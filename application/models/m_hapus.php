@@ -35,4 +35,13 @@ class M_hapus extends CI_Model {
 		return $data;
 	}
 
+	public function hapusGrupMenu($table,$form){
+		$wh['id_menu'] = $form['id_menu'];
+		$this->db->where($wh);
+		$data = $this->db->delete($table);
+		echo $this->session->set_flashdata('message',"Data berhasil di Hapus");
+		return $data;
+
+	}
+
 }

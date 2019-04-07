@@ -87,11 +87,123 @@
 							$no=1;
 							foreach ($datamatkul as $row ){
 							?>
-								<tr style="cursor:pointer;cursor:hand;" class='edit-record' 
-									data-kd_mk='<?=$row->kd_mk;?>' 
-									data-semester='<?=$row->semester?>'
+								<!-- MODAL EDIT -->
+																		
+									<div class="modal fade" id="ModalEdit<?=$row->kd_mk;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-lg" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Edit Data Fakultas</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body">
+													<form action='<?=site_url().'adminController/edit_data_matkul'?>' method='post' >
+														<input name='id_mk' hidden value='<?=$row->id_mk?>' type='text' >
+															<div class="row">
+																<div class="col-lg-6">
+																  <label>Nama Matkul *</label>
+																	<div class="input-group m-b">
+																	   <div class="input-group-prepend">
+																			<span class="input-group-addon"><i class="fa fa-book"></i></span>
+																	   </div>
+																			<input name='nm_matkul' type="text" placeholder="Nama Mata Kuliah" value='<?=$row->nm_mk?>' class="form-control" required='required' >
+																	</div>
+																	<label>Semester *</label>
+																	<div class="input-group m-b">
+																	   <div class="input-group-prepend">
+																			<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+																	   </div>
+																		   <select name='semester' id='semester' class="select2 form-control" required='required'>
+																				<option disabled selected  value='' >Select Semester...</option>
+																				<option <?php if($row->semester == 'Ganjil'){echo "selected";};?> value='Ganjil' >Ganjil</option>
+																				<option <?php if($row->semester == 'Genap'){echo "selected";};?> value='Genap' >Genap</option>
+																		   </select>
 
-								data-toggle="modal" data-target="#ModalEdit" >
+																		   <select name='smt' class="select2 form-control col-lg-3" required='required'>
+																				 <option disabled selected value='' >Ke...</option>
+																			   <?php
+																				for ($i=1;$i<=8;$i++){
+																			   ?>
+																				<option <?php if($row->smt == $i){echo "selected";}; ?> value='<?=$i?>' ><?=$i?></option>
+																			   <?php
+																					 };
+																			   ?>
+																		   </select>
+																	</div>
+																	<label>Nama Fakultas *</label>
+																	<div class="input-group m-b">
+																	   <div class="input-group-prepend">
+																			<span class="input-group-addon"><i class="fa fa-industry"></i></span>
+																	   </div>
+																			 <select name='kd_fakultas' class="select2 form-control" required='required'>
+																		<option selected disabled  value=''>---Select Fakultas---</option>
+																		<?php
+																			$getdata = $this->m_admin->getDataTable('tb_fakultas');
+																			foreach ($getdata as $rows){
+																		?>
+																		 <option <?php if($row->kd_fakultas == $rows->kd_fakultas ){echo "selected";}; ?> value='<?=$rows->kd_fakultas?>' ><?=$rows->nm_fakultas?></option>
+																		<?php
+																			};
+																		?>
+																	</select>
+																	</div>
+																 </div>
+																 <div class='col-lg-6' >
+																	<label>Nama Program Studi *</label>
+																	<div class="input-group m-b">
+																	   <div class="input-group-prepend">
+																			<span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+																	   </div>
+																	   <select name='kd_prodi' class="select2 form-control" required='required'>
+																		<option selected disabled  value=''>---Select Prodi---</option>
+																		<?php
+																			$getdata = $this->m_admin->getDataTable('tb_prodi');
+																			foreach ($getdata as $roow){
+																		?>
+																		 <option <?php if($row->kd_prodi == $roow->kd_prodi ){echo "selected";}; ?> value='<?=$roow->kd_prodi?>' ><?=$roow->nm_prodi?></option>
+																		<?php
+																			};
+																		?>
+																	</select>
+																	</div>
+																	<label>Nama Dosen *</label>
+																	<div class="input-group m-b">
+																	   
+																	   <select name='nip' data-placeholder="Select" class="chosen-select form-control"  style="width:350px;" tabindex="13" required='required'>
+																	   
+																		<?php
+																			$getdata = $this->m_admin->getDataTable('tb_mahasiswa');
+																			foreach ($getdata as $ro){
+																		?>
+																		 <option <?php if($row->NIP == $ro->NPM ){echo "selected";} ?> value='<?=$ro->NPM?>' ><?=$ro->NPM.':: '.$ro->nama_mhs?></option>
+																		<?php
+																			};
+																		?>
+																	</select>
+																	</div>
+																</div>
+															</div>
+
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary  btn-outline" data-dismiss="modal">Close</button>
+														<button class="btn  btn-primary  btn-outline ">Update</button>
+														</form>
+
+														<form action='<?=site_url().'adminController/delete_matkul'?>' method="post" >
+																<input name='kd_mk' hidden value='<?=$row->kd_mk;?>'  >
+																<button class="btn btn-danger btn-outline">Hapus</button>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									
+								<!--END MODAL EDIT-->
+
+								<tr style="cursor:pointer;cursor:hand;" data-toggle="modal" data-target="#ModalEdit<?=$row->kd_mk;?>" >
 									<td><?=$no++?></td>
 									<td><?=$row->kd_mk;?></td>
 									<td><?=$row->nm_mk;?></td>

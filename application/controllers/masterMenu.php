@@ -30,6 +30,9 @@ class MasterMenu extends CI_Controller {
     }
 
     public function setting_role ($a=null){
+			if (empty($a)){
+				redirect ('masterMenu');
+			}else{
 				$this->m_security->cekRoleAkses('masterMenu');
 				$pageData = array (
 					'title'=> 'Setting Grup Menu',
@@ -39,19 +42,28 @@ class MasterMenu extends CI_Controller {
 				);
 				
 				$this->load->view('tema',$pageData);
+			}
         
 		}
 		
-		public function sub_menu ($a=null){
+		public function sub_menu ($a=null,$b=null){
 			$this->m_security->cekRoleAkses('masterMenu');
+			if (empty($a)){
+				redirect ('masterMenu');
+			}else if (empty($b)){
+				redirect ('masterMenu');
+			}else{
 			$pageData = array (
 				'title'=> 'Setting sub menu',
 				'konten'=> 'template/menu/v_master_submenu_setting_role',
+				'id_submenu' => $a,
+				'sub_menu_grup'=>$b,
 				'datasubmenu' => $this->m_admin->getDataSubmenu('tb_master_submenu',$a),
 			);
 			
 			$this->load->view('tema',$pageData);
-			
+		}
+
 		}
 
 		public function proses_input_data_grupmenu(){
@@ -59,6 +71,32 @@ class MasterMenu extends CI_Controller {
 			$formdata = $this->input->post();
 			$this->m_security->cekDataKosong($formdata['id_role']);
 			$this->m_input->insertGrupMenu('tb_master_menu',$formdata);
+			redirect ('masterMenu/setting_role/'.$formdata['id_role']);
+
+		}
+
+		public function delete_grupmenu($a=null){
+			$this->m_security->cekRoleAkses('masterMenu');
+			$form = $this->input->post();
+			$this->m_security->cekDataKosong($form['id_menu']);
+			$this->m_hapus->hapusGrupMenu('tb_master_menu',$form);
+			redirect('masterMenu/setting_role/'.$a);
+
+		}
+
+		public function edit_data_grupmenu(){
+			$this->m_security->cekRoleAkses('masterMenu');
+			$form = $this->input->post();
+			$this->m_security->cekDataKosong($form['id_role']);
+			$this->m_update->updateGrupMenu('tb_master_menu',$form);
+		}
+
+		public function proses_input_data_submenu(){
+			$this->m_security->cekRoleAkses('masterMenu');
+			$form = $this->input->post();
+			$this->m_security->cekDataKosong($form['id_submenu']);
+			$this->m_input->insertGrupSubmenu('tb_master_submenu',$form);
+			redirect('masterMenu/sub_menu/'.$form['id_submenu'].'/'.$form['name_grup']);
 		}
 
 

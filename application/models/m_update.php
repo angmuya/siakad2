@@ -45,5 +45,26 @@ class M_update extends CI_Model {
 		return $data;
 		
 	}
+
+	public function updateDataMatkul($table,$form) {
+		$upd = array (
+			'nm_mk' => $form['nm_matkul'],
+			'semester' => $form['semester'],
+			'smt' => $form['smt'],
+			'kredit' => null,
+			'kd_kk'=> null,
+			'kd_prodi' => $form['kd_prodi'],
+			'tahun_k' => date('Y'),
+			'NIP' => $form['nip'],
+			'kd_fakultas'=>$form['kd_fakultas']
+		);
+
+		$wh['id_mk'] = $form['id_mk'];
+        $this->db->where($wh);
+        $data = $this->db->update($table,$upd);
+
+        echo $this->session->set_flashdata('message',"Data berhasil di ubah...");
+		return $data;
+	}
 	
 }

@@ -67,6 +67,20 @@ class M_input extends CI_Model {
 
 		);
 		$data = $this->db->insert($table,$in);
+		echo $this->session->set_flashdata('message',"Data berhasil di tambahkan");
+		return $data;
+	}
+
+	public function insertGrupSubmenu($table,$form){
+		$in = array(
+			"id_sub"=>null,
+			"sub_menu"=>$form['sub_menu'],
+			"link"=>$form['link_url'],
+			"grup_id"=>$form['id_submenu']
+		);
+		$data = $this->db->insert($table,$in);
+		echo $this->session->set_flashdata('message',"Data berhasil di tambahkan");
+		return $data;
 	}
 
 }

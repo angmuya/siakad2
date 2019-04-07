@@ -1,3 +1,11 @@
+<br>
+<form method='get' action='mahasiswa'>
+	<div class="input-group">
+		<input type="text" name='search' class="form-control"> <span class="input-group-append"> 
+		<button class="btn btn-primary">Go!</button>
+	</span>
+</div>
+</form>
 
 		<div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
@@ -55,7 +63,7 @@
 														</form>
 
 														<form action='<?=site_url().'adminController/delete_mhs'?>' method="post" >
-																<input name="id_npm" hidden >
+																<input name="id_nim" hidden >
 																<button class="btn btn-danger btn-outline">Hapus</button>
 														</form>
 													</div>
@@ -73,7 +81,7 @@
 						<table class="table table-striped table-bordered table-hover dataTables-example" >
 							<thead>
 								<tr>
-									<th>NPM</th>
+									<th>nim</th>
 									<th>Nama Mahasiswa</th>
 									<th>TTL</th>
 									<th>Jenis Kelamin</th>	
@@ -88,10 +96,10 @@
 							foreach ($datamhs as $row ){
 							?>
 								<tr style="cursor:pointer;cursor:hand;" class='edit-record' 
-									data-id_mhs='<?=$row->NPM?>'  
+									data-id_mhs='<?=$row->nim?>'  
 
 								data-toggle="modal" data-target="#ModalEdit" >
-									<td><?=$row->NPM;?></td>
+									<td><?=$row->nim;?></td>
 									<td><?=$row->nama_mhs;?></td>
 									<td><?=$row->tp_lahir.' , '.substr($row->tgl_lahir,8).substr($row->tgl_lahir,4,-2).substr($row->tgl_lahir,0,-6);?></td>
 									<td><?=$row->jenis_kelamin;?></td>
@@ -114,32 +122,4 @@
             </div>
         </div>
 
-<script>
-
-$(function(){
-            $(document).on('click','.edit-record',function(){
-							var id_mhs = $(this).attr('data-id_mhs');
-							var nmprodi = $(this).attr('data-nm_prodi');
-							var ketuaprodi = $(this).attr('data-ketua_prodi');
-							var sekretarisprodi = $(this).attr('data-sekretaris_prodi');
-							
-
-
-                $("#ModalEdit").modal('show');
-								$('[name="id_npm"]').val(id_mhs);
-								$('[name="nm_prodi"]').val(nmprodi);
-								$('[name="ketua_prodi"]').val(ketuaprodi);
-								$('[name="sekretaris_prodi"]').val(sekretarisprodi);
-								 
-								$.post('<?=base_url('admin/latihan')?>',
-                    			{id:$(this).attr('data-kd_fakultas')},
-                   				 function(html){
-                       			 $(".kd_fakultas").html(html);
-                   				 }   
-                );   
-            });
-		});
-		
-			
-</script>
 
