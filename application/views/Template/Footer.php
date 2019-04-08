@@ -36,6 +36,29 @@
 
             });
 
+            $('.dataTables-mhs').DataTable({
+                pageLength: 10,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    {extend: 'pdf', title: 'ExampleFile'},
+                    {extend: 'print',
+                     customize: function (win){
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                    }
+                    }
+                ]
+
+            });
+
             $('.i-checks').iCheck({
                     checkboxClass: 'icheckbox_square-green',
                     radioClass: 'iradio_square-green',
@@ -196,30 +219,6 @@
             } else {
                 $inputImage.addClass("hide");
             }
-
-            $("#download").click(function() {
-                window.open($image.cropper("getDataURL"));
-            });
-
-            $("#zoomIn").click(function() {
-                $image.cropper("zoom", 0.1);
-            });
-
-            $("#zoomOut").click(function() {
-                $image.cropper("zoom", -0.1);
-            });
-
-            $("#rotateLeft").click(function() {
-                $image.cropper("rotate", 45);
-            });
-
-            $("#rotateRight").click(function() {
-                $image.cropper("rotate", -45);
-            });
-
-            $("#setDrag").click(function() {
-                $image.cropper("setDragMode", "crop");
-            });
 
             var mem = $('#data_1 .input-group.date').datepicker({
                 todayBtn: "linked",

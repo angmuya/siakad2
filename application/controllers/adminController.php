@@ -65,18 +65,39 @@ class AdminController extends CI_Controller {
 	public function data_mhs($a=null){ //get data Mhs
 		$this->m_security->cekRoleAkses('admin/mahasiswa');
 
-		$keyword = $this->input->get();
-		$pageData = array (
-			'title'=> 'Mahasiswa',
-			'konten'=> 'v_mahasiswa',
-			'datamhs'=>$this->m_admin->searchDataMhs('tb_mahasiswa',$keyword),
-		);
+		switch ($a){
+			case "search":
+				
+				$keyword = $this->input->post();
+				if (!$keyword==null){
+				$pageData = array (
+					'title'=> 'Mahasiswa',
+					'konten'=> 'v_mahasiswa',
+					'datamhs'=>$this->m_admin->searchDataMhs('tb_mahasiswa',$keyword),
+				);
+			
+				$this->load->view('tema',$pageData);
+			}else{
+				redirect ('admin/mahasiswa');
+			}
+			break;
+
+			default :
+
+				$pageData = array (
+					'title'=> 'Search Mahasiswa',
+					'konten'=> 'v_search_mahasiswa',
+				);
+				
+				$this->load->view('tema',$pageData);
+			break;
+		}
+
 		
-		$this->load->view('tema',$pageData);
 		
 	}
 
-
+ 
 
 	//zone proses
 	public function proses_input_data_fakultas(){
@@ -175,28 +196,18 @@ class AdminController extends CI_Controller {
 	
 	//Akhir Zona Hapus
 	public function latihan(){
-	$this->load->view('latihan',array('error' => ' '));
+	
+		$pageData = array (
+			'title'=> 'Latihan 1',
+			'konten'=> 'latihan1',
+		);
+		
+		$this->load->view('tema',$pageData);
 		
 	}
 
 	public function latihan2(){
-		$gambar = $_FILES['gambar']['name'];
-
-		$config['upload_path']          = './assets/upload';
-		$config['allowed_types']        = 'gif|jpg|png';
-		$config['max_size']             = 100;
-		$config['max_width']            = 1024;
-		$config['max_height']           = 768;
-	 
-		$this->load->library('upload', $config);
-	 
-		if ( ! $this->upload->do_upload('gambar')){
-			$error = array('error' => 'gagal bro');
-			$this->load->view('latihan', $error);
-		}else{
-
-			
-	}
+		$this->load->view('latihan2');
 }
 
 	public function latihan3(){

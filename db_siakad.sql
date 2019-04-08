@@ -147,13 +147,13 @@ CREATE TABLE `tb_fakultas` (
   KEY `SMS_Fakultas_PD4` (`pd4`),
   KEY `SMS_Fakultas_Kasubag_Perkuliahan` (`kasubag_perkuliahan`),
   KEY `SMS_Fakultas_Kasubag_Akademik` (`kasubag_akademik`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_fakultas` */
 
 insert  into `tb_fakultas`(`kd_fakultas`,`nm_fakultas`,`dekan`,`pd1`,`pd2`,`pd3`,`pd4`,`kasubag_perkuliahan`,`kasubag_akademik`) values 
 (11,'Administrasi Negara','-','-','-','-','-','-','-'),
-(23,'PEMERINTAH','Rohim','-','-','-','-','-','-');
+(30,'Ilmu komputer','Rohim','-','-','-','-','-','-');
 
 /*Table structure for table `tb_history` */
 
@@ -167,7 +167,7 @@ CREATE TABLE `tb_history` (
   `time` time DEFAULT NULL,
   `kegiatan` longtext,
   PRIMARY KEY (`id_history`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_history` */
 
@@ -180,7 +180,9 @@ insert  into `tb_history`(`id_history`,`id_user`,`nama_user`,`tgl`,`time`,`kegia
 (8,'superadmin','superadmin','06-04-2019','13:04:12','Hapus Data Fakultas by ID  : 27'),
 (9,'superadmin','superadmin','06-04-2019','13:04:02','Hapus Data Fakultas by name  : PEMERINTAH 3'),
 (10,'admin','admin','06-04-2019','13:04:16','Hapus Data Fakultas by name  : Administrasi Negara2'),
-(11,'mahasiswa','mahasiswa','06-04-2019','13:04:49','Hapus Data Fakultas by name  : Ilmu komputer');
+(11,'mahasiswa','mahasiswa','06-04-2019','13:04:49','Hapus Data Fakultas by name  : Ilmu komputer'),
+(12,'superadmin','superadmin','08-04-2019','16:04:50','Input Data Fakultas : Ilmu komputer'),
+(13,'superadmin','superadmin','08-04-2019','16:04:56','Hapus Data Fakultas by name  : PEMERINTAH');
 
 /*Table structure for table `tb_mahasiswa` */
 
@@ -2846,12 +2848,13 @@ CREATE TABLE `tb_matakuliah` (
   KEY `SMS_Matakuliah_Semester` (`semester`),
   KEY `SMS_Matakuliah_Kd_KK` (`kd_kk`),
   KEY `SMS_Matakuliah_Smt` (`smt`)
-) ENGINE=MyISAM AUTO_INCREMENT=3800 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3803 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_matakuliah` */
 
 insert  into `tb_matakuliah`(`id_mk`,`kd_mk`,`nm_mk`,`semester`,`smt`,`kredit`,`kd_kk`,`kd_prodi`,`tahun_k`,`NIP`,`kd_fakultas`) values 
-(3799,'MK001','Pengantar 44','Ganjil',3,NULL,NULL,'1',2019,'1211080','23');
+(3801,'MK001','Komputer 1','Ganjil',1,NULL,NULL,'9',2019,'1211041','30'),
+(3802,'MK002','Pengantar 44','Genap',1,NULL,NULL,'1',2019,'1211076','11');
 
 /*Table structure for table `tb_prodi` */
 
@@ -2874,10 +2877,10 @@ CREATE TABLE `tb_prodi` (
 /*Data for the table `tb_prodi` */
 
 insert  into `tb_prodi`(`kd_prodi`,`nm_prodi`,`ketua_prodi`,`sekretaris_prodi`,`p_studi`,`kd_fakultas`) values 
-(1,'Akuntansi','Bambang2','udin','D3','23'),
-(8,'Management Bisnis','Rio M','Hery','S1','11'),
-(9,'Teknik Informatika','Kakashi','Hinata','D3','23'),
-(10,'Pemasaran','Kakashi','Hinata','D3','23');
+(1,'Akuntansi','Bambang2','udin','D3','11'),
+(8,'Management Bisnis','Rio M','Hery','S1','30'),
+(9,'Teknik Informatika','Kakashi','Hinata','D3','30'),
+(10,'Pemasaran','Kakashi','Hinata','D3','11');
 
 /*Table structure for table `tb_role` */
 

@@ -18,15 +18,8 @@
                     <option value='Genap' >Genap</option>
                </select>
 
-               <select name='smt' class="select2 form-control col-lg-3" required='required'>
+               <select name='smt' id="r" class="select2 form-control col-lg-3" required='required'>
                      <option disabled selected value='' >Ke...</option>
-                   <?php
-                    for ($i=1;$i<=8;$i++){
-                   ?>
-                    <option value='<?=$i?>' ><?=$i?></option>
-                   <?php
-                         };
-                   ?>
                </select>
         </div>
         <label>Nama Fakultas *</label>
@@ -34,7 +27,7 @@
            <div class="input-group-prepend">
                 <span class="input-group-addon"><i class="fa fa-industry"></i></span>
            </div>
-                 <select name='kd_fakultas' class="select2 form-control" required='required'>
+                 <select name='kd_fakultas' id='get_fakultas' class="select2 form-control" required='required'>
             <option selected disabled  value=''>---Select Fakultas---</option>
             <?php
                 $getdata = $this->m_admin->getDataTable('tb_fakultas');
@@ -53,16 +46,9 @@
            <div class="input-group-prepend">
                 <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
            </div>
-           <select name='kd_prodi' class="select2 form-control" required='required'>
+           <select name='kd_prodi' id='kd_prodi' class="select2 form-control" required='required'>
             <option selected disabled  value=''>---Select Prodi---</option>
-            <?php
-                $getdata = $this->m_admin->getDataTable('tb_prodi');
-                foreach ($getdata as $row){
-            ?>
-             <option value='<?=$row->kd_prodi?>' ><?=$row->nm_prodi?></option>
-            <?php
-                };
-            ?>
+           
         </select>
         </div>
         <label>Nama Dosen *</label>
@@ -74,7 +60,7 @@
                 $getdata = $this->m_admin->getDataTable('tb_mahasiswa');
                 foreach ($getdata as $row){
             ?>
-             <option  value='<?=$row->NPM?>' ><?=$row->NPM.':: '.$row->nama_mhs?></option>
+             <option  value='<?=$row->nim?>' ><?=$row->nim.':: '.$row->nama_mhs?></option>
             <?php
                 };
             ?>

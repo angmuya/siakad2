@@ -66,7 +66,13 @@ class M_admin extends CI_Model {
 	public function searchDataMhs($table,$keyword){
 		
 		$this->db->where('thn_masuk',$keyword['ta']);
-		$this->db->like('nama_mhs',$keyword['search']);
+		$data = $this->db->get($table);
+		return $data;
+	}
+
+	public function getProdiByFakultas($table,$form){
+		
+		$this->db->where('kd_fakultas',$form['kd_fakultas']);
 		$data = $this->db->get($table);
 		return $data->result();
 	}

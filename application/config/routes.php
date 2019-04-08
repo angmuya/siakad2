@@ -60,6 +60,7 @@ $route['home'] = 'adminController/home/';
 $route['admin'] = 'adminController/home/';
 
 $route['admin/mahasiswa'] = 'adminController/data_mhs';
+$route['admin/mahasiswa/search'] = 'adminController/data_mhs/search';
 $route['admin/dosen'] = 'adminController/data_ds';
 
 $route['admin/(:any)'] = 'adminController/$1/';

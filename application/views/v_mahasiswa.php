@@ -1,13 +1,25 @@
-<br>
-<form method='get' action='mahasiswa'>
+<div class="wrapper wrapper-content animated fadeInRight">
+
+<form method='post' action=''>
 	<div class="input-group">
-		<input type="text" name='search' class="form-control-lg"> <span class="input-group-append"> 
-		<button class="btn btn-primary">Go!</button>
+		<select name='ta' class='form-control col-lg-12' required>
+			<option value=''>Select Tahun Angkatan</option>
+			<option>2010</option>
+			<option>2011</option>
+			<option>2012</option>
+			<option>2013</option>
+            <option>2014</option>
+			<option>2015</option>
+            <option>2016</option>
+			<option>2017</option>
+            <option>2018</option>
+		</select>
+		<button class="btn btn-danger"><span class='fa fa-search' ></span></button>
 	</span>
 </div>
 </form>
+<br>
 
-		<div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
                 <div class="ibox ">
@@ -78,7 +90,7 @@
                     <div class="ibox-content">
 
                     <div class="table-responsive">
-						<table class="table table-striped table-bordered table-hover dataTables-example" >
+						<table class="table table-bordered dataTables-mhs" >
 							<thead>
 								<tr>
 									<th>nim</th>
@@ -91,9 +103,8 @@
 							</thead>
 							<tbody>
 						
-							<?php
-							
-							foreach ($datamhs as $row ){
+							<?php	
+							foreach ($datamhs->result() as $row ){
 							?>
 								<tr style="cursor:pointer;cursor:hand;" class='edit-record' 
 									data-id_mhs='<?=$row->nim?>'  

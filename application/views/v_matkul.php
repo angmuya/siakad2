@@ -35,35 +35,7 @@
 
 										<!-- MODAL EDIT -->
 										
-										<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-											<div class="modal-dialog modal-lg" role="document">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">Edit Data Fakultas</h5>
-														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-													</div>
-													<div class="modal-body">
-													<form action='<?=site_url().'adminController/edit_data_matkul'?>' methode='get' >
-													<input name='id_fakultas' type='hidden' >
-													<?php $this->load->view('v_tambah_data_matkul');?>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary  btn-outline" data-dismiss="modal">Close</button>
-														<button class="btn  btn-primary  btn-outline ">Update</button>
-														</form>
-
-														<form action='<?=site_url().'adminController/delete_matkul'?>' method="post" >
-																<input name='kd_mk'  >
-																<button class="btn btn-danger btn-outline">Hapus</button>
-														</form>
-													</div>
-												</div>
-											</div>
-										</div>
-									
-								<!--END MODAL EDIT-->
+										
                   
 									
 									  </div>
@@ -137,7 +109,7 @@
 																	   <div class="input-group-prepend">
 																			<span class="input-group-addon"><i class="fa fa-industry"></i></span>
 																	   </div>
-																			 <select name='kd_fakultas' class="select2 form-control" required='required'>
+																			 <select name='kd_fakultas' id="get_fakultas_edit" class="select2 form-control" required='required'>
 																		<option selected disabled  value=''>---Select Fakultas---</option>
 																		<?php
 																			$getdata = $this->m_admin->getDataTable('tb_fakultas');
@@ -156,7 +128,7 @@
 																	   <div class="input-group-prepend">
 																			<span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
 																	   </div>
-																	   <select name='kd_prodi' class="select2 form-control" required='required'>
+																	   <select name='kd_prodi' id="kd_prodi_edit" class="select2 form-control" required='required'>
 																		<option selected disabled  value=''>---Select Prodi---</option>
 																		<?php
 																			$getdata = $this->m_admin->getDataTable('tb_prodi');
@@ -177,7 +149,7 @@
 																			$getdata = $this->m_admin->getDataTable('tb_mahasiswa');
 																			foreach ($getdata as $ro){
 																		?>
-																		 <option <?php if($row->NIP == $ro->NPM ){echo "selected";} ?> value='<?=$ro->NPM?>' ><?=$ro->NPM.':: '.$ro->nama_mhs?></option>
+																		 <option <?php if($row->NIP == $ro->nim ){echo "selected";} ?> value='<?=$ro->nim?>' ><?=$ro->nim.':: '.$ro->nama_mhs?></option>
 																		<?php
 																			};
 																		?>
@@ -212,6 +184,7 @@
 						
 								
 								</tr>
+								
 							<?php
 							}
 							?>
@@ -226,18 +199,65 @@
             </div>
             </div>
         </div>
-<script>	
-
-        $(function(){
-            $(document).on('click','.edit-record',function(){
-							var kd_mk = $(this).attr('data-kd_mk');
-							var semester = $(this).attr('data-semester');
 
 
-                $("#ModalEdit").modal('show');
-								$('[name="kd_mk"]').val(kd_mk);
+<script>
+   
+    $("#semester").change(function(){
+   
+        // variabel dari nilai combo box provinsi
+        var id_semester = $("#semester").val();
+              
+        // mengirim dan mengambil data
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "<?=site_url().'c_combobox'?>",
+            data: "dil="+id_semester,
+            success: function(msg){
+               
+                    $("#r").html(msg);                                                     
+            }
+        });    
+    });
 
-            });
-        });
+	$("#get_fakultas").change(function(){
+   
+   // variabel dari nilai combo box provinsi
+   var fakultas = $("#get_fakultas").val();
+		 
+   // mengirim dan mengambil data
+   $.ajax({
+	   type: "POST",
+	   dataType: "html",
+	   url: "<?=site_url().'c_combobox/getProdiByFakultas'?>",
+	   data: "kd_fakultas="+fakultas,
+	   success: function(msg){
+		  
+			   $("#kd_prodi").html(msg);                                                     
+	   }
+   });    
+});
+
+$("#get_fakultas_edit").change(function(){
+   
+   // variabel dari nilai combo box provinsi
+   var fakultas = $("#get_fakultas_edit").val();
+		 
+   // mengirim dan mengambil data
+   $.ajax({
+	   type: "POST",
+	   dataType: "html",
+	   url: "<?=site_url().'c_combobox/getProdiByFakultas'?>",
+	   data: "kd_fakultas="+fakultas,
+	   success: function(msg){
+		  
+			   $("#kd_prodi_edit").html(msg);                                                     
+	   }
+   });    
+});
+
+
 
 </script>
+
