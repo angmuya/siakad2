@@ -1,7 +1,7 @@
 <br>
 <form method='get' action='mahasiswa'>
 	<div class="input-group">
-		<input type="text" name='search' class="form-control"> <span class="input-group-append"> 
+		<input type="text" name='search' class="form-control-lg"> <span class="input-group-append"> 
 		<button class="btn btn-primary">Go!</button>
 	</span>
 </div>

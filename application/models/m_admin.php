@@ -64,10 +64,10 @@ class M_admin extends CI_Model {
 	}
 
 	public function searchDataMhs($table,$keyword){
-		$this->db->like('nim',$keyword['search']);
-		$this->db->or_like('nama_mhs',$keyword['search']);
-		$this->db->or_like('thn_masuk',$keyword['ta']);
-		$data = $this->db->get_($table);
+		
+		$this->db->where('thn_masuk',$keyword['ta']);
+		$this->db->like('nama_mhs',$keyword['search']);
+		$data = $this->db->get($table);
 		return $data->result();
 	}
 
