@@ -4,13 +4,13 @@
                 <div class="col-lg-12">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <h5><?=$title?></h5>
+                        <h5><?=$title?> <i class="text-danger"><?=$this->session->flashdata('message');?></i> </h5>
                         <div class="ibox-tools">
 							<button class="btn btn-primary btn-outline " data-toggle="modal" data-target="#modal-default" ><i class='fa fa-plus' ></i> Add New Data</button>
                         </div>
 												
 								<!-- MODAL ADD -->
-								<form action="<?=site_url().'adminMasterController/proses'?>" method='get' >
+											<form action='<?=site_url().'adm/proses_tahun_akademik'?>' method='post' >
 												<div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog modal-lg" role="document">
 														<div class="modal-content">
@@ -22,49 +22,20 @@
 															</div>
 															<div class="modal-body">
 																<?php $this->load->view('v_tambah_data_tahun_akademik');?>
+																<div id='rest_error' ></div>
 															</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-secondary btn-outline " data-dismiss="modal">Close</button>
-																<button class="btn btn-primary btn-outline ">Tambahkan</button>
+																<button  class="tambahkan btn btn-primary btn-outline ">Tambahkan</button>
 															</div>
 														</div>
 													</div>
 												</div>
-												</form>
+											</form>
+										
 										<!--END MODAL ADD-->
 
-										<!-- MODAL EDIT -->
 										
-										<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-											<div class="modal-dialog modal-lg" role="document">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">Edit Data Fakultas</h5>
-														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-													</div>
-													<div class="modal-body">
-													<form action='<?=site_url().'adminController/edit_data_fakultas'?>' method='post' >
-													<input name='id_fakultas' hidden >
-													<?php $this->load->view('v_tambah_data_fakultas');?>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary  btn-outline " data-dismiss="modal">Close</button>
-														<button class="btn  btn-primary  btn-outline ">Update</button>
-														</form>
-
-														<form action='<?=site_url().'adminController/delete_fakultas'?>' method="post" >
-																<input name='id_fakultas' hidden >
-																<input name='nama_fakultas' hidden>
-																<button class="btn btn-danger btn-outline">Hapus</button>
-														</form>
-													</div> 
-												</div>
-											</div>
-										</div>
-									
-								<!--END MODAL EDIT-->
                   
 									
 									  </div>
@@ -86,7 +57,55 @@
 							$no=1;
 							foreach ($datatahun as $row ){
 							?>
-								<tr style="cursor:pointer;cursor:hand;" class='edit-record' data-toggle="modal" data-target="#ModalEdit" >
+
+							<!-- MODAL EDIT -->
+										
+							<div class="modal fade" id="ModalEdit<?=$row->id_thn?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-lg" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Form Konfirmasi</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body">
+													<form action='<?=site_url().'adm/aktivkan_ta'?>' method='post' >
+													<input name='id_ta' hidden value='<?=$row->id_thn?>' >
+													<?php if ($row->status_ta == "0"){?>
+													<h3>Aktivkan Kembali</h3>
+													<ul>
+														<li>Apakah Anda ingin melakukan <b>pengaktivan</b> kembali pada tahun akademik ini?</li>
+													</ul>
+													<?php 
+													}else{
+													?>
+													<h3>Non Aktivkan</h3>
+													<ul>
+														<li>Apakah anda Yakin akan <b>Menonaktivkan</b> Tahun Akademik ini</li>
+													</ul>
+													<?php
+													}
+													?>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary  btn-outline " data-dismiss="modal">Close</button>
+														<button <?php if ($row->status_ta == "1"){echo "hidden";};?> class="btn  btn-primary  btn-outline ">Aktivkan</button>
+														</form>
+
+														<form action='<?=site_url().'adm/nonaktivkan_ta'?>' method="post" >
+																<input name='id_ta' hidden value='<?=$row->id_thn?>'  >
+																
+																<button <?php if ($row->status_ta == "0"){echo "hidden";};?> class="btn btn-danger btn-outline">Nonaktivkan</button>
+														</form>
+													</div> 
+												</div>
+											</div>
+										</div>
+									
+								<!--END MODAL EDIT-->
+
+								<tr style="cursor:pointer;cursor:hand;" class='edit-record' data-toggle="modal" data-target="#ModalEdit<?=$row->id_thn?>" >
 									<td><?=$no++?></td>
 									<td><?=$row->nama_ta;?></td>
 									<td><?=$row->jen_semester;?></td>
@@ -135,6 +154,20 @@ $("#get_semester").change(function(){
 			   $("#res_id_ta").html(msg);                                                     
 	   }
    });    
+});
+
+$(document).ready(function(){
+	$("#tambahkan").click(function(){
+		var data = $('#form-data').serialize();
+		$.ajax({
+			type: 'POST',
+			url: "<?=site_url().'adm/proses_tahun_akademik'?>",
+			data: data,
+			success: function() {
+				$('#rest_error').html();
+			}
+		});
+	});
 });
 
 </script>

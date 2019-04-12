@@ -152,8 +152,7 @@ CREATE TABLE `tb_fakultas` (
 /*Data for the table `tb_fakultas` */
 
 insert  into `tb_fakultas`(`kd_fakultas`,`nm_fakultas`,`dekan`,`pd1`,`pd2`,`pd3`,`pd4`,`kasubag_perkuliahan`,`kasubag_akademik`) values 
-(11,'Administrasi Negara','-','-','-','-','-','-','-'),
-(30,'Ilmu komputer','Rohim','-','-','-','-','-','-');
+(11,'Administrasi Negara','-','-','-','-','-','-','-');
 
 /*Table structure for table `tb_history` */
 
@@ -167,7 +166,7 @@ CREATE TABLE `tb_history` (
   `time` time DEFAULT NULL,
   `kegiatan` longtext,
   PRIMARY KEY (`id_history`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_history` */
 
@@ -182,7 +181,8 @@ insert  into `tb_history`(`id_history`,`id_user`,`nama_user`,`tgl`,`time`,`kegia
 (10,'admin','admin','06-04-2019','13:04:16','Hapus Data Fakultas by name  : Administrasi Negara2'),
 (11,'mahasiswa','mahasiswa','06-04-2019','13:04:49','Hapus Data Fakultas by name  : Ilmu komputer'),
 (12,'superadmin','superadmin','08-04-2019','16:04:50','Input Data Fakultas : Ilmu komputer'),
-(13,'superadmin','superadmin','08-04-2019','16:04:56','Hapus Data Fakultas by name  : PEMERINTAH');
+(13,'superadmin','superadmin','08-04-2019','16:04:56','Hapus Data Fakultas by name  : PEMERINTAH'),
+(14,'superadmin','superadmin','13-04-2019','00:04:55','Hapus Data Fakultas by name  : Ilmu komputer');
 
 /*Table structure for table `tb_jenis_nilai` */
 
@@ -204,6 +204,99 @@ insert  into `tb_jenis_nilai`(`id_nilai`,`nilai`,`bobot`) values
 (4,'D',1),
 (5,'E',0),
 (6,'T',0);
+
+/*Table structure for table `tb_kelas` */
+
+DROP TABLE IF EXISTS `tb_kelas`;
+
+CREATE TABLE `tb_kelas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kd_kls` varchar(20) NOT NULL,
+  `keterangan` varchar(50) DEFAULT NULL,
+  `kd_jrs` varchar(10) NOT NULL,
+  `kd_mk` varchar(10) NOT NULL,
+  `semester` varchar(10) NOT NULL,
+  `ta` varchar(9) NOT NULL,
+  `nip` varchar(15) DEFAULT NULL,
+  `kd_ruangan` varchar(10) DEFAULT NULL,
+  `sesi` tinyint(3) unsigned DEFAULT NULL,
+  `haria` varchar(10) DEFAULT NULL,
+  `sesima` time DEFAULT NULL,
+  `sesika` time DEFAULT NULL,
+  `harib` varchar(10) DEFAULT NULL,
+  `sesimb` time DEFAULT NULL,
+  `sesikb` time DEFAULT NULL,
+  `tahun_k` int(11) NOT NULL,
+  `kd_fakultas` varchar(5) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `SMS_Kelas_Kd_Fakultas` (`kd_fakultas`),
+  KEY `SMS_Kelas_Semester` (`semester`),
+  KEY `SMS_Kelas_Thnk` (`ta`),
+  KEY `SMS_Kelas_Tahun_K` (`tahun_k`),
+  KEY `SMS_Kelas_Kd_Jrs` (`kd_jrs`),
+  KEY `SMS_Kelas_Kd_MK` (`kd_mk`),
+  KEY `SMS_Kelas_NIRP` (`nip`),
+  KEY `SMS_Kelas_Kd_Ruangan` (`kd_ruangan`),
+  KEY `SMS_Kelas_Keterangan` (`keterangan`),
+  KEY `SMS_Kelas_Sesi` (`sesi`),
+  KEY `SMS_Kelas_Haria` (`haria`),
+  KEY `SMS_Kelas_Sesima` (`sesima`),
+  KEY `SMS_Kelas_Sesika` (`sesika`),
+  KEY `SMS_Kelas_Harib` (`harib`),
+  KEY `SMS_Kelas_Sesimb` (`sesimb`),
+  KEY `SMS_Kelas_Sesikb` (`sesikb`)
+) ENGINE=MyISAM AUTO_INCREMENT=1033 DEFAULT CHARSET=utf8;
+
+/*Data for the table `tb_kelas` */
+
+insert  into `tb_kelas`(`id`,`kd_kls`,`keterangan`,`kd_jrs`,`kd_mk`,`semester`,`ta`,`nip`,`kd_ruangan`,`sesi`,`haria`,`sesima`,`sesika`,`harib`,`sesimb`,`sesikb`,`tahun_k`,`kd_fakultas`) values 
+(1003,'A22','kelas pagi','13','3658','Genap','2014/2015','FT13017','63',1,'Selasa','13:30:00','14:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1004,'A23','kelas pagi','13','3771','Genap','2014/2015','FT13001','64',1,'Selasa','13:30:00','14:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1005,'A24','kelas pagi','13','2998','Genap','2014/2015','FT13005','66',1,'Selasa','13:30:00','14:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1006,'A25','kelas pagi','13','2951','Genap','2014/2015','FT13003','67',1,'Selasa','13:30:00','14:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1007,'A26','kelas pagi','13','3777','Genap','2014/2015','FT13016','68',1,'Selasa','13:30:00','15:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1008,'A27','kelas pagi','13','3780','Genap','2014/2015','FT13007','63',1,'Rabu','08:00:00','10:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1009,'A28','kelas pagi','13','3157','Genap','2014/2015','FT13001','64',1,'Rabu','08:00:00','09:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1010,'A29','kelas pagi','13','3087','Genap','2014/2015','FT13005','67',1,'Rabu','08:00:00','09:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1011,'A30','kelas pagi','13','3694','Genap','2014/2015','FT13017','66',1,'Rabu','08:00:00','09:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1012,'A31','kelas pagi','13','3694','Genap','2014/2015','FT13017','63',1,'Rabu','10:00:00','11:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1013,'A32','kelas pagi','13','3780','Genap','2014/2015','FT13007','64',1,'Rabu','10:00:00','12:10:00','0','00:00:00','00:00:00',2014,'01'),
+(1014,'A33','kelas pagi','13','3175','Genap','2014/2015','FT13001','67',1,'Rabu','10:00:00','11:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1015,'A34','kelas pagi','13','3791','Genap','2014/2015','FT13007','68',1,'Rabu','10:00:00','12:10:00','0','00:00:00','00:00:00',2014,'01'),
+(1016,'A35','kelas pagi','13','3694','Genap','2014/2015','FT13019','63',1,'Rabu','13:00:00','14:30:00','0','00:00:00','00:00:00',2014,'01'),
+(1017,'A36','kelas pagi','13','2960','Genap','2014/2015','FT13003','64',1,'Rabu','13:00:00','14:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1018,'A37','kelas pagi','13','3780','Genap','2014/2015','FT13007','67',1,'Rabu','13:00:00','15:30:00','0','00:00:00','00:00:00',2014,'01'),
+(1019,'A38','kelas pagi','13','3772','Genap','2014/2015','FT13007','66',1,'Rabu','13:00:00','14:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1020,'A39','kelas pagi','13','3771','Genap','2014/2015','FT13001','68',1,'Rabu','13:00:00','14:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1021,'A40','kelas pagi','13','3085','Ganjil','2014/2015','FT13003','63',1,'Kamis','08:00:00','09:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1022,'A41','kelas pagi','13','3107','Genap','2014/2015','FT13008','67',1,'Kamis','08:00:00','10:30:00','0','00:00:00','00:00:00',2014,'01'),
+(1023,'A42','kelas pagi','13','3087','Genap','2014/2015','FT13005','68',1,'Kamis','08:00:00','09:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1024,'A43','kelas pagi','13','3107','Genap','2014/2015','FT13008','67',1,'Kamis','10:00:00','10:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1025,'A44','kelas pagi','13','2995','Genap','2014/2015','FT13016','66',1,'Kamis','10:00:00','12:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1026,'A45','kelas pagi','13','3787','Genap','2014/2015','FT13002','63',1,'Kamis','10:00:00','11:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1027,'A46','kelas pagi','13','2960','Genap','2014/2015','FT13003','68',1,'Kamis','10:00:00','11:40:00','0','00:00:00','00:00:00',2014,'01'),
+(1028,'41A','kelas pagi','41','2682','Ganjil','2014/2015','0218058501','45',1,'Selasa','08:00:00','09:40:00','0','00:00:00','00:00:00',2014,'04');
+
+/*Table structure for table `tb_kelas_jenis` */
+
+DROP TABLE IF EXISTS `tb_kelas_jenis`;
+
+CREATE TABLE `tb_kelas_jenis` (
+  `kode_kelas_jenis` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_kelas_jenis` varchar(45) DEFAULT NULL,
+  `kd_Jrs` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`kode_kelas_jenis`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tb_kelas_jenis` */
+
+insert  into `tb_kelas_jenis`(`kode_kelas_jenis`,`nama_kelas_jenis`,`kd_Jrs`) values 
+(1,'Pagi','11'),
+(2,'Siang','11'),
+(3,'Sore','11'),
+(4,'Malam','11'),
+(5,'Semua','11'),
+(6,'Khusus Karyawan','11');
 
 /*Table structure for table `tb_mahasiswa` */
 
@@ -2915,10 +3008,8 @@ CREATE TABLE `tb_prodi` (
 /*Data for the table `tb_prodi` */
 
 insert  into `tb_prodi`(`kd_prodi`,`nm_prodi`,`ketua_prodi`,`sekretaris_prodi`,`p_studi`,`kd_fakultas`) values 
-(1,'Akuntansi','Bambang2','udin','D3','11'),
-(8,'Management Bisnis','Rio M','Hery','S1','30'),
-(9,'Teknik Informatika','Kakashi','Hinata','D3','30'),
-(10,'Pemasaran','Kakashi','Hinata','D3','11');
+(1,'Administrasi Negara','Bambang2','udin','S1','11'),
+(10,'Administrasi Bisnis','Kakashi','Hinata','D3','11');
 
 /*Table structure for table `tb_role` */
 
@@ -2935,8 +3026,8 @@ CREATE TABLE `tb_role` (
 
 insert  into `tb_role`(`id_role`,`nama_role`,`hide`) values 
 (7,'Superadmin','0'),
-(2,'Mahasiswa','1'),
-(3,'Admin','1');
+(2,'staff admin','1'),
+(3,'admin staff','1');
 
 /*Table structure for table `tb_se_grup_menu` */
 
@@ -3005,15 +3096,15 @@ CREATE TABLE `tb_thn_akademik` (
   `jen_semester` varchar(50) DEFAULT NULL,
   `status_ta` int(3) DEFAULT NULL,
   PRIMARY KEY (`id_thn`)
-) ENGINE=InnoDB AUTO_INCREMENT=20183 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20184 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_thn_akademik` */
 
 insert  into `tb_thn_akademik`(`id_thn`,`nama_ta`,`jen_semester`,`status_ta`) values 
 (20171,'2017/2018','ganjil',0),
 (20172,'2017/2018','genap',0),
-(20181,'2018/2019','ganjil',0),
-(20182,'2018/2019','genap',1);
+(20181,'2018/2019','ganjil',1),
+(20182,'2018/2019','genap',0);
 
 /*Table structure for table `tb_thn_masuk` */
 
@@ -3059,7 +3150,7 @@ CREATE TABLE `tb_user` (
 
 insert  into `tb_user`(`id_user`,`user_name`,`nama_user`,`password`,`email`,`phone`,`level_id`) values 
 (1,'admin','Check Admin','c4ca4238a0b923820dcc509a6f75849b','@gmail.com','089977665544',3),
-(2,'mahasiswa','Check Mahasiswa','c4ca4238a0b923820dcc509a6f75849b','@gmail.com','089977665544',2),
+(2,'admin2','Check Mahasiswa','c4ca4238a0b923820dcc509a6f75849b','@gmail.com','089977665544',2),
 (3,'superadmin','Check Superadmin','c4ca4238a0b923820dcc509a6f75849b','@gmail.com','089977665544',7),
 (4,'mhyasin','Muhammad Yasin','c4ca4238a0b923820dcc509a6f75849b','@gmail.com','089977665544',7);
 

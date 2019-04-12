@@ -93,5 +93,24 @@ class M_security extends CI_Model {
       }
   }
 
+  public function cekDataAktivTa($table){
+    $this->db->where('status_ta','1');
+    $data = $this->db->get($table);
+    if ($data->num_rows() >= 1){
+      echo $this->session->set_flashdata('message',"Gagal!!! , Masih ada Tahun akademik yang aktiv");
+      redirect ('adm/tahun_akademik');
+    }
+  }
+
+  public function cekDataTaSama($table,$form){
+    $this->db->where('id_thn',$form);
+    $data = $this->db->get($table);
+    if ($data->num_rows() >= 1){
+      echo $this->session->set_flashdata('message',"Gagal!!! , Tahun Akademik Untuk Semester Ini sudah ada");
+      redirect ('adm/tahun_akademik');
+    }
+
+  }
+
 
 }

@@ -66,5 +66,32 @@ class M_update extends CI_Model {
         echo $this->session->set_flashdata('message',"Data berhasil di ubah...");
 		return $data;
 	}
+
+	public function noAktivkanTa($table,$form){
+		$upd = array (
+			'status_ta' => '0',
+		);
+
+		$wh['id_thn'] = $form['id_ta'];
+        $this->db->where($wh);
+        $data = $this->db->update($table,$upd);
+
+        echo $this->session->set_flashdata('message',"Data Tahun Akadmik ".$form['id_ta']." di Nonaktivkan...");
+		return $data;
+	}
+
+	public function AktivkanTa($table,$form){
+		$upd = array (
+			'status_ta' => '1',
+		);
+
+		$wh['id_thn'] = $form['id_ta'];
+        $this->db->where($wh);
+        $data = $this->db->update($table,$upd);
+
+        echo $this->session->set_flashdata('message',"Data Tahun Akadmik ".$form['id_ta']." di Aktivkan...");
+		return $data;
+
+	}
 	
 }

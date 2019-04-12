@@ -1,12 +1,12 @@
 <?php
-$ta = "7"; //date('m');
+$ta = date('m');
 if ($ta >= "6"){
 		$rest = date('Y');
 }else{
 	$rest = date ('Y')-1;
 }
 
-$taa = "7"; // date('m');
+$taa = date('m');
 
 if ($taa >= "6"){
 		$restt = date('Y');
@@ -16,11 +16,13 @@ if ($taa >= "6"){
 
 switch ($semester){
 	case "ganjil" :
-			echo $rest.'1';
+			echo "<label>ID Semester *</label>";
+			echo "<input name='id_smt' id='smt' readonly class='form-control' value=".$rest.'1'." >";
 	break;
 	
 	case "genap" :
-		echo $restt.'2';
+	echo "<label>ID Semester *</label>";
+		echo "<input name='id_smt' id='smt' readonly class='form-control' value=".$rest.'2'." >";
 	break;
 }
 

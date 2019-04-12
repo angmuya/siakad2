@@ -85,4 +85,17 @@ class M_input extends CI_Model {
 		return $data;
 	}
 
+	public function DataTahunAkademik ($table,$input){
+		$inp = array (
+			'id_thn'=> $input['id_smt'],
+			'nama_ta'=> $input['ta'],
+			'jen_semester' => $input['semester'],
+			'status_ta' => '1',
+
+		);
+		$data = $this->db->insert($table,$inp);
+		echo $this->session->set_flashdata('message',"Tahun Akademik Berhasil di buat");
+		return $data;
+	}
+
 }
