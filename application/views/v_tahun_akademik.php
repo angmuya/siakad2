@@ -1,15 +1,16 @@
-	   
+
+		<div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
                 <div class="ibox ">
                     <div class="ibox-title">
                         <h5><?=$title?></h5>
                         <div class="ibox-tools">
-							<button class="btn btn-primary btn-outline " data-toggle="modal" data-target="#modal-default" >+ Add New Data</button>
+							<button class="btn btn-primary btn-outline " data-toggle="modal" data-target="#modal-default" ><i class='fa fa-plus' ></i> Add New Data</button>
                         </div>
 												
 								<!-- MODAL ADD -->
-								<form action="<?=site_url().'adminController/proses_input_data_fakultas'?>" method='POST' >
+								<form action="<?=site_url().'adminMasterController/proses'?>" method='get' >
 												<div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog modal-lg" role="document">
 														<div class="modal-content">
@@ -20,7 +21,7 @@
 																</button>
 															</div>
 															<div class="modal-body">
-																<?php $this->load->view('v_tambah_data_mahasiswa'); ?>
+																<?php $this->load->view('v_tambah_data_tahun_akademik');?>
 															</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-secondary btn-outline " data-dismiss="modal">Close</button>
@@ -46,7 +47,7 @@
 													<div class="modal-body">
 													<form action='<?=site_url().'adminController/edit_data_fakultas'?>' method='post' >
 													<input name='id_fakultas' hidden >
-													
+													<?php $this->load->view('v_tambah_data_fakultas');?>
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-secondary  btn-outline " data-dismiss="modal">Close</button>
@@ -74,26 +75,37 @@
 							<thead>
 								<tr>
 									<th>No</th>
-									<th>Nama Fakultas</th>
-									<th>Dekan</th>
-									<th>PD1</th>
-									<th>PD2</th>
-									
+									<th>Tahun Akademik</th>
+									<th>Semester</th>
+									<th>Status</th>
 								</tr>
 							</thead>
-							<?php	
-							foreach ($datamhs->result() as $row ){
+							<tbody>
+						
+							<?php
+							$no=1;
+							foreach ($datatahun as $row ){
 							?>
-							<tr>
-									<td><?=$row->nim;?></td>
-									<td><?=$row->nama_mhs;?></td>
-									<td><?=$row->tp_lahir.' , '.substr($row->tgl_lahir,8).substr($row->tgl_lahir,4,-2).substr($row->tgl_lahir,0,-6);?></td>
-									<td><?=$row->jenis_kelamin;?></td>
-									<td><?=$row->agama;?></td>		
-							</tr>									
+								<tr style="cursor:pointer;cursor:hand;" class='edit-record' data-toggle="modal" data-target="#ModalEdit" >
+									<td><?=$no++?></td>
+									<td><?=$row->nama_ta;?></td>
+									<td><?=$row->jen_semester;?></td>
+									<td>
+										<?php if ($row->status_ta == "1"){?>
+										<span class="label label-info"><i class='fa fa-check' ></i></span>
+										<?php
+										}else{
+										?>
+										<span class="label label-danger"><i class='fa fa-times' ></i></span>
+										<?php
+										}
+										?>
+									</td>		
+								</tr>
 							<?php
 							}
 							?>
+							</tbody>
 							<tfoot>
 							</tfoot>
 						</table>
@@ -103,5 +115,26 @@
                 </div>
             </div>
             </div>
-
+        </div>
 		
+<script>
+
+$("#get_semester").change(function(){
+   
+   // variabel dari nilai combo box provinsi
+   var get_semester = $("#get_semester").val();
+		 
+   // mengirim dan mengambil data
+   $.ajax({
+	   type: "POST",
+	   dataType: "html",
+	   url: "<?=site_url().'c_combobox/getIdTaBySemester'?>",
+	   data: "semester="+get_semester,
+	   success: function(msg){
+		  
+			   $("#res_id_ta").html(msg);                                                     
+	   }
+   });    
+});
+
+</script>

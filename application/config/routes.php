@@ -70,6 +70,12 @@ $route['mahasiswa/(:any)'] = 'mahasiswaController/$1/';
 
 $route['superadmin'] = 'adminController/home/';
 
+$route['adm'] = 'adminController/home/';
+$route['adm/(:any)'] = 'AdminMasterController/$1';
+
+$route['c_combobox'] = 'ComboboxController';
+$route['c_combobox/(:any)'] = 'ComboboxController/$1/';
+
 
 $route['404_override'] = 'error404';
 $route['translate_uri_dashes'] = FALSE;

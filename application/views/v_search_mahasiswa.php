@@ -1,22 +1,37 @@
-<div class="wrapper wrapper-content animated fadeInRight">
-
-<form method='post' action='mahasiswa/search'>
-	<div class="input-group">
-            <select name='ta' class='form-control col-lg-12' required>
-                <option value=''>Select Tahun Angkatan</option>
-                <option>2010</option>
-                <option>2011</option>
-                <option>2012</option>
-                <option>2013</option>
-                <option>2014</option>
-                <option>2015</option>
-                <option>2016</option>
-                <option>2017</option>
-                <option>2018</option>
+		<br>
+		   <div class="input-group m-b">
+                <select id='select_thn' data-placeholder="Select Tahun Angkatan" class="chosen-select form-control" required>
+                <?php
+                $datatahun = $this->m_admin->getDataTable('tb_thn_masuk');
+                foreach ($datatahun as $res){
+                ?>
+                <option><?=$res->thn_masuk?></option>
+                <?php
+                };
+                ?>
             </select>
-            <button class="btn btn-danger"><span class='fa fa-search' ></span></button>
-        </span>
-    </div>
-</form>
-<br>
-</div>
+		   </div>
+		   <div class="wrapper wrapper-content animated fadeInRight" id='show_data'>	
+		   </div>
+
+		
+<script>
+
+$("#select_thn").change(function(){
+   
+   // variabel dari nilai combo box provinsi
+   var select_thn = $("#select_thn").val();
+		 
+   // mengirim dan mengambil data
+   $.ajax({
+	   type: "POST",
+	   dataType: "html",
+	   url: "<?=site_url().'/admin/mahasiswa/search'?>",
+	   data: "ta="+select_thn,
+	   success: function(msg){
+		  
+			   $("#show_data").html(msg);                                                     
+	   }
+   });    
+});
+</script>

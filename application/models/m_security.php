@@ -63,5 +63,35 @@ class M_security extends CI_Model {
 
   }
 
+  public function cekMasterMenuGanda($table,$form){
+      $wh = array (
+        'grup_name' => $form['grup_menu'],
+        'id_role' => $form['id_role'],
+        'css_class' =>$form['css_class'],
+      );
+      $cek = $this->db->get_where($table,$wh);
+
+      if ($cek->num_rows() > 0){
+
+      echo $this->session->set_flashdata('message',"Gagal!!! , Master Menu Sudah Ada");
+      redirect ('masterMenu/setting_role/'.$form['id_role']);
+      }
+  }
+
+  public function cekMastersubMenuGanda($table,$form){
+	  
+      $whe = array (
+        'link' => $form['link_url'],
+        'grup_id' => $form['id_submenu'],
+      );
+      $cek = $this->db->get_where($table,$whe);
+
+      if ($cek->num_rows() > 0){
+
+      echo $this->session->set_flashdata('message',"Gagal!!! , Sub Menu Di Master ini Sudah Ada");
+      redirect ('masterMenu/sub_menu/'.$form['id_submenu'].'/'.$form['name_grup']);
+      }
+  }
+
 
 }

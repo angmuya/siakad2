@@ -37,8 +37,10 @@ class MasterMenu extends CI_Controller {
 				$pageData = array (
 					'title'=> 'Setting Grup Menu',
 					'konten'=> 'template/menu/v_master_menu_setting_role',
+					'datagrupselect' => $this->m_admin->getDataTable('tb_se_grup_menu'),
 					'id_rol'=> $a,
 					'datagrup' => $this->m_admin->getDataGrup('tb_master_menu',$a),
+					
 				);
 				
 				$this->load->view('tema',$pageData);
@@ -59,6 +61,7 @@ class MasterMenu extends CI_Controller {
 				'id_submenu' => $a,
 				'sub_menu_grup'=>$b,
 				'datasubmenu' => $this->m_admin->getDataSubmenu('tb_master_submenu',$a),
+				'datasubselect' => $this->m_combobox->getDataSubmenuByIdGrup($b),
 			);
 			
 			$this->load->view('tema',$pageData);
@@ -70,6 +73,7 @@ class MasterMenu extends CI_Controller {
 			$this->m_security->cekRoleAkses('masterMenu');
 			$formdata = $this->input->post();
 			$this->m_security->cekDataKosong($formdata['id_role']);
+			$this->m_security->cekMasterMenuGanda('tb_master_menu',$formdata);
 			$this->m_input->insertGrupMenu('tb_master_menu',$formdata);
 			redirect ('masterMenu/setting_role/'.$formdata['id_role']);
 
@@ -95,10 +99,34 @@ class MasterMenu extends CI_Controller {
 			$this->m_security->cekRoleAkses('masterMenu');
 			$form = $this->input->post();
 			$this->m_security->cekDataKosong($form['id_submenu']);
+			$this->m_security->cekMastersubMenuGanda('tb_master_submenu',$form);
 			$this->m_input->insertGrupSubmenu('tb_master_submenu',$form);
 			redirect('masterMenu/sub_menu/'.$form['id_submenu'].'/'.$form['name_grup']);
 		}
 
+		public function grup_menu(){
+			$this->m_security->cekRoleAkses('masterMenu/grup_menu');
 
+			$pageData = array (
+				'title'=> 'Grup Menu',
+				'konten'=> 'template/menu/v_grup_menu',
+				'datagrup' => $this->m_admin->getDataTable('tb_se_grup_menu'),
+			);
+			
+			$this->load->view('tema',$pageData);
+		}
 
+		public function grup_submenu(){
+			$this->m_security->cekRoleAkses('masterMenu/grup_submenu');
+
+			$pageData = array (
+				'title'=> 'Grup Sub Menu',
+				'konten'=> 'template/menu/v_grup_submenu',
+				'datasubmenu' => $this->m_admin->getDataGrupDanSubmenu(),
+			);
+			
+			$this->load->view('tema',$pageData);
+
+		}
+		
 }

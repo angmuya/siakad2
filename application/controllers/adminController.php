@@ -72,11 +72,10 @@ class AdminController extends CI_Controller {
 				if (!$keyword==null){
 				$pageData = array (
 					'title'=> 'Mahasiswa',
-					'konten'=> 'v_mahasiswa',
 					'datamhs'=>$this->m_admin->searchDataMhs('tb_mahasiswa',$keyword),
 				);
 			
-				$this->load->view('tema',$pageData);
+				$this->load->view('v_mahasiswa',$pageData);
 			}else{
 				redirect ('admin/mahasiswa');
 			}
@@ -94,6 +93,19 @@ class AdminController extends CI_Controller {
 		}
 
 		
+		
+	}
+
+	public function user (){
+		$this->m_security->cekRoleAkses('admin/user');
+		$pageData = array (
+			'title'=> 'Mata Kuliah',
+			'konten'=> 'v_user',
+			'resuser' => $this->m_admin->getDataUser(),
+		);
+		
+		$this->load->view('tema',$pageData);
+
 		
 	}
 

@@ -7,6 +7,7 @@
                 </li>
                 <?php
                  $id['id_role'] = $this->session->userdata('lvl');
+                 $this->db->order_by('urut_grup_master','ASC');
                 $data = $this->db->get_where('tb_master_menu',$id)->result();
                 foreach ($data as $link){
                 ?>
@@ -15,6 +16,7 @@
                     <ul class="nav nav-second-level collapse">
                     <?php
                     $sub['grup_id'] = $link->id_menu;
+                    $this->db->order_by('urut_m_submenu','ASC');
                     $data = $this->db->get_where('tb_master_submenu',$sub)->result();
                     foreach ($data as $linksub){
                     ?>

@@ -1,3 +1,4 @@
+
 		<div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
@@ -22,18 +23,12 @@
 															<div class="modal-body">
                                                                 <div class='row'>
 																	<div class='col-lg-12' >
-                                                                        <input value="<?=$id_rol?>" name='id_role' hidden type='text' >
+                                                                        <input  name='id_role'  type='text' >
 																	<label>Grup Menu</label>
 																		<div class="input-group m-b ">
 																			<select name='grup_menu' data-placeholder="Select Grup Master" id='grup_menu' class='chosen-select form-control ' placehoder='Css Class' required>
 																				<option selected disabled value=''>Select Grup Menu</option>
-                                                                                <?php
-            	                                                                    foreach ($datagrupselect as $ro){
-                                                                                ?>
-                                                                                    <option value='<?=$ro->nm_grup_menu?>'><?=$ro->nm_grup_menu?></option>
-                                                                                <?php
-                                                                                }
-                                                                                ?>
+                                                                            
 																			</select>
 																		</div>
 																		
@@ -61,8 +56,11 @@
 							<thead>
 								<tr>
 									<th>No</th>
-									<th>Grup</th>
-                                    <th>Css Class</th>
+									<th>Sub Menu</th>
+                                    <th>Link Url</th>
+                                    <th>Urutan</th>
+									<th>Grup Menu</th>
+									<th>Urutan Grup Menu</th>
                                     
 								</tr>
 							</thead>
@@ -70,12 +68,12 @@
 						
 							<?php
                             $no=1;
-							foreach ($datagrup as $row ){
+							foreach ($datasubmenu as $row ){
 							?>
 
 								<!-- MODAL EDIT -->
 										
-								<div class="modal fade" id="ModalEdit<?=$row->id_menu?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal fade" id="ModalEdit<?=$row->nama_submenu?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-lg" role="document">
 												<div class="modal-content">
 													<div class="modal-header">
@@ -84,36 +82,21 @@
 															<span aria-hidden="true">&times;</span>
 														</button>
 													</div>
-													
-														<div class="modal-body">
-														<form action='asas' method='get'>
-															<div class='row' >
-																<div class='col-sm-6' >
-																	<label><h5>Grup Menu <?=$row->grup_name?></h5></label>
-																	<?php
-																	$wh['grup_id'] = $row->id_menu;
-																	$menu = $this->db->get_where('tb_master_submenu',$wh);
-																	foreach ($menu->result() as $rw){
-																	?>
-																	
-																	<div class="i-checks"><label> <input type="checkbox" disabled="" checked=""> <i> </i> <?=$rw->sub_menu;?></div>
-																	<?php
-																	}
-																	?>
-																</div>
-															</div>
-														</div>
-														<div class="modal-footer">
-															
-															<button type="button" class="btn btn-secondary  btn-outline" data-dismiss="modal">Close</button>
-															<a href='<?=site_url().'masterMenu/sub_menu/'.$row->id_menu.'/'.$row->grup_name;?>' class='btn btn-warning btn-outline' >Setting Grup Menu <?=$row->grup_name?></a>
-													</form>
+													<div class="modal-body">
+													dasdsd
+													</div>
+													<div class="modal-footer">
+														
+														<button type="button" class="btn btn-secondary  btn-outline" data-dismiss="modal">Close</button>
+														<a href='<?=site_url().'masterMenu/sub_menu/'.$row->id_menu.'/'.$row->grup_name;?>' class='btn btn-warning btn-outline' >Setting Grup Menu</a>
+														<button class="btn  btn-primary  btn-outline ">Update</button>
+														</form>
 
-															<form action='<?=site_url().'masterMenu/delete_grupmenu/'.$id_rol?>' method="post" >
-																	<input name='id_menu' hidden value='<?=$row->id_menu?>'>
-																	<button class="btn btn-danger btn-outline">Hapus</button>
-															</form>
-														</div>
+														<form action='<?=site_url().'masterMenu/delete_grupmenu/'.$id_rol?>' method="post" >
+																<input name='id_menu' hidden value='<?=$row->id_menu?>'>
+																<button class="btn btn-danger btn-outline">Hapus</button>
+														</form>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -121,10 +104,13 @@
 								<!--END MODAL EDIT-->
 
 								<tr style="cursor:pointer;cursor:hand;" class='edit-record' 
-								data-toggle="modal" data-target="#ModalEdit<?=$row->id_menu?>" >
+								data-toggle="modal" data-target="#ModalEdit<?=$row->nama_submenu?>" >
                                     <td><?=$no++?></td>
-									<td><?=$row->grup_name;?></td>
-									<td><?=$row->css_class;?></td>
+									<td><?=$row->nama_submenu;?></td>
+									<td><a href='<?=base_url().$row->link_url?>'><?=$row->link_url;?></a></td>
+                                    <td><?=$row->urutan_menu;?></td>
+									<td><?=$row->nm_grup_menu;?></td>
+									<td><?=$row->urut;?></td>
                                    
 								</tr>
 							<?php
@@ -142,23 +128,23 @@
             </div>
         </div>
 <script>	
-$("#grup_menu").change(function(){
+
+$("#oo").change(function(){
    
-   // variabel dari nilai 
-   var grup_menu = $("#grup_menu").val();
+   // variabel dari nilai combo box provinsi
+   var grup_menu = $("#oo").val();
 		 
    // mengirim dan mengambil data
    $.ajax({
 	   type: "POST",
 	   dataType: "html",
-	   url: "<?=site_url().'c_combobox/getCssClassByGrupName'?>",
+	   url: "<?=site_url().''?>",
 	   data: "grup="+grup_menu,
 	   success: function(msg){
 		  
-			   $("#css_class_o").html(msg);                                                     
+			   $("#00").html(msg);                                                     
 	   }
    });    
 });
-
 
 </script>

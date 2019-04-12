@@ -64,6 +64,7 @@ class M_input extends CI_Model {
 			'grup_name'=> $formdata['grup_menu'],
 			'css_class'=> $formdata['css_class'],
 			'id_role' => $formdata['id_role'],
+			'urut_grup_master'=>$formdata['urut'],
 
 		);
 		$data = $this->db->insert($table,$in);
@@ -76,7 +77,8 @@ class M_input extends CI_Model {
 			"id_sub"=>null,
 			"sub_menu"=>$form['sub_menu'],
 			"link"=>$form['link_url'],
-			"grup_id"=>$form['id_submenu']
+			"grup_id"=>$form['id_submenu'],
+			"urut_m_submenu"=>$form['urut'],
 		);
 		$data = $this->db->insert($table,$in);
 		echo $this->session->set_flashdata('message',"Data berhasil di tambahkan");

@@ -4,7 +4,7 @@
                 <div class="col-lg-12">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <h5>Data <?=$title.' - '.$sub_menu_grup?> </h5>
+                        <h5>Data <?=$title.' - '.$sub_menu_grup?> </h5> <i class="text-danger"><?=$this->session->flashdata('message');?></i>
                         <div class="ibox-tools">
 							<button class="btn btn-primary btn-outline " data-toggle="modal" data-target="#modal-default" >+ Add New Data</button>
                         </div>
@@ -22,7 +22,7 @@
 															</div>
 															<div class="modal-body">
 																<div class='row'>
-																	<div class='col-lg-6' >
+																	<div class='col-lg-12' >
                                                                         <input value="<?=$id_submenu?>" name='id_submenu' hidden type='text' >
 																		<input value="<?=$sub_menu_grup?>" name='name_grup' hidden type='text' >
 																	<label>Sub Menu</label>
@@ -30,19 +30,12 @@
 																			<div class="input-group-prepend">
 																				<span class="input-group-addon"><i class="fa fa-university"></i></span>
 																			</div>
-																			<select name='sub_menu' class='form-control ' placehoder='Css Class' required>
-																				<option value=''>Select sub_menu</option>
+																			<select name='id' id='get_link' class='form-control ' placehoder='Css Class' required>
+																				<option selected disabled value=''>Select sub_menu</option>
                                                                                 <?php
-                                                                                 $wh = array (
-																					"id_role" => '7',
-																				  );
-																				  $this->db->from('tb_master_menu as tbA');
-																					  $this->db->join('tb_master_submenu as tbB','tbA.id_menu=tbB.grup_id','left');
-																					  $this->db->where($wh);
-																				  $datasubselect = $this->db->get()->result();
                                                                                 foreach ($datasubselect as $ro){
                                                                                 ?>
-                                                                                    <option value='<?=$ro->sub_menu?>'><?=$ro->sub_menu?></option>
+                                                                                    <option value='<?=$ro->id_submenu?>'><?=$ro->nama_submenu?></option>
                                                                                 <?php
                                                                                 }
                                                                                 ?>
@@ -50,31 +43,9 @@
 																		</div>
 																		
 																	</div>
-																	<div class='col-lg-6' >
-																	<label>Link Url</label>
-																		<div class="input-group m-b ">
-																			<div class="input-group-prepend">
-																				<span class="input-group-addon"><i class="fa fa-university"></i></span>
-																			</div>
-                                                                            <select name='link_url' class='form-control ' placehoder='Css Class' required>
-																				<option value=''>Select link</option>
-                                                                                <?php
-                                                                                 $wh = array (
-																					"id_role" => '7',
-																				  );
-																				  $this->db->from('tb_master_menu as tbA');
-																					  $this->db->join('tb_master_submenu as tbB','tbA.id_menu=tbB.grup_id','left');
-																					  $this->db->where($wh);
-																				  $datasubselect = $this->db->get()->result();
-                                                                                foreach ($datasubselect as $ro){
-                                                                                ?>
-                                                                                    <option value='<?=$ro->link?>'><?=$ro->sub_menu.' :::: '.$ro->link?></option>
-                                                                                <?php
-                                                                                }
-                                                                                ?>
-																			</select>
-																		</div>
-																	</div>
+                                                                            <div id='link_result'>
+																				
+                                        									</div>
 																</div>
 															</div>
 															<div class="modal-footer">
@@ -101,7 +72,7 @@
 													<div class="modal-body">
 													<form action='<?=site_url().'adminController/edit_data_matkul'?>' methode='get' >
 													<input name='id_fakultas' type='hidden' >
-													<?php $this->load->view('v_tambah_data_matkul');?>
+													ssd
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-secondary  btn-outline" data-dismiss="modal">Close</button>
@@ -160,16 +131,22 @@
         </div>
 <script>	
 
-        $(function(){
-            $(document).on('click','.edit-record',function(){
-							var kd_mk = $(this).attr('data-kd_mk');
-							var semester = $(this).attr('data-semester');
-
-
-                $("#ModalEdit").modal('show');
-								$('[name="kd_mk"]').val(kd_mk);
-
-            });
-        });
+$("#get_link").change(function(){
+   
+   // variabel dari nilai combo box provinsi
+   var get_link = $("#get_link").val();
+		 
+   // mengirim dan mengambil data
+   $.ajax({
+	   type: "POST",
+	   dataType: "html",
+	   url: "<?=site_url().'c_combobox/getLinkBySubmenu'?>",
+	   data: "get_link="+get_link,
+	   success: function(msg){
+		  
+			   $("#link_result").html(msg);                                                     
+	   }
+   });    
+});
 
 </script>

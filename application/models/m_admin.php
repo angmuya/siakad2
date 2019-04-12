@@ -70,13 +70,30 @@ class M_admin extends CI_Model {
 		return $data;
 	}
 
-	public function getProdiByFakultas($table,$form){
-		
-		$this->db->where('kd_fakultas',$form['kd_fakultas']);
-		$data = $this->db->get($table);
-		return $data->result();
+	public function getDataGrupDanSubmenu(){
+
+		 $this->db->from('tb_se_submenu as tbA');
+		 $this->db->join('tb_se_grup_menu as tbB','tbA.grup_menu_s=tbB.id_grup','left');
+		 $data = $this->db->get();
+		 return $data->result();
+
 	}
 
+	public function getDataUser(){
+		$this->db->from('tb_user as tbA');
+		$this->db->join('tb_role as tbB','tbA.level_id=tbB.id_role','left');
+		$this->db->where('hide','1');
+		$data = $this->db->get();
+		return $data->result();
+
+	}
+	
+	public function getDataTa($table){
+		$this->db->order_by('id_thn','DESC');
+		$data = $this->db->get($table);
+		return $data->result();
+		
+	}
 	
 
 }
