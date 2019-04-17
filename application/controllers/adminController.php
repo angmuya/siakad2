@@ -72,19 +72,26 @@ class AdminController extends CI_Controller {
 				if (!$keyword==null){
 				$pageData = array (
 					'title'=> 'Mahasiswa',
+					'konten'=> 'v_mahasiswa',
+					'no_pen'=> $this->m_admin->BuatNoPendaftaraan('no_pen','tb_mahasiswa'),
 					'datamhs'=>$this->m_admin->searchDataMhs('tb_mahasiswa',$keyword),
 				);
 			
-				$this->load->view('v_mahasiswa',$pageData);
+				$this->load->view('tema',$pageData);
 			}else{
 				redirect ('admin/mahasiswa');
 			}
+			break;
+			
+			case "nim":
+				echo $a;
 			break;
 
 			default :
 
 				$pageData = array (
 					'title'=> 'Search Mahasiswa',
+					'no_pen'=> $this->m_admin->BuatNoPendaftaraan('no_pen','tb_mahasiswa'),
 					'konten'=> 'v_search_mahasiswa',
 				);
 				
@@ -139,6 +146,15 @@ class AdminController extends CI_Controller {
 		$this->m_input->InputDataMatkul('tb_matakuliah',$k,$dataForm);
 
 		redirect('admin/mata_kuliah');
+	}
+	
+	public function proses_input_data_mhs(){
+		$this->m_security->cekRoleAkses('admin/mahasiswa');
+		$dataform = $this->input->post();	
+		$this->m_security->cekDataKosong($dataform['tgl_pen']);
+		$this->m_input->InputDataMhs('tb_mahasiswa',$dataform);
+
+		redirect('admin/mahasiswa');
 	}
 
 	// akhir zone proses

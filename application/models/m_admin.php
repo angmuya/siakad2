@@ -62,6 +62,29 @@ class M_admin extends CI_Model {
 		$res_kode = 'MK'.sprintf("%03d",$kode); 
 		return $res_kode;
 	}
+	
+	public function BuatNoPendaftaraan ($field,$tbl){
+		
+		$this->db->select_max($field);   
+		$query = $this->db->get($tbl);  //cek dulu apakah ada sudah ada kode di tabel.    
+
+		if($query->num_rows() <> 0){      
+			 //cek kode jika telah tersedia    
+			 $data = $query->row();  
+			$no_pen = substr($data->no_pen,0,-3);
+			if ($no_pen == date('ymd')){
+			$kode = substr($data->no_pen,6)+1;
+			}else{
+				$kode = "001";
+			}
+		}
+		else{      
+			 $kode = "001";  //cek jika kode belum terdapat pada table
+		}
+
+		$res_kode = date('ymd').sprintf("%03d",$kode); 
+		return $res_kode;
+	}
 
 	public function searchDataMhs($table,$keyword){
 		

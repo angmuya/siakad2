@@ -29,7 +29,7 @@ class M_security extends CI_Model {
     $data = $this->db->get();
     
     if (!$data->num_rows() > 0 ){
-      redirect(strtolower($this->session->userdata('nama_role')));
+      redirect('home');
     }
   }
 
@@ -103,10 +103,10 @@ class M_security extends CI_Model {
   }
 
   public function cekDataTaSama($table,$form){
-    $this->db->where('id_thn',$form);
+    $this->db->where('id_thn',$form['id_smt']);
     $data = $this->db->get($table);
     if ($data->num_rows() >= 1){
-      echo $this->session->set_flashdata('message',"Gagal!!! , Tahun Akademik Untuk Semester Ini sudah ada");
+      echo $this->session->set_flashdata('message',"Gagal!!! , Tahun Akademik <b>".$form['ta']."</b> Semester <b>".$form['semester']."</b> sudah ada");
       redirect ('adm/tahun_akademik');
     }
 

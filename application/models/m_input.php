@@ -97,5 +97,58 @@ class M_input extends CI_Model {
 		echo $this->session->set_flashdata('message',"Tahun Akademik Berhasil di buat");
 		return $data;
 	}
+	
+	public function InputDataMhs ($table,$input){
+			
+		$this->db->select_max('nim');   
+		$query = $this->db->get($table);  //cek dulu apakah ada sudah ada kode di tabel.    
+		$makecode = date('y').$input['pil_fakultas'];
+		
+		if($query->num_rows() <> 0){      
+			 //cek kode jika telah tersedia    
+			 $data = $query->row();  
+			$nim = substr($data->nim,0,-3);
+			if ($nim == $makecode){
+			$kode = substr($data->nim,4)+1;
+			}else{
+				$kode = "001";
+			}
+		}
+		else{      
+			 $kode = "001";  //cek jika kode belum terdapat pada table
+		}
+
+		$res_kode = $makecode.sprintf("%03d",$kode); 
+		$tgl_lahir = substr($input['tgl_lahir_mhs'],6).substr($input['tgl_lahir_mhs'],2,-4).substr($input['tgl_lahir_mhs'],0,-8);
+		
+		$inp = array (
+			'nim'=> $res_kode,
+			'pass'=> hash('sha512',md5($tgl_lahir)),
+			'tgl_pen'=> $input['tgl_pen'],
+			'no_pen'=> $input['no_pen'],
+			'nama_mhs'=> $input['nm_mhs'],
+			'tp_lahir'=> $input['tmp_lahir_mhs'],
+			'tgl_lahir'=> $tgl_lahir ,
+			'jenis_kelamin'=> $input['jk'],
+			'agama'=> $input['agama'],
+			'pekerjaan'=> $input['pekerjaan_mhs'],
+			'status_mhs'=> $input['status_mhs'],
+			'alamat'=> $input['alamat_t_mhs'].' No. '.$input['alamat_no_mhs'].' Rt / Rw '.$input['alamat_rt_mhs'].'/'.$input['alamat_rw_mhs'],
+			'thn_masuk' => date('Y'),
+			'kd_fakultas' => $input['pil_fakultas'],
+			'kd_jurusan' => substr($input['pil_jurusan'],2),
+			'ps_studi' => substr($input['pil_jurusan'],0,-2),
+			'no_tlp' => $input['no_hp_mhs'],
+			'nm_ortu'=> $input['nama_ortu'],
+			'pkj_ortu' => $input['pekerjaan_ortu'],
+			'alamat_ortu'=> $input['alamat_t_ortu'].' No. '.$input['alamat_no_ortu'].' Rt / Rw '.$input['alamat_rt_ortu'].'/'.$input['alamat_rw_ortu'],
+			'no_tlp_ortu'=> $input['no_hp_ortu'],
+			'id_kelas_jenis'=> $input['pil_jadwal'],
+			
+		);
+		$data = $this->db->insert($table,$inp);
+		echo $this->session->set_flashdata('message',"Mahasiswa Sudah Berhasil Terdaftar");
+		return $data;
+	}
 
 }

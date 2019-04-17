@@ -29,9 +29,9 @@ class AdminMasterController extends CI_Controller {
 
 		public function proses_tahun_akademik(){
 			$this->m_security->cekRoleAkses('adm/tahun_akademik');
-			$this->m_security->cekDataAktivTa('tb_thn_akademik');
 			$dataform = $this->input->post();
-			$this->m_security->cekDataTaSama('tb_thn_akademik',$dataform['id_smt']);
+			$this->m_security->cekDataTaSama('tb_thn_akademik',$dataform);
+			$this->m_security->cekDataAktivTa('tb_thn_akademik');
 			$this->m_security->cekDataKosong($dataform['id_smt']);
 			$this->m_input->DataTahunAkademik('tb_thn_akademik',$dataform);
 			redirect('adm/tahun_akademik');
@@ -53,6 +53,17 @@ class AdminMasterController extends CI_Controller {
 			$this->m_security->cekDataKosong($dataform['id_ta']);
 			$this->m_update->noAktivkanTa('tb_thn_akademik',$dataform);
 			redirect('adm/tahun_akademik');
+		}
+		
+		public function data_kelas(){
+			$this->m_security->cekRoleAkses('adm/data_kelas');
+			$pageData = array (
+				'title'=> 'Tahun Akademik',
+				'konten'=> 'v_jenis_kelas',
+				'data_jenis_kelas'=>$this->m_admin->getDataTable('tb_kelas_jenis'),
+			);
+			
+			$this->load->view('tema',$pageData);
 		}
 		
 		

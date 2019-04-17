@@ -23,13 +23,15 @@
 															<div class="modal-body">
                                                                 <div class='row'>
 																	<div class='col-lg-12' >
-                                                                        <input  name='id_role'  type='text' >
+                                                                       
 																	<label>Grup Menu</label>
 																		<div class="input-group m-b ">
-																			<select name='grup_menu' data-placeholder="Select Grup Master" id='grup_menu' class='chosen-select form-control ' placehoder='Css Class' required>
-																				<option selected disabled value=''>Select Grup Menu</option>
-                                                                            
-																			</select>
+																			<input class='form-control' >
+																		</div>
+																		
+																	<label>Css Class</label>
+																		<div class="input-group m-b ">
+																			<input class='form-control' >
 																		</div>
 																		
 																	</div>																		
@@ -71,7 +73,7 @@
 
 								<!-- MODAL EDIT -->
 										
-								<div class="modal fade" id="ModalEdit<?=$row->nm_grup_menu?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal fade" id="ModalEdit<?=$row->id_grup?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-lg" role="document">
 												<div class="modal-content">
 													<div class="modal-header">
@@ -86,12 +88,11 @@
 													<div class="modal-footer">
 														
 														<button type="button" class="btn btn-secondary  btn-outline" data-dismiss="modal">Close</button>
-														<a href='<?=site_url().'masterMenu/sub_menu/'.$row->id_menu.'/'.$row->grup_name;?>' class='btn btn-warning btn-outline' >Setting Grup Menu</a>
 														<button class="btn  btn-primary  btn-outline ">Update</button>
 														</form>
 
-														<form action='<?=site_url().'masterMenu/delete_grupmenu/'.$id_rol?>' method="post" >
-																<input name='id_menu' hidden value='<?=$row->id_menu?>'>
+														<form action='<?=site_url().'masterMenu/delete_grupm'?>' method="post" >
+																<input name='id_menu'  value='<?=$row->id_grup?>'>
 																<button class="btn btn-danger btn-outline">Hapus</button>
 														</form>
 													</div>
@@ -101,8 +102,7 @@
 									
 								<!--END MODAL EDIT-->
 
-								<tr style="cursor:pointer;cursor:hand;" class='edit-record' 
-								data-toggle="modal" data-target="#ModalEdit<?=$row->nm_grup_menu?>" >
+								<tr style="cursor:pointer;cursor:hand;" data-toggle="modal" data-target="#ModalEdit<?=$row->id_grup?>" >
                                     <td><?=$no++?></td>
 									<td><?=$row->nm_grup_menu;?></td>
 									<td><span class='fa <?=$row->css_class_grup;?>'></span></td>

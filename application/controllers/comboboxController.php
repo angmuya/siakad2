@@ -29,6 +29,15 @@ class ComboboxController extends CI_Controller {
         );
         $this->load->view('combobox/v_fakultasgetprodi',$data);
     }
+	
+	public function getJurusanByFakultas(){
+        $dataform = $this->input->post();
+        $this->m_security->cekDataKosong($dataform['kd_fakultas']);
+        $data = array(
+            "result_prodi" => $this->m_combobox->getProdiByFakultas('tb_prodi',$dataform)
+        );
+        $this->load->view('combobox/v_getJurusanByFakultas',$data);
+    }
 
     public function getCssClassByGrupName(){
         $dataform = $this->input->post();
