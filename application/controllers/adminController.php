@@ -11,7 +11,7 @@ class AdminController extends CI_Controller {
 			redirect ('login');
 			break;
 		}
-		$this->load->library('session');
+		$this->load->library(array ('session'));
 		$this->load->model(array('m_admin','m_input','m_hapus','m_update'));
 		}
 	public function index(){
@@ -235,7 +235,11 @@ class AdminController extends CI_Controller {
 	}
 
 	public function latihan2(){
-		$this->load->view('latihan2');
+	$en = $this->encryption->encrypt('1');
+	$de = $this->encryption->decrypt($en);
+	
+	echo "enc : ". $en."<br>";
+	echo "dec : ". $de."<br>";
 }
 
 	public function latihan3(){
@@ -247,7 +251,6 @@ class AdminController extends CI_Controller {
 
 	public function latihan4(){
 		$data = $this->m_admin->getKodeMK('kd_mk','tb_matakuliah');
-
 		echo $data;
 		}
 

@@ -106,7 +106,9 @@
 														<div class="modal-footer">
 															
 															<button type="button" class="btn btn-secondary  btn-outline" data-dismiss="modal">Close</button>
-															<a href='<?=site_url().'masterMenu/sub_menu/'.$row->id_menu.'/'.$row->grup_name;?>' class='btn btn-warning btn-outline' >Setting Grup Menu <?=$row->grup_name?></a>
+															<a href='<?=site_url().'masterMenu/sub_menu/'.$row->id_menu.'/'.$row->grup_name.'/'.$row->urut_grup_master
+															
+															;?>' class='btn btn-warning btn-outline' >Setting Grup Menu <?=$row->grup_name?></a>
 													</form>
 
 															<form action='<?=site_url().'masterMenu/delete_grupmenu/'.$id_rol?>' method="post" >

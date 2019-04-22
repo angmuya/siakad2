@@ -71,6 +71,33 @@ class M_input extends CI_Model {
 		echo $this->session->set_flashdata('message',"Data berhasil di tambahkan");
 		return $data;
 	}
+	
+	public function insertSeGrupMenu($table,$formdata){
+		
+		$this->db->select_max('urut');   
+		$query = $this->db->get($table);  //cek dulu apakah ada sudah ada kode di tabel.    
+
+		if($query->num_rows() <> 0){      
+			 //cek kode jika telah tersedia    
+			$data = $query->row();  
+			$kode = $data->urut + 1;
+
+		}
+		else{      
+			 $kode = "1" ; //cek jika kode belum terdapat pada table
+		}
+
+		$in = array (
+			'id_grup'=> $kode,
+			'nm_grup_menu'=> $formdata['nm_grup_menu'],
+			'css_class_grup'=> $formdata['css_class'],
+			'urut'=> $kode,
+
+		);
+		$data = $this->db->insert($table,$in);
+		echo $this->session->set_flashdata('message',"Data berhasil di tambahkan");
+		return $data;
+	}
 
 	public function insertGrupSubmenu($table,$form){
 		$in = array(
@@ -84,6 +111,19 @@ class M_input extends CI_Model {
 		echo $this->session->set_flashdata('message',"Data berhasil di tambahkan");
 		return $data;
 	}
+	
+	public function insertGrupSeSubmenu($table,$form){
+		$in = array(
+			"id_submenu"=>null,
+			"nama_submenu"=>$form['sub_menu'],
+			"link_url"=>$form['link_url'],
+			"grup_menu_s"=>$form['grup_menu'],
+			"urutan_menu"=>$form['no_urut_menu'],
+		);
+		$data = $this->db->insert($table,$in);
+		echo $this->session->set_flashdata('message',"Data berhasil di tambahkan");
+		return $data;
+	}
 
 	public function DataTahunAkademik ($table,$input){
 		$inp = array (
@@ -91,6 +131,23 @@ class M_input extends CI_Model {
 			'nama_ta'=> $input['ta'],
 			'jen_semester' => $input['semester'],
 			'status_ta' => '1',
+
+		);
+		$data = $this->db->insert($table,$inp);
+		echo $this->session->set_flashdata('message',"Tahun Akademik Berhasil di buat");
+		return $data;
+	}
+	
+	public function SendDataPosting ($table,$form){
+		$inp = array (
+			'id_post'=> null,
+			'slug_post'=> slug($form['judul_post']).'.html',
+			'judul_post' => $form['judul_post'],
+			'isi_post' => $form['isi_post'],
+			'tgl_post' => date('Y-m-d'),
+			'time_post' => date('H:i:s'),
+			'created_by' => $this->session->userdata('kd_user'),
+			'category_post' => $form['cat_post'],
 
 		);
 		$data = $this->db->insert($table,$inp);

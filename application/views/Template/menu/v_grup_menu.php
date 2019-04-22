@@ -10,7 +10,7 @@
                         </div>
 												
 								<!-- MODAL ADD -->
-								<form action="<?=site_url().'masterMenu/proses_input_data_grupmenu'?>" method='post' >
+								<form action="<?=site_url().'masterMenu/proses_input_data_se_grupmenu'?>" method='post' >
 												<div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog modal-lg" role="document">
 														<div class="modal-content">
@@ -26,12 +26,12 @@
                                                                        
 																	<label>Grup Menu</label>
 																		<div class="input-group m-b ">
-																			<input class='form-control' >
+																			<input name='nm_grup_menu' class='form-control' required >
 																		</div>
 																		
 																	<label>Css Class</label>
 																		<div class="input-group m-b ">
-																			<input class='form-control' >
+																			<input name='css_class' class='form-control' required >
 																		</div>
 																		
 																	</div>																		

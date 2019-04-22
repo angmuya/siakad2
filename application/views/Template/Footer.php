@@ -95,7 +95,10 @@
             
 
         });
+		
 </script>
+
+
 
 <!--tambahan dari Bootstrap-->
 <script type="text/javascript" src="<?php echo base_url().'assets/js/bootstrap.js'?>"></script>
@@ -169,11 +172,17 @@
 
     <!-- Tags Input -->
     <script src="<?php echo base_url('assets');?>/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+	
+	<!-- CK Editor-->
+    <script src="<?php echo base_url('assets');?>/ckeditor/ckeditor.js"></script>
 
     <!-- Dual Listbox -->
     <script src="<?php echo base_url('assets');?>/js/plugins/dualListbox/jquery.bootstrap-duallistbox.js"></script>
 	
+	
+	
     <script src="<?php echo base_url('assets');?>/js/data_plug.js"></script>
+	
 
 <script>
     <?= $this->session->flashdata('msg') ?>

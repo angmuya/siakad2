@@ -21,10 +21,14 @@ class MasterMenu extends CI_Controller {
     public function index (){
         $this->m_security->cekRoleAkses('masterMenu');
         $pageData = array (
-						'title'=> 'Master Menu',
+			'title'=> 'Master Menu',
             'konten'=> 'template/menu/v_master_menu_role',
-            'datares' => $this->m_admin->getDataTable('tb_role'),
-				);
+			'breadcrumb' => array(
+					'Home' => base_url(),
+				 ),
+            
+			'datares' => $this->m_admin->getDataTable('tb_role'),
+			);
 				
 				$this->load->view('tema',$pageData);
     }
@@ -48,7 +52,7 @@ class MasterMenu extends CI_Controller {
         
 		}
 		
-		public function sub_menu ($a=null,$b=null){
+		public function sub_menu ($a=null,$b=null,$c=null){
 			$this->m_security->cekRoleAkses('masterMenu');
 			if (empty($a)){
 				redirect ('masterMenu');
@@ -61,7 +65,7 @@ class MasterMenu extends CI_Controller {
 				'id_submenu' => $a,
 				'sub_menu_grup'=>$b,
 				'datasubmenu' => $this->m_admin->getDataSubmenu('tb_master_submenu',$a),
-				'datasubselect' => $this->m_combobox->getDataSubmenuByIdGrup($b),
+				'datasubselect' => $this->m_combobox->getDataSubmenuByIdGrup($c),
 			);
 			
 			$this->load->view('tema',$pageData);
@@ -76,6 +80,15 @@ class MasterMenu extends CI_Controller {
 			$this->m_security->cekMasterMenuGanda('tb_master_menu',$formdata);
 			$this->m_input->insertGrupMenu('tb_master_menu',$formdata);
 			redirect ('masterMenu/setting_role/'.$formdata['id_role']);
+
+		}
+		
+		public function proses_input_data_se_grupmenu(){
+			$this->m_security->cekRoleAkses('masterMenu');
+			$formdata = $this->input->post();
+			$this->m_security->cekDataKosong($formdata['nm_grup_menu']);
+			$this->m_input->insertSeGrupMenu('tb_se_grup_menu',$formdata);
+			redirect ('masterMenu/grup_menu');
 
 		}
 
@@ -101,7 +114,15 @@ class MasterMenu extends CI_Controller {
 			$this->m_security->cekDataKosong($form['id_submenu']);
 			$this->m_security->cekMastersubMenuGanda('tb_master_submenu',$form);
 			$this->m_input->insertGrupSubmenu('tb_master_submenu',$form);
-			redirect('masterMenu/sub_menu/'.$form['id_submenu'].'/'.$form['name_grup']);
+			redirect('masterMenu/sub_menu/'.$form['id_submenu'].'/'.$form['name_grup']).'/';
+		}
+		
+		public function proses_input_data_se_submenu(){
+			$this->m_security->cekRoleAkses('masterMenu');
+			$form = $this->input->post();
+			$this->m_security->cekDataKosong($form['grup_menu']);
+			$this->m_input->insertGrupSeSubmenu('tb_se_submenu',$form);
+			redirect('masterMenu/grup_submenu');
 		}
 
 		public function grup_menu(){
@@ -110,6 +131,9 @@ class MasterMenu extends CI_Controller {
 			$pageData = array (
 				'title'=> 'Grup Menu',
 				'konten'=> 'template/menu/v_grup_menu',
+				'breadcrumb' => array(
+					'Home' => base_url(),
+				 ),
 				'datagrup' => $this->m_admin->getDataTable('tb_se_grup_menu'),
 			);
 			

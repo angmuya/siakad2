@@ -21,6 +21,9 @@ class AdminMasterController extends CI_Controller {
 			$pageData = array (
 				'title'=> 'Tahun Akademik',
 				'konten'=> 'v_tahun_akademik',
+				'breadcrumb' => array(
+					'Home' => base_url(),
+				 ),
 				'datatahun'=>$this->m_admin->getDataTable('tb_thn_akademik'),
 			);
 			
@@ -60,6 +63,17 @@ class AdminMasterController extends CI_Controller {
 			$pageData = array (
 				'title'=> 'Tahun Akademik',
 				'konten'=> 'v_jenis_kelas',
+				'data_jenis_kelas'=>$this->m_admin->getDataTable('tb_kelas_jenis'),
+			);
+			
+			$this->load->view('tema',$pageData);
+		}
+		
+		public function daftar_mahasiswa_baru(){
+			$this->m_security->cekRoleAkses('adm/daftar_mahasiswa_baru');
+			$pageData = array (
+				'title'=> 'Penerimaan Mahasiswa Baru',
+				'konten'=> 'v_tambah_data_mahasiswa',
 				'data_jenis_kelas'=>$this->m_admin->getDataTable('tb_kelas_jenis'),
 			);
 			

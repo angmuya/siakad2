@@ -10,7 +10,7 @@
                         </div>
 												
 								<!-- MODAL ADD -->
-								<form action="<?=site_url().'masterMenu/proses_input_data_grupmenu'?>" method='post' >
+								<form action="<?=site_url().'masterMenu/proses_input_data_se_submenu'?>" method='post' >
 												<div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog modal-lg" role="document">
 														<div class="modal-content">
@@ -22,21 +22,41 @@
 															</div>
 															<div class="modal-body">
                                                                 <div class='row'>
-																	<div class='col-lg-12' >
-                                                                        <input  name='id_role'  type='text' >
+																	<div class='col-lg-6' >
 																	<label>Grup Menu</label>
 																		<div class="input-group m-b ">
-																			<select name='grup_menu' data-placeholder="Select Grup Master" id='grup_menu' class='chosen-select form-control ' placehoder='Css Class' required>
+																			<select name='grup_menu' data-placeholder="Select Grup Master" id='send_id_gru' class='form-control ' placehoder='Css Class' required>
 																				<option selected disabled value=''>Select Grup Menu</option>
+																				<?php
+																				$datagrupme = $this->db->get('tb_se_grup_menu')->result();
+																					foreach ($datagrupme as $r ){
+																				?>
+																				
+																				<option  value='<?=$r->id_grup?>'><?=$r->nm_grup_menu?></option>
+																				<?php
+																					}
+																				?>
                                                                             
 																			</select>
 																		</div>
+
+																		<label>Nama Sub Menu *</label>
+																		<div class="input-group m-b ">
+																			<input class='form-control' name='sub_menu' type='text' placeholder='Enter Sub Menu' required  >
+																		</div>
 																		
 																	</div>																		
-                                                                            <div id='css_class_o'>
-																				
-																			</div>
-																</div>
+																
+
+																<div class='col-lg-6' >
+																		<label>Link URL *</label>
+																		<div class="input-group m-b ">
+																			<input class='form-control' name='link_url' type='text' placeholder='Enter link url' required  >
+																		</div>
+																		<div id='res_no_urut' > </div>
+																		
+																	</div>																		
+																</div>																		
 															</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-secondary btn-outline " data-dismiss="modal">Close</button>
@@ -129,20 +149,20 @@
         </div>
 <script>	
 
-$("#oo").change(function(){
+$("#send_id_gru").change(function(){
    
    // variabel dari nilai combo box provinsi
-   var grup_menu = $("#oo").val();
+   var grup_menu = $("#send_id_gru").val();
 		 
    // mengirim dan mengambil data
    $.ajax({
 	   type: "POST",
 	   dataType: "html",
-	   url: "<?=site_url().''?>",
-	   data: "grup="+grup_menu,
+	   url: "<?=site_url().'comboboxController/getIdNoUrut'?>",
+	   data: "grup_id_res="+grup_menu,
 	   success: function(msg){
 		  
-			   $("#00").html(msg);                                                     
+			   $("#res_no_urut").html(msg);                                                     
 	   }
    });    
 });

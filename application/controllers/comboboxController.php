@@ -67,6 +67,16 @@ class ComboboxController extends CI_Controller {
         $this->load->view('combobox/v_getIdTaBySemester',$data);
         
     }
+	
+	public function getIdNoUrut(){
+        $dataform = $this->input->post();
+  
+        $data = array(
+            "res_id_nourut" => $this->m_combobox->getIdNoUrut('tb_se_submenu',$dataform),
+        );
+        $this->load->view('combobox/v_getIdNoUrut',$data);
+        
+    }
     
 
 

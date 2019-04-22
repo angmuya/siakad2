@@ -93,7 +93,7 @@
 								<tr style="cursor:pointer;cursor:hand;" class='edit-record' data-toggle="modal" data-target="#ModalEdit<?=$row->kode_kelas_jenis;?>" >
 									<td><?=$no++?></td>
 									<td><?=$row->nama_kelas_jenis;?></td>
-									<td><?=$row->kd_jrs;?></td>		
+									<td><?=$row->kd_prodi;?></td>		
 								</tr>
 							<?php
 							}
