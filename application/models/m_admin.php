@@ -11,6 +11,22 @@ class M_admin extends CI_Model {
 		
 	}
 	
+	public function getDataTableRow($table){
+		
+		$data = $this->db->get($table);
+		return $data->row();
+		
+	}
+	
+	public function getDataKelasJenisRow($table,$data){
+		
+		$this->db->where('kode_kelas_jenis',$data['id_kelas']);
+		$data = $this->db->get($table);
+		
+		return $data->row();
+		
+	}
+	
 	public function getDataFakultasByID($table,$id){
 		$wh['kd_jurusan'] = $id['id'];
 		$data = $this->db->get_where($table,$wh);
@@ -40,6 +56,15 @@ class M_admin extends CI_Model {
 		
 		$this->db->from($table);
 		$this->db->join('tb_fakultas','tb_fakultas.kd_fakultas=tb_prodi.kd_fakultas','left');
+		$data = $this->db->get();
+		return $data->result();
+		
+	}
+	
+	public function getDataRincianBiayaById($table,$form){
+		
+		$this->db->from($table);
+		$this->db->where('kd_kelas_jenis',$form['id_kelas']);
 		$data = $this->db->get();
 		return $data->result();
 		
@@ -118,5 +143,27 @@ class M_admin extends CI_Model {
 		
 	}
 	
-
+	public function getDataPosting($table){
+		
+		$this->db->from($table);
+		$this->db->join('tb_category_post as tbB',$table.'.category_post=tbB.id_cat_post','left');
+		$this->db->order_by('id_post','DESC');
+		$data = $this->db->get();
+		return $data->result();
+		
+	}
+	
+	public function GetDataMhsByKodePembayaran($table,$form){
+		
+			$wh = $form['no_pay'];
+			$this->db->from($table.' as tbA');
+			$this->db->join('tb_kelas_jenis as tbB','tbA.id_kelas_jenis=tbB.kode_kelas_jenis');
+			$this->db->join('tb_prodi as tbC','tbA.kd_prodi=tbC.kd_prodi','left');
+			$this->db->where('no_pendaftaran',$wh);
+			$data = $this->db->get();
+			
+			return $data->row();
+		
+	}
+	
 }

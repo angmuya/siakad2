@@ -90,16 +90,39 @@ CREATE TABLE `tb_biaya_kuliah` (
   `biaya_kuliah` int(99) DEFAULT NULL,
   `kd_kelas_jenis` int(10) DEFAULT NULL,
   PRIMARY KEY (`id_biaya_kuliah`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_biaya_kuliah` */
 
 insert  into `tb_biaya_kuliah`(`id_biaya_kuliah`,`nm_biaya_kuliah`,`biaya_kuliah`,`kd_kelas_jenis`) values 
-(1,'Pendaftaraan',200000,1),
-(2,'Pakaian',350000,1),
-(3,'Pendaftaraan',200000,2),
-(4,'Pendaftaraan',200000,3),
-(5,'Pendaftaraan',200000,4);
+(1,'Pendaftaran',200000,1),
+(3,'Pendaftaran',200000,2),
+(4,'Pendaftaran',200000,3),
+(5,'Pendaftaran',200000,4),
+(6,'SPP',100000,1),
+(7,'SPP',100000,2),
+(8,'SPP',200000,3),
+(9,'SPP',200000,4),
+(10,'Registrasi',650000,1),
+(11,'Registrasi',650000,2),
+(12,'Registrasi',650000,3),
+(13,'Registrasi',650000,4),
+(14,'Almamater',200000,1),
+(15,'Almamater',200000,2),
+(16,'Almamater',200000,3),
+(17,'Almamater',200000,4),
+(18,'Praktikum Komputer',150000,1),
+(19,'Praktikum Komputer',150000,2),
+(20,'Praktikum Komputer',200000,3),
+(21,'Praktikum Komputer',150000,4),
+(22,'Kegiatan Mahasiswa',20000,1),
+(23,'Kegiatan Mahasiswa',20000,2),
+(24,'Kegiatan Mahasiswa',20000,3),
+(25,'Kegiatan Mahasiswa',20000,4),
+(26,'Asuransi Kemahasiswaan',13000,1),
+(27,'Asuransi Kemahasiswaan',13000,4),
+(28,'Asuransi Kemahasiswaan',13000,3),
+(29,'Asuransi Kemahasiswaan',13000,2);
 
 /*Table structure for table `tb_calon_mahasiswa` */
 
@@ -115,7 +138,7 @@ CREATE TABLE `tb_calon_mahasiswa` (
   `agama` varchar(255) DEFAULT NULL,
   `pekerjaan` varchar(255) DEFAULT NULL,
   `instansi` varchar(200) DEFAULT NULL,
-  `status` enum('Kawin','Belum Kawin','Janda / Duda') DEFAULT NULL,
+  `status_kawin` enum('Kawin','Belum Kawin','Janda / Duda') DEFAULT NULL,
   `alamat` varchar(255) DEFAULT NULL,
   `propinsi` varchar(255) DEFAULT NULL,
   `kota` varchar(255) DEFAULT NULL,
@@ -128,10 +151,17 @@ CREATE TABLE `tb_calon_mahasiswa` (
   `poto` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `kd_fakultas` varchar(255) DEFAULT NULL,
-  `kd_prodi` varchar(255) DEFAULT NULL
+  `kd_prodi` varchar(255) DEFAULT NULL,
+  `email_mhs` varchar(255) DEFAULT NULL,
+  `status` enum('0','1','2','3','4','5') DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_calon_mahasiswa` */
+
+insert  into `tb_calon_mahasiswa`(`no_pendaftaran`,`nama_mhs`,`id_kelas_jenis`,`tp_lahir`,`tgl_lahir`,`jenis_kelamin`,`agama`,`pekerjaan`,`instansi`,`status_kawin`,`alamat`,`propinsi`,`kota`,`telp`,`nama_ortu`,`pkj_ortu`,`alamat_ortu`,`no_tlp_ortu`,`thn_masuk`,`poto`,`password`,`kd_fakultas`,`kd_prodi`,`email_mhs`,`status`) values 
+('190424001','Muhammd Yasin',2,'Ciamis','1995-12-22','L','Protestan','pns','Att Plb','Belum Kawin','Jalan Sukabangun, Kompelek Puri inpian 2 No. 28 Rt / Rw 12/123','kel. Sukajaya ,Kec. Sukarami','Palembang','+6281271864926','majid','swasta','jkskhjd No. 23 Rt / Rw 127/12 ,kel. asd ,Kec. hjkds, Kota / Kab. 2','234','2019','http://192.168.1.8/psb/file_upload/img/190424001.jpg','2e0d281b997f3b1f578ff918ead54e84d8e3baf18f5fff016e26ac788619a51b9f07e2bc6fec750c54b869637203e4765bf3ee59f672e55097da0d2e7ad444bf','11','12','mhyasin48@gmail.com','1'),
+('190430001','Desi Ratnasari',3,'Ciamis','1995-12-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'+62812718649267',NULL,NULL,NULL,NULL,NULL,'http://localhost/psb/assets/img/profile_small.jpg','2e0d281b997f3b1f578ff918ead54e84d8e3baf18f5fff016e26ac788619a51b9f07e2bc6fec750c54b869637203e4765bf3ee59f672e55097da0d2e7ad444bf','11','11','mhyasin21@gmail.com','0'),
+('190502001','Muhammad Reza',1,'palembang','2019-04-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'+621586625822',NULL,NULL,NULL,NULL,NULL,'http://192.168.1.9/psb/assets/img/profile_small.jpg','6cecb620f7ea24f510c1371301e8c37ee2d3725e8d8eaff473ec20571abaae4df1db9132c854bf0c54a81422293d15811a3e868c5347d9ec6a9f1654859d992d','11','12','itoutletattplb@gmail.com','1');
 
 /*Table structure for table `tb_category_post` */
 
@@ -259,6 +289,29 @@ insert  into `tb_history`(`id_history`,`id_user`,`nama_user`,`tgl`,`time`,`kegia
 (13,'superadmin','superadmin','08-04-2019','16:04:56','Hapus Data Fakultas by name  : PEMERINTAH'),
 (14,'superadmin','superadmin','13-04-2019','00:04:55','Hapus Data Fakultas by name  : Ilmu komputer');
 
+/*Table structure for table `tb_identitas` */
+
+DROP TABLE IF EXISTS `tb_identitas`;
+
+CREATE TABLE `tb_identitas` (
+  `id_identitas` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_singkat` varchar(255) DEFAULT NULL,
+  `nama_panjang` varchar(255) DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
+  `kel` varchar(255) DEFAULT NULL,
+  `kec` varchar(255) DEFAULT NULL,
+  `kota` varchar(255) DEFAULT NULL,
+  `prov` varchar(255) DEFAULT NULL,
+  `no_tlp` varchar(20) DEFAULT NULL,
+  `thn_berdiri` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`id_identitas`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tb_identitas` */
+
+insert  into `tb_identitas`(`id_identitas`,`nama_singkat`,`nama_panjang`,`alamat`,`kel`,`kec`,`kota`,`prov`,`no_tlp`,`thn_berdiri`) values 
+(1,'STIA SATYA NEGARA','SEKOLAH TINGGI ILMU ADMINISTRASI NEGARA','JL. SUKATANI 34','ILIR BARAT 8','ILIR TIMUR 2','PALEMBANG','SUMSEL','711 826043','2008');
+
 /*Table structure for table `tb_jenis_nilai` */
 
 DROP TABLE IF EXISTS `tb_jenis_nilai`;
@@ -362,7 +415,7 @@ CREATE TABLE `tb_kelas_jenis` (
   `kd_prodi` varchar(10) DEFAULT NULL,
   `desk` varbinary(255) DEFAULT NULL,
   PRIMARY KEY (`kode_kelas_jenis`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_kelas_jenis` */
 
@@ -371,6 +424,23 @@ insert  into `tb_kelas_jenis`(`kode_kelas_jenis`,`nama_kelas_jenis`,`kd_prodi`,`
 (2,'Siang','11','Jadwal Kuliah Reguler Senin-Jum\'at, Jam Kuliah 13.00 s/d 17.00'),
 (3,'Sore','11','Jadwal Kuliah Non Reguler Senin-Jum\'at, Jam Kuliah 17.00 s/d 21.00'),
 (4,'Khusus','11','Jadwal Kuliah Khusus Karyawan Sabtu dan Minggu, Jam Kuliah 08.00 s/d 16.00');
+
+/*Table structure for table `tb_link` */
+
+DROP TABLE IF EXISTS `tb_link`;
+
+CREATE TABLE `tb_link` (
+  `id_link` int(11) NOT NULL AUTO_INCREMENT,
+  `nm_link` varchar(255) DEFAULT NULL,
+  `link_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_link`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tb_link` */
+
+insert  into `tb_link`(`id_link`,`nm_link`,`link_url`) values 
+(1,'Web Resmi','https://stiasatyanegara.ac.id'),
+(2,'Sister Stia','http://sister.stiasatyanegara.ac.id');
 
 /*Table structure for table `tb_mahasiswa` */
 
@@ -405,6 +475,9 @@ CREATE TABLE `tb_mahasiswa` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_mahasiswa` */
+
+insert  into `tb_mahasiswa`(`nim`,`nama_mhs`,`id_kelas_jenis`,`tp_lahir`,`tgl_lahir`,`jenis_kelamin`,`agama`,`pekerjaan`,`instansi`,`status`,`alamat`,`propinsi`,`kota`,`telp`,`nama_ortu`,`pkj_ortu`,`alamat_ortu`,`no_tlp_ortu`,`thn_masuk`,`poto`,`password`,`kd_fakultas`,`kd_prodi`,`no_pendaftaran`) values 
+('1122',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'190424001');
 
 /*Table structure for table `tb_mahasiswa2` */
 
@@ -2953,6 +3026,21 @@ insert  into `tb_mahasiswa2`(`nim`,`nama_mhs`,`id_kelas_jenis`,`tp_lahir`,`tgl_l
 ('1811036','Muhammad Alfarizi',NULL,'','2018-01-31','Pria','Islam','',NULL,NULL,'','','','','','','','','2018','1811036.',NULL,'11','11'),
 ('1811037','Dani Trijaya',NULL,'','2018-01-05','Pria','Islam','',NULL,NULL,'','','','','','','','','2018','1811037.',NULL,'11','11');
 
+/*Table structure for table `tb_mahasiswa3` */
+
+DROP TABLE IF EXISTS `tb_mahasiswa3`;
+
+CREATE TABLE `tb_mahasiswa3` (
+  `nim` int(11) NOT NULL AUTO_INCREMENT,
+  `no_pen` int(11) DEFAULT NULL,
+  PRIMARY KEY (`nim`)
+) ENGINE=InnoDB AUTO_INCREMENT=1123 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tb_mahasiswa3` */
+
+insert  into `tb_mahasiswa3`(`nim`,`no_pen`) values 
+(1122,190424001);
+
 /*Table structure for table `tb_master_menu` */
 
 DROP TABLE IF EXISTS `tb_master_menu`;
@@ -2964,7 +3052,7 @@ CREATE TABLE `tb_master_menu` (
   `id_role` int(10) DEFAULT NULL,
   `urut_grup_master` int(10) DEFAULT NULL,
   KEY `id_menu` (`id_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_master_menu` */
 
@@ -2981,7 +3069,8 @@ insert  into `tb_master_menu`(`id_menu`,`grup_name`,`css_class`,`id_role`,`urut_
 (12,'Registrasi','fa-laptop',3,2),
 (13,'Report','fa-print',3,5),
 (14,'Setting','fa-cogs',3,6),
-(15,'Master PMB','fa-function',7,5);
+(15,'Master PMB','fa-inbox',7,5),
+(16,'Master PMB','fa-inbox',5,5);
 
 /*Table structure for table `tb_master_submenu` */
 
@@ -2994,7 +3083,7 @@ CREATE TABLE `tb_master_submenu` (
   `grup_id` int(3) DEFAULT NULL,
   `urut_m_submenu` int(5) DEFAULT NULL,
   KEY `id_sub` (`id_sub`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_master_submenu` */
 
@@ -3034,7 +3123,11 @@ insert  into `tb_master_submenu`(`id_sub`,`sub_menu`,`link`,`grup_id`,`urut_m_su
 (46,'Role Akses','admin/data_role',2,4),
 (48,'Post','admpmb/posting',15,1),
 (49,'Biaya','admpmb/rincian_biaya',15,2),
-(50,'Link','admpmb/link',15,3);
+(50,'Link','admpmb/link',15,3),
+(51,'Konfirmasi Pembayaran','admpmb/konfirmasi_pembayaran',15,4),
+(52,'Post','admpmb/posting',16,1),
+(53,'Category','admpmb/category_post',15,5),
+(56,'Jadwal Ujian','admpmb/jadwal_ujian_calon_mahasiswa',15,6);
 
 /*Table structure for table `tb_matakuliah` */
 
@@ -3102,14 +3195,15 @@ CREATE TABLE `tb_posting` (
   `created_by` int(11) DEFAULT NULL,
   `category_post` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_post`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_posting` */
 
 insert  into `tb_posting`(`id_post`,`slug_post`,`judul_post`,`isi_post`,`tgl_post`,`time_post`,`created_by`,`category_post`) values 
 (1,'cara-mendaftar.html','Cara Mendaftar','<p><h4><b>VISI LEMBAGA PENELITIAN DAN PENGABDIAN KEPADA MASYARAKAT (LPPM) UNIVERSITAS SRIWIJAYA</b></h4></p>\r\n\r\n        <p class=\"mtb-15\">Visi LPPM Universitas Sriwijaya adalah menjadi lembaga pelayanan dan penyelenggaraan penelitian dan pengabdian kepada masyarakat yang terkemuka dalam mengembangkan, dan menerapkan Ilmu pengetahuan, teknologi, seni (IPTEKS) kepada masyarakat.</p>\r\n\r\n        <p><h4><b>MISI LEMBAGA PENELITIAN DAN PENGABDIAN KEPADA MASYARAKAT (LPPM) UNIVERSITAS SRIWIJAYA</b></h4></p>\r\n\r\n        <p class=\"mtb-15\">Misi LPPM Universitas Sriwijaya adalah sebagai berikut : </br>\r\n\r\n1. Mengkooridinasikan dan mengembangkan kegiatan penelitian dan pengabdian masyarakat berbasis pada keunggulan dan potensi sumberdaya yang dapat di terapkan untuk menunjang pembangunaN</br>\r\n2. Percepatan aplikasi dan difusi IPTEKS kepada masyarakat dan dunia industri  </br>\r\n3. Mengkoordinasikan dan mengembangkan program peningkatan kualitas sumberdaya di bidang penelitian dan pengabdian masyarakat  </br>\r\n4. Mengkoordinasikan dan mengembangkan program peningkatan jumlah dan kualitas publikasi hasil-hasil penelitian  </br>\r\n5. Mengkoordinasikan dan mengembangan program peningkatan peran pusat kajian dalam kegiatan-kegiatan kerjasama untuk menciptakan pendapatan Universitas</br>\r\n6. Meningkatkan manajemen mutu, tatakelola, dan organisasi kelembagaan.  </br></p>\r\n\r\n<p><h4><b>TUJUAN LEMBAGA PENELITIAN DAN PENGABDIAN KEPADA MASYARAKAT (LPPM) UNIVERSITAS SRIWIJAYA</b></h4></p>\r\n\r\n        <p class=\"mtb-15\">Tujuan LPPM Universitas Sriwijaya adalah sebagai berikut :</br>\r\n\r\n1. Meningkatkan dan mengitegrasikan kegiatan penelitian dan pengabdian masyarakat dari berbagai bidang ilmu berbasis pada keunggulan dan potensi sumberdaya secara berkesinambynag untuk menunjang pembangunan</br>\r\n2. Mengkoordinasikan dan membina kegiatan penelitian yang dapat diterapkan dan kegiatan pengabdian masyarakat yang dapat dirasakan manfaatnya oleh masyarakat</br>\r\n3. Menciptakan budaya penelitian dan jiwa pengabdian kepada masyarakat melalui peningkatan peran dosen dan mahasiswa dalam pelaksanaan kegiatan penelitian dan pengabdian kepada masyarakat</br>\r\n4. Meningkatkan peran pusat kajian dalam manghimpun sumber dana bagi penyelenggaraan kegiatan penelitian dan pengabdian masyarakat melalui kegiatan kerjasama dengan berbagai institusi mitra</br>\r\n5. Mengembangkan tatakelola dan kinerja guna mendukung program peningkatkan peringkat akreditasi dan pecitraan Universitas Sriwijaya menuju “World Class University”  </br>\r\n\r\n\r\n</p>','2019-04-21','11:40:00',4,1),
 (2,'sejarah-lppm-unsri.html','Sejarah LPPM UNSRI','<p><strong>I. PROFIL LEMBAGA PENGABDIAN MASYARAKAT </strong></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Kegiatan Program Pengabdian kepada Masyarakat (PPM) merupakan kegiatan penting bagi suatu pendidikan tinggi. Implementasi dan pelaksanaan kegiatan ini dilakukan oleh dosen dan mahasiswa di bawah koordinasi Lembaga Pengabdian kepada Masyarakat. Sebagai salah satu unsur Tri Dharma, kegiatan pengabdian masyarakat mesti dilaksanakan secara terintegrasi dengan unsur Tri Dharma lainnya, yaitu pendidikan dan penelitian.</p>\r\n\r\n<p>Disamping itu, sebagai universitas yang mendeklarasikan sebagai universitas riset (Research University), maka keterkaitan penelitian dengan pengabdian.harus diprioritaskan. Lebih dari itu, sejalan perkembangan pola pengelolaan perguruan tinggi yang terjadi di Indonesia saat ini, maka kegiatan PPM perlu dipersiapkan dalam rangka pengelolaan Unsri sebagai Badan Layananan Umum (BLU). Keterkaitan pelaksanaan Tri Darma tersebut Pendidikan dan Pengajaran, Penelitian dan Pengembangan dan Pengabdian Kepada Masyarakat</p>\r\n\r\n<p>Lembaga Pengabdian kepada Masyarakat (LPM) merupakan unsur pelaksana akademik dalam suatu perguruan tinggi untuk melaksanakan salah satu unsur Tri Dharma Perguruan Tinggi, yaitu pengabdian kepada masyarakat. Pada periode awal perkembangan, fungsi LPM masih bergabung dengan Lembaga Penelitian (LP). Sejalan dengan perkembangan yang lebih dinamis dalam kegiatan pengabdian, pada tahun 1980, LPM didirikan sebagai suatu lembaga tersendiri melalui penetapan SK Rektor Nomor: 629/IV/PG/1980, dan Peningkatan Status PPM Unsri menjadi LPM Unsri melalui SK Rektor Nomor : 1902/PT11.1.1/c.6.f/1993.</p>\r\n\r\n<p>Seperti tercantum dalam SK Rektor Nomor: 629/IV/PG/1980, fungsi dan tugas LPM Unsri adalah : a) Mengamalkan ilmu pengetahuan, teknologi, dan seni b) meningkatkan relevansi program pendidikan c) membantu pemerintah dan masyarakat dalam melaksanakan pembangunan d) melaksanakan pengabdian kepada masyarakat melalui kerjasama dengan instansi pemerintah, swasta, dan lain-lain.</p>\r\n\r\n<p><strong>II. PROFIL LEMBAGA PENELITIAN </strong></p>\r\n\r\n<p>Dalam pencapaian visi Universitas Sriwijaya Menjadi Universitas terkemuka dan berbasis riset, unggul di berbagai cabang ilmu, teknologi dan seni pada tahun 2025, Lembaga Penelitian Universitas Sriwijaya mengembangkan program penelitian unggulan dalam bidang Pangan, Energi Baru dan Terbarukan dan Lingkungan dan meningkatkan riset kolaborasi dengan institusi lain baik didalam maupun di luar negeri.</p>\r\n\r\n<p>Kebijakan universitas dalam memfasilitasi kegiatan penelitian, seminar, publikasi, paten, buku ajar dan riset kolaborasi khususnya di bidang unggulan baik secara nasional maupun internasional telah menghasilkan sejumlah kegiatan penelitian dan riset kolaborasi dengan instansi lain, publikasi nasional dan internasional, sejumlah paten dan buku ajar. Luaran hasil penelitian digunakan untuk meningkatkan ranking Universitas Sriwijaya dan teknologi yang dihasilkan berpotensi diaplikasikan diaplikasikan di masyarakat dan dunia industri.</p>\r\n\r\n<p>Lembaga Penelitian Universitas Sriwijaya mengelola kegiatan penelitian, diseminasi hasil penelitian melalui seminar dan publikasi pada jurnal nasional terakreditasi dan jurnal internasional, hasil penelitian yang di patenkan dan buku ajar. Kegiatan pengembangan sumber daya manusia (SDM) meliputi pelatihan metodologi penelitian, penulisan proposal penelitian dan jurnal diakan setiap tahunnya.</p>\r\n','2019-04-22','14:47:39',4,1),
-(3,'informasi-pendaftaran-mahasiswa-baru.html','Informasi Pendaftaran Mahasiswa Baru','<p><strong>INFORMASI PENDAFTARAN MAHASISWA BARU </strong></p>\r\n\r\n<p><strong>TAHUN AKADEMIK 2018/2019</strong></p>\r\n\r\n<p><strong>Biaya Kuliah</strong></p>\r\n\r\n<p>A. SPP Bulanan</p>\r\n\r\n<ol>\r\n	<li>Kelas Reguler Pagi / Siang SPP: 100 ribu/bln</li>\r\n	<li>Kelas Reguler Sore / Karyawan: 190 ribu/bln</li>\r\n</ol>\r\n\r\n<p>(Ketentuan : SPP dibayar 6 Kali Persemester)</p>\r\n\r\n<p>B. Biaya Daftar Ulang (BDU) Rp.600.000,-/Semester</p>\r\n\r\n<p>(Ketentuan: BDU dibayar setiap awal semester)</p>\r\n\r\n<p>C. Bebas Biaya Gedung &amp; Bebas Biaya SKS</p>\r\n\r\n<p>D. Biaya Kegiatan Mahasiswa Rp.10.000,-Persemester</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Syarat Pendaftaran:</strong></p>\r\n\r\n<ol>\r\n	<li>Mengisi Formulir Pendaftaran</li>\r\n	<li>Fotocopy KTP, KK,dan Akte Kelahiran 2 Lembar</li>\r\n	<li>Fotocopy Ijazah SMA/SMK/MA yang dilegalisir 2 Lembar</li>\r\n	<li>Menyerahkan 2 Lembar Pas Photo 3X4</li>\r\n	<li>Berkas dimasukkan dalam Map Plastik warna kuning</li>\r\n	<li>Membayar Biaya Pendaftaran Rp.160.000,-</li>\r\n	<li>Membayar Biaya Praktikum Aplikasi Komputer Rp.110.000,-</li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Waktu Pendaftaran</strong></p>\r\n\r\n<ul>\r\n	<li><strong>Gelombang 1</strong> &nbsp; &nbsp;: 15 Januari &ndash; 31 Maret 2018 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Gratis SPP 2 Bulan</li>\r\n	<li><strong>Gelombang II</strong> &nbsp; &nbsp;: 1 April &ndash; 30 Juni 2018 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Gratis SPP 1 Bulan</li>\r\n	<li><strong>Gelombang III</strong> &nbsp; : 1 Juli &ndash; 8 September 2018</li>\r\n</ul>\r\n\r\n<p><strong>Waktu Test :&nbsp;</strong></p>\r\n\r\n<ul>\r\n	<li>Gelombang 1 &nbsp; &nbsp;: 7 April 2018</li>\r\n	<li>Gelombang 2 &nbsp; &nbsp;: Ditentukan saat mendaftar</li>\r\n	<li>Gelombang 3 &nbsp; &nbsp;:&nbsp;Ditentukan saat mendaftar</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Informasi Lebih Lanjut:</p>\r\n\r\n<p>No.Telp.0711 826 043</p>\r\n\r\n<p>No.HP &nbsp; 081231064750</p>\r\n','2019-04-22','15:02:53',4,2);
+(3,'informasi-pendaftaran-mahasiswa-baru.html','Informasi Pendaftaran Mahasiswa Baru','<p><strong>INFORMASI PENDAFTARAN MAHASISWA BARU </strong></p>\r\n\r\n<p><strong>TAHUN AKADEMIK 2018/2019</strong></p>\r\n\r\n<p><strong>Biaya Kuliah</strong></p>\r\n\r\n<p>A. SPP Bulanan</p>\r\n\r\n<ol>\r\n	<li>Kelas Reguler Pagi / Siang SPP: 100 ribu/bln</li>\r\n	<li>Kelas Reguler Sore / Karyawan: 190 ribu/bln</li>\r\n</ol>\r\n\r\n<p>(Ketentuan : SPP dibayar 6 Kali Persemester)</p>\r\n\r\n<p>B. Biaya Daftar Ulang (BDU) Rp.600.000,-/Semester</p>\r\n\r\n<p>(Ketentuan: BDU dibayar setiap awal semester)</p>\r\n\r\n<p>C. Bebas Biaya Gedung &amp; Bebas Biaya SKS</p>\r\n\r\n<p>D. Biaya Kegiatan Mahasiswa Rp.10.000,-Persemester</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Syarat Pendaftaran:</strong></p>\r\n\r\n<ol>\r\n	<li>Mengisi Formulir Pendaftaran</li>\r\n	<li>Fotocopy KTP, KK,dan Akte Kelahiran 2 Lembar</li>\r\n	<li>Fotocopy Ijazah SMA/SMK/MA yang dilegalisir 2 Lembar</li>\r\n	<li>Menyerahkan 2 Lembar Pas Photo 3X4</li>\r\n	<li>Berkas dimasukkan dalam Map Plastik warna kuning</li>\r\n	<li>Membayar Biaya Pendaftaran Rp.160.000,-</li>\r\n	<li>Membayar Biaya Praktikum Aplikasi Komputer Rp.110.000,-</li>\r\n</ol>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Waktu Pendaftaran</strong></p>\r\n\r\n<ul>\r\n	<li><strong>Gelombang 1</strong> &nbsp; &nbsp;: 15 Januari &ndash; 31 Maret 2018 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Gratis SPP 2 Bulan</li>\r\n	<li><strong>Gelombang II</strong> &nbsp; &nbsp;: 1 April &ndash; 30 Juni 2018 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Gratis SPP 1 Bulan</li>\r\n	<li><strong>Gelombang III</strong> &nbsp; : 1 Juli &ndash; 8 September 2018</li>\r\n</ul>\r\n\r\n<p><strong>Waktu Test :&nbsp;</strong></p>\r\n\r\n<ul>\r\n	<li>Gelombang 1 &nbsp; &nbsp;: 7 April 2018</li>\r\n	<li>Gelombang 2 &nbsp; &nbsp;: Ditentukan saat mendaftar</li>\r\n	<li>Gelombang 3 &nbsp; &nbsp;:&nbsp;Ditentukan saat mendaftar</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Informasi Lebih Lanjut:</p>\r\n\r\n<p>No.Telp.0711 826 043</p>\r\n\r\n<p>No.HP &nbsp; 081231064750</p>\r\n','2019-04-22','15:02:53',4,2),
+(4,'visi-misi-stia.html','Visi Misi STIA','<p><strong>VISI LEMBAGA PENELITIAN DAN PENGABDIAN KEPADA MASYARAKAT (LPPM) UNIVERSITAS SRIWIJAYA</strong></p>\r\n\r\n\r\n<p>Visi LPPM Universitas Sriwijaya adalah menjadi lembaga pelayanan dan penyelenggaraan penelitian dan pengabdian kepada masyarakat yang terkemuka dalam mengembangkan, dan menerapkan Ilmu pengetahuan, teknologi, seni (IPTEKS) kepada masyarakat.</p>\r\n\r\n\r\n<p><strong>MISI LEMBAGA PENELITIAN DAN PENGABDIAN KEPADA MASYARAKAT (LPPM) UNIVERSITAS SRIWIJAYA</strong></p>\r\n\r\n<p>Misi LPPM Universitas Sriwijaya adalah sebagai berikut :</p>\r\n\r\n<ol>\r\n	<li>&nbsp;Mengkooridinasikan dan mengembangkan kegiatan penelitian dan pengabdian masyarakat berbasis pada keunggulan dan potensi sumberdaya yang dapat di terapkan untuk menunjang pembangunaN</li>\r\n	<li>Percepatan aplikasi dan difusi IPTEKS kepada masyarakat dan dunia industri</li>\r\n	<li>Mengkoordinasikan dan mengembangkan program peningkatan kualitas sumberdaya di bidang penelitian dan pengabdian masyarakat</li>\r\n	<li>Mengkoordinasikan dan mengembangkan program peningkatan jumlah dan kualitas publikasi hasil-hasil penelitian</li>\r\n	<li>Mengkoordinasikan dan mengembangan program peningkatan peran pusat kajian dalam kegiatan-kegiatan kerjasama untuk menciptakan pendapatan Universitas</li>\r\n	<li>Meningkatkan manajemen mutu, tatakelola, dan organisasi kelembagaan.</li>\r\n</ol>\r\n\r\n\r\n<p><strong>TUJUAN LEMBAGA PENELITIAN DAN PENGABDIAN KEPADA MASYARAKAT (LPPM) UNIVERSITAS SRIWIJAYA</strong></p>\r\n\r\n\r\n<p>Tujuan LPPM Universitas Sriwijaya adalah sebagai berikut :<br />\r\n1. Meningkatkan dan mengitegrasikan kegiatan penelitian dan pengabdian masyarakat dari berbagai bidang ilmu berbasis pada keunggulan dan potensi sumberdaya secara berkesinambynag untuk menunjang pembangunan<br />\r\n2. Mengkoordinasikan dan membina kegiatan penelitian yang dapat diterapkan dan kegiatan pengabdian masyarakat yang dapat dirasakan manfaatnya oleh masyarakat<br />\r\n3. Menciptakan budaya penelitian dan jiwa pengabdian kepada masyarakat melalui peningkatan peran dosen dan mahasiswa dalam pelaksanaan kegiatan penelitian dan pengabdian kepada masyarakat<br />\r\n4. Meningkatkan peran pusat kajian dalam manghimpun sumber dana bagi penyelenggaraan kegiatan penelitian dan pengabdian masyarakat melalui kegiatan kerjasama dengan berbagai institusi mitra<br />\r\n5. Mengembangkan tatakelola dan kinerja guna mendukung program peningkatkan peringkat akreditasi dan pecitraan Universitas Sriwijaya menuju &ldquo;World Class University&rdquo;</p>\r\n','2019-04-23','12:23:57',4,1);
 
 /*Table structure for table `tb_prodi` */
 
@@ -3151,7 +3245,9 @@ CREATE TABLE `tb_role` (
 insert  into `tb_role`(`id_role`,`nama_role`,`hide`) values 
 (7,'Superadmin','0'),
 (2,'staffadmin','1'),
-(3,'adminstaff','1');
+(3,'adminstaff','1'),
+(4,'adminkonfirmasi','0'),
+(5,'adminwebpmb','0');
 
 /*Table structure for table `tb_ruang` */
 
@@ -3185,7 +3281,7 @@ insert  into `tb_se_grup_menu`(`id_grup`,`nm_grup_menu`,`css_class_grup`,`urut`)
 (2,'Registrasi','fa-laptop',2),
 (3,'Transaksi','fa-users',3),
 (4,'Master Menu','fa-bars',4),
-(5,'Master PMB','fa-function',5),
+(5,'Master PMB','fa-inbox',5),
 (6,'Report','fa-print',6),
 (7,'Setting','fa-cogs',7);
 
@@ -3200,7 +3296,7 @@ CREATE TABLE `tb_se_submenu` (
   `grup_menu_s` int(5) DEFAULT NULL,
   `urutan_menu` int(5) DEFAULT NULL,
   PRIMARY KEY (`id_submenu`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_se_submenu` */
 
@@ -3224,8 +3320,11 @@ insert  into `tb_se_submenu`(`id_submenu`,`nama_submenu`,`link_url`,`grup_menu_s
 (17,'Change Password','admin/change_password',7,1),
 (18,'Role Akses','admin/data_role',2,4),
 (20,'Post','admpmb/posting',5,1),
-(21,'Biaya','admpmb/rincian_biaya',5,2),
-(22,'Link','admpmb/link',5,3);
+(21,'Rincian Biaya','admpmb/rincian_biaya',5,2),
+(22,'Link','admpmb/link',5,3),
+(23,'Konfirmasi Pembayaran','admpmb/konfirmasi_pembayaran',5,4),
+(24,'Category','admpmb/category_post',5,5),
+(25,'Jadwal Ujian','admpmb/jadwal_ujian_calon_mahasiswa',5,6);
 
 /*Table structure for table `tb_thn_akademik` */
 
@@ -3245,7 +3344,7 @@ insert  into `tb_thn_akademik`(`id_thn`,`nama_ta`,`jen_semester`,`status_ta`) va
 (20171,'2017/2018','ganjil',0),
 (20172,'2017/2018','genap',0),
 (20181,'2018/2019','ganjil',0),
-(20182,'2018/2019','genap',0);
+(20182,'2018/2019','genap',1);
 
 /*Table structure for table `tb_thn_masuk` */
 

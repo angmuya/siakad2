@@ -5,7 +5,7 @@
            <div class="input-group-prepend">
                 <span class="input-group-addon"><i class="fa fa-book"></i></span>
            </div>
-                <input name='nm_matkul' type="text" placeholder="Judul Post" value='' class="form-control" required='required' >
+                <input name='nm_matkul' value='<?=$rest->judul_post?>' type="text" placeholder="Judul Post" value='' class="form-control" required='required' >
         </div>
       
 	  <label> Category Post *</label>
@@ -22,8 +22,8 @@
 	<div class='col-lg-12' >
         <label>Isi Post *</label>
 
-          <textarea id="editor2" name="isi_post" rows="100" cols="100">
-		  edit
+          <textarea id="editor<?=$rest->id_post .$rest->slug_post?>" name="isi_post" rows="100" cols="100">
+		  <?=$rest->isi_post?>
 		  </textarea>
 
 	</div>
@@ -33,7 +33,7 @@
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
-    CKEDITOR.replace('editor2')
+    CKEDITOR.replace('editor<?=$rest->id_post .$rest->slug_post?>')
 
   })
 </script>

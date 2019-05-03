@@ -46,6 +46,13 @@ class M_security extends CI_Model {
 	  }
   }
 
+  public function cekDatabolong($data){
+	  if(empty($data)){
+		
+		die();
+	  }
+  }
+
   public function inputHistory ($isi,$a){
 
     $inp = array (
@@ -109,6 +116,21 @@ class M_security extends CI_Model {
       echo $this->session->set_flashdata('message',"Gagal!!! , Tahun Akademik <b>".$form['ta']."</b> Semester <b>".$form['semester']."</b> sudah ada");
       redirect ('adm/tahun_akademik');
     }
+
+  } 
+  
+  public function cekInputanKode($table,$form){
+	$wh['no_pendaftaran'] = $form['no_pay'];
+	$wh['status'] = '3';
+	$orwh['status'] = '4';
+    $this->db->where($wh);
+    $this->db->or_where($wh);
+    $data = $this->db->get($table);
+	
+	if ($data->num_rows() == 0){
+      return "a" ;
+    }
+
 
   }
 

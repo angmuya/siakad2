@@ -28,6 +28,21 @@ class LoginUser extends CI_Controller {
 	public function ProsesLogin(){
 	try{	
 		$data = $this->input->post();
+		if (empty($data['id_user'])){
+			echo "<div class='alert alert-danger alert-dismisible fade show animated bounce' role='alert' >
+					<strong>WARNING !!!</strong> Username Harus Diisi !!!
+					<button type='button' class='close' data-dismiss='alert' area-label='close' >
+						<span aria-hidden='true' >&times;</span>
+					</button>
+				</div>";
+		}elseif (empty($data['password'])){
+			echo "<div class='alert alert-danger alert-dismisible fade show animated bounce' role='alert' >
+					<strong>WARNING !!!</strong> Password Harus Diisi !!!
+					<button type='button' class='close' data-dismiss='alert' area-label='close' >
+						<span aria-hidden='true' >&times;</span>
+					</button>
+				</div>";
+		}else{
 		$lo = $this->m_login->getDataLogin($data['id_user'],$data['password']);
 		if ($lo->num_rows() == 1){
 			foreach ($lo->result() as $b){
@@ -41,10 +56,16 @@ class LoginUser extends CI_Controller {
 				);
 				$sesi = $this->session->set_userdata($se_data);
 			}
-			redirect('home');
+			echo "1";
 		}else{
-			echo $this->session->set_flashdata('message',"Username & Password Salah , Silahkan Coba Lagi");
-			redirect('login');
+			echo "<div class='alert alert-danger alert-dismisible fade show animated bounce' role='alert' >
+					<strong>WARNING !!!</strong> Username Dan Password Salah!!!
+					<button type='button' class='close' data-dismiss='alert' area-label='close' >
+						<span aria-hidden='true' >&times;</span>
+					</button>
+				</div>";
+			
+		}
 		}
 	}catch (Exception $e){
 			ExceptionHandler::handle($e);
@@ -53,7 +74,7 @@ class LoginUser extends CI_Controller {
 	
 	public function logout()
 	{
-		session_destroy();
+		$this->session->sess_destroy('lvl');
 		redirect('login');
 	}
 }

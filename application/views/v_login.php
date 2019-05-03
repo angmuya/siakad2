@@ -3,8 +3,9 @@
 <div class="loginColumns animated fadeInDown">
   <div class="row">
     <div class="col-md-6">
-      <div class="ibox-content">
-        <form id="" action='<?=site_url('login-proses')?>' method='post'  class="m-t" role="form">
+	<div id='error' class="text-danger text-center"></div>
+      <div class="ibox-content animated fadeInUp">
+        <form id="formLogin"  method='post'  class="m-t" role="form">
           <h3>Sign in to Start Session</h3>
           <br>
           <label>Username *</label>
@@ -12,18 +13,18 @@
             <div class="input-group-prepend">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
             </div>
-             <input type="text" class="form-control" name="id_user" placeholder="Enter Your ID User" required="required" >
+             <input type="text" class="form-control" name="id_user" placeholder="Enter Your ID User" >
           </div>
           <label>Password *</label>
           <div class="input-group m-b">
             <div class="input-group-prepend">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
             </div>
-             <input type="password" class="form-control" name="password" placeholder="Enter Your Password" required="required" >
+             <input type="password" class="form-control" name="password" placeholder="Enter Your Password" >
           </div>
-          <button type="submit" id="loginBtn" class="btn btn-primary block full-width m-b" data-loading-text="Loging In...">Login</button>
+          <button type="submit" id="loginBtn" class="btn btn-primary block full-width m-b" >Login</button>
         </form>
-        <h5 class="text-danger"><i><?=$this->session->flashdata('message');?></i></h5>
+        
         <p class="m-t">
           <small>Sistem Informasi Akademik</small>
         </p>
@@ -55,34 +56,43 @@
 </div>
 
 <script>
-  $(document).ready(function() {
+ $(function(){
+    
+    var loginBtn = document.querySelector('#loginBtn');
+    
+    loginBtn.addEventListener("click", function() {
+        loginBtn.innerHTML = "<span class='fa fa-spinner fa-spin' ></span>";
+        loginBtn.classList.add('spinning');
+        
+    }, false);
+    
 
-    var loginForm = $('#loginForm');
-    var submitBtn = loginForm.find('#loginBtn');
 
-    loginForm.on('submit', (ev) => {
-      ev.preventDefault();
-      buttonLoading(submitBtn);
-      $.ajax({
-        url: "<?=site_url() . 'login-proses'?>",
-        type: "POST",
-        data: loginForm.serialize(),
-        success: (data) => {
-          buttonIdle(submitBtn);
-          json = JSON.parse(data);
-          if(json['error']){
-            swal("Login Gagal", json['message'], "error");
-            return;
-          }
-          $(location).attr('href', '<?=site_url()?>' + json['user']['nama_role'].toLowerCase());
-        },
-        error: () => {
-          buttonIdle(submitBtn);
-        }
-      });
-    });
-
-  });
+   $(document).ready(function(){
+		var loginForm = $('#formLogin');
+		var submitButton = $('#loginBtn');
+		
+		$("#formLogin").on('submit',(e) => {
+			e.preventDefault();
+			var data = loginForm.serialize();	
+			$.ajax({
+				type: "POST",
+				dataType: "html",
+				url: "login-proses",
+				data: data,
+				success: function(msg){
+					if (msg == '1'){
+						window.location.href = "";
+					}else{
+						loginBtn.classList.remove('spinning');
+						loginBtn.innerHTML = "Login";
+						$("#error").html(msg);
+					}						
+				}
+			}); 			
+		});
+   });
+});
 </script>
 <style> body { background-color: #f3f3f4!important; } </style>
 <?php $this->load->view('Template/Footer'); ?>

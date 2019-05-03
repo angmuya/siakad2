@@ -138,6 +138,7 @@ class M_input extends CI_Model {
 		return $data;
 	}
 	
+	
 	public function SendDataPosting ($table,$form){
 		$inp = array (
 			'id_post'=> null,
@@ -152,6 +153,19 @@ class M_input extends CI_Model {
 		);
 		$data = $this->db->insert($table,$inp);
 		echo $this->session->set_flashdata('message',"Tahun Akademik Berhasil di buat");
+		return $data;
+	}
+	
+	public function KirimDataRincianBiaya ($table,$form){
+		$inp = array (
+			'id_biaya_kuliah'=> null,
+			'nm_biaya_kuliah'=> $form['jenis_biaya'],
+			'biaya_kuliah'=> $form['jumlah_biaya'],
+			'kd_kelas_jenis'=> $form['jenis_kelas'],
+
+		);
+		$data = $this->db->insert($table,$inp);
+		echo $this->session->set_flashdata('message',"Data Berhasil Di Tambahkan");
 		return $data;
 	}
 	

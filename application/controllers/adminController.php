@@ -61,6 +61,17 @@ class AdminController extends CI_Controller {
 		
 		$this->load->view('tema',$pageData);
 	}
+	
+			
+	public function data_identitas (){
+		$this->m_security->cekRoleAkses('admin/data_identitas');
+		$pageData = array(
+			'title' => 'Data Identitas',
+			'konten' => 'v_identitas',
+			'res' => $this->m_admin->getDataTableRow('tb_identitas'),
+		);
+		$this->load->view('tema',$pageData);
+	}
 
 	public function data_mhs($a=null){ //get data Mhs
 		$this->m_security->cekRoleAkses('admin/mahasiswa');
@@ -128,6 +139,13 @@ class AdminController extends CI_Controller {
 		
 		redirect('admin/fakultas');
 	}
+	
+	public function UpdateDataIdentitas(){
+		$this->m_security->cekRoleAkses('admin/data_identitas');
+		$data = $this->input->post();
+		$this->m_update->UpdateDataIdentitas('tb_identitas',$data);
+		
+		}
 
 	public function proses_input_data_prodi(){
 		$this->m_security->cekRoleAkses('admin/program_studi');
@@ -156,6 +174,8 @@ class AdminController extends CI_Controller {
 
 		redirect('admin/mahasiswa');
 	}
+	
+
 
 	// akhir zone proses
 
@@ -220,6 +240,7 @@ class AdminController extends CI_Controller {
 		$this->m_hapus->hapusDataMhs('tb_mahasiswa',$dataform);
 		redirect('admin/mahasiswa');
 	}
+
 
 	
 	//Akhir Zona Hapus

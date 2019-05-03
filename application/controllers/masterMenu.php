@@ -114,7 +114,7 @@ class MasterMenu extends CI_Controller {
 			$this->m_security->cekDataKosong($form['id_submenu']);
 			$this->m_security->cekMastersubMenuGanda('tb_master_submenu',$form);
 			$this->m_input->insertGrupSubmenu('tb_master_submenu',$form);
-			redirect('masterMenu/sub_menu/'.$form['id_submenu'].'/'.$form['name_grup']).'/';
+			echo "<script>window.location.href='javascript:history.back(-1);'</script>";
 		}
 		
 		public function proses_input_data_se_submenu(){

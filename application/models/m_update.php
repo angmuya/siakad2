@@ -25,6 +25,31 @@ class M_update extends CI_Model {
 		return $data;
 		
 	}
+	
+		public function UpdateDataIdentitas ($table,$data){
+			
+		$inp = array (
+				'nama_singkat' => $data['nama_pendek'],
+				'nama_panjang' => $data['nama_lengkap'],
+				'thn_berdiri'=> $data['thn_berdiri'],
+				'alamat'=> $data['a_jalan'],
+				'kel'=> $data['a_kel'],
+				'kec'=> $data['a_kec'],
+				'kota'=> $data['a_kota'],
+				'prov'=> $data['a_prov'],
+				'no_tlp'=> ltrim($data['no_hp'],'0'),
+		);
+		$id['id_identitas'] = '1';
+		$data = $this->db->where($id);
+		$data = $this->db->update($table,$inp);
+		echo "<div class='alert alert-success alert-dismisible fade show animated shake' role='alert' >
+					<strong>SUCCESS !!!</strong> Data Berhasil Di Ubah!!!
+					<button type='button' class='close' data-dismiss='alert' area-label='close' >
+						<span aria-hidden='true' >&times;</span>
+					</button>
+				</div>";
+		return $data;
+	}
 
 	public function updateDataProdi ($table,$form){
 
@@ -92,6 +117,32 @@ class M_update extends CI_Model {
         echo $this->session->set_flashdata('message',"Data Tahun Akadmik ".$form['id_ta']." di Aktivkan...");
 		return $data;
 
+	}
+	
+	public function ubahStatusDataMhs($table,$form){
+		
+		if ($form['status'] <= 2){
+			echo "<div class='alert alert-danger alert-dismisible fade show animated shake' role='alert' >
+					<strong>GAGAL !!!</strong> Calon Mahasiswa Belum Melengkapi Data Pada Aplikasi web !!!
+					<button type='button' class='close' data-dismiss='alert' area-label='close' >
+						<span aria-hidden='true' >&times;</span>
+					</button>
+				</div>";
+		}else{
+		$upd = array (
+			'status' => '4',
+		);
+
+		$wh['no_pendaftaran'] = $form['no_pay'];
+        $this->db->where($wh);
+        $data = $this->db->update($table,$upd);
+			echo "<div class='alert alert-success alert-dismisible fade show animated shake' role='alert' >
+					<strong>SUCCESS !!!</strong> Konfirmasi berhasil di lakukan!!!
+					<button type='button' class='close' data-dismiss='alert' area-label='close' >
+						<span aria-hidden='true' >&times;</span>
+					</button>
+				</div>";
+		}
 	}
 	
 }

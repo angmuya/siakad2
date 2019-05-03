@@ -43,12 +43,17 @@
 									<th>No</th>
 									<th>Judul</th>
 									<th>Category</th>
+									<th>Tanggal</th>
 								</tr>
 							</thead>
 							<tbody>
+							<?php
+							$no=1;
+							foreach ($dataposting as $rest ){
+							?>
 												<!-- MODAL ADD -->
 												
-												<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<div class="modal fade" id="ModalEdit<?=$rest->id_post?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog modal-xl" role="document">
 														<div class="modal-content">
 															<div class="modal-header">
@@ -58,7 +63,7 @@
 																</button>
 															</div>
 															<div class="modal-body">
-																<?php $this->load->view('pmb/v_edit_data_posting');?>
+																<?php $this->load->view('pmb/v_edit_data_posting',['rest' => $rest]);?>
 															</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-secondary btn-outline " data-dismiss="modal">Close</button>
@@ -69,12 +74,16 @@
 												</div>
 											
 										<!--END MODAL ADD-->
-								<tr style="cursor:pointer;cursor:hand;" data-toggle="modal" data-target="#ModalEdit" >								
-									<td>No</td>
-									<td>Kode MK</td>
-									<td>Nama MK</td>
+								<tr style="cursor:pointer;cursor:hand;" data-toggle="modal" data-target="#ModalEdit<?=$rest->id_post?>" >								
+									<td><?=$no++?></td>
+									<td><?=$rest->judul_post?></td>
+									<td><span class='label label-info' ><?=$rest->nm_cat_post?></span></td>
+									<td><span class='label label-primary' ><?=$rest->tgl_post .'</span> ,<span class="label label-warning" > '.$rest->time_post?></span></td>
 
 								</tr>
+								<?php
+							}
+								?>
 
 							</tbody>
 							<tfoot>
@@ -87,65 +96,4 @@
             </div>
             </div>
         </div>
-
-
-<script>
-   
-    $("#semester").change(function(){
-   
-        // variabel dari nilai combo box provinsi
-        var id_semester = $("#semester").val();
-              
-        // mengirim dan mengambil data
-        $.ajax({
-            type: "POST",
-            dataType: "html",
-            url: "<?=site_url().'c_combobox'?>",
-            data: "dil="+id_semester,
-            success: function(msg){
-               
-                    $("#r").html(msg);                                                     
-            }
-        });    
-    });
-
-	$("#get_fakultas").change(function(){
-   
-   // variabel dari nilai combo box provinsi
-   var fakultas = $("#get_fakultas").val();
-		 
-   // mengirim dan mengambil data
-   $.ajax({
-	   type: "POST",
-	   dataType: "html",
-	   url: "<?=site_url().'c_combobox/getProdiByFakultas'?>",
-	   data: "kd_fakultas="+fakultas,
-	   success: function(msg){
-		  
-			   $("#kd_prodi").html(msg);                                                     
-	   }
-   });    
-});
-
-$("#get_fakultas_edit").change(function(){
-   
-   // variabel dari nilai combo box provinsi
-   var fakultas = $("#get_fakultas_edit").val();
-		 
-   // mengirim dan mengambil data
-   $.ajax({
-	   type: "POST",
-	   dataType: "html",
-	   url: "<?=site_url().'c_combobox/getProdiByFakultas'?>",
-	   data: "kd_fakultas="+fakultas,
-	   success: function(msg){
-		  
-			   $("#kd_prodi_edit").html(msg);                                                     
-	   }
-   });    
-});
-
-
-
-</script>
 
